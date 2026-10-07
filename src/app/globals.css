@@ -1,0 +1,10 @@
+/*
+ * Tailwind utilities are available, but preflight (Tailwind's CSS reset) is
+ * deliberately left out: the site's look depends on browser defaults that
+ * preflight would change (list bullets, heading sizes, margins).
+ */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./site.css";
