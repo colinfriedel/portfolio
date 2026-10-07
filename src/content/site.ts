@@ -1,46 +1,28 @@
 /**
- * Site-wide content and settings. Most day-to-day edits (links, nav, intro
- * text, image paths) happen here rather than in the components.
+ * Site-wide content. Most day-to-day edits (intro text, links, nav) happen
+ * here rather than in the components.
  */
 
 export const site = {
   name: "Colin Friedel",
-  title: "Colin Friedel | Software Engineer",
-  description:
-    "Computer Science & Engineering grad from Santa Clara University looking for full-time software engineering roles.",
   url: "https://colin.friedelsweb.com",
 
-  // Flip to true once the real content is in and you want search engines to index the site.
+  // Flip to true once you want search engines to index the site.
   indexable: false,
 
   intro:
-    "Hi, I'm Colin. I graduated from Santa Clara University in June 2026 with a B.S. in Computer Science and Engineering, and I'm looking for full-time software engineering roles where I can solve real problems and learn quickly.",
+    "Computer science and engineering grad from Santa Clara University, looking for engineering roles where I can solve problems and learn quickly.",
 
   resumePdf: "/Colin_Friedel_Resume.pdf",
 };
 
-/**
- * Images live in /public/images. Replace the placeholder files with your own
- * using the same filenames, and update width/height to the real pixel size of
- * each file so the layout reserves the right amount of space.
- */
+/** Images live in /public/images. Replace a file with the same name to change it. */
 export const images = {
-  hero: {
-    src: "/images/hero.jpg",
-    alt: "Sunset from Mt. Diablo",
-  },
-  name: {
-    src: "/images/name.png",
-    alt: "Colin Friedel",
-    width: 720,
-    height: 200,
-  },
-  portrait: {
-    src: "/images/me.jpg",
-    alt: "Photo of Colin Friedel",
-    width: 800,
-    height: 800,
-  },
+  // The background photos are set in src/app/site.css (.bg): hero-desktop.jpg and hero-mobile.jpg.
+  backgroundAlt: "Mount Diablo ridgelines at sunset",
+  nameFirst: { src: "/images/name-colin.png", alt: "Colin", width: 367, height: 180 },
+  nameLast: { src: "/images/name-friedel.png", alt: "Friedel", width: 411, height: 180 },
+  portrait: { src: "/images/me.jpg", alt: "Colin Friedel smiling" },
 };
 
 export type SocialLink = {
@@ -50,8 +32,8 @@ export type SocialLink = {
 };
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/colinfriedel", icon: "github" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/colinfriedel", icon: "linkedin" },
+  { label: "GitHub", href: "https://github.com/colinfriedel", icon: "github" },
 ];
 
 export type NavItem = {

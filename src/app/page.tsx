@@ -1,16 +1,45 @@
-import { HomeHeader } from "@/components/home/HomeHeader";
-import { HomeNav } from "@/components/home/HomeNav";
-import { Intro } from "@/components/home/Intro";
-
-/** Homepage sections, top to bottom. Add, remove, or reorder components here. */
-const sections = [<Intro key="intro" />, <HomeNav key="nav" />];
+import Link from "next/link";
+import { FitBackground } from "@/components/FitBackground";
+import { LegacyHashRedirect } from "@/components/LegacyHashRedirect";
+import { SocialIcon } from "@/components/icons";
+import { images, navItems, site, socialLinks } from "@/content/site";
 
 export default function Home() {
+  const { nameFirst, nameLast, portrait } = images;
   return (
-    <main className="mx-auto min-h-svh max-w-6xl px-4 py-5 sm:px-6 md:px-10 md:py-10">
-      <HomeHeader>
-        {sections}
-      </HomeHeader>
-    </main>
+    <div className="top">
+      <header>
+        <div className="id">
+          <div className="who">
+            <div className="namerow">
+              <Link className="name" href="/" aria-label={site.name}>
+                <img src={nameFirst.src} width={nameFirst.width} height={nameFirst.height} alt={nameFirst.alt} />
+                <img src={nameLast.src} width={nameLast.width} height={nameLast.height} alt={nameLast.alt} />
+              </Link>
+            </div>
+          </div>
+          <p>{site.intro}</p>
+          <nav aria-label="Main">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div className="side">
+          <img className="portrait" alt={portrait.alt} src={portrait.src} />
+          <span className="social">
+            {socialLinks.map((link) => (
+              <a key={link.href} href={link.href} target="_blank" rel="noopener" aria-label={`Colin on ${link.label}`}>
+                <SocialIcon icon={link.icon} />
+              </a>
+            ))}
+          </span>
+        </div>
+      </header>
+      <FitBackground />
+      <LegacyHashRedirect />
+    </div>
   );
 }

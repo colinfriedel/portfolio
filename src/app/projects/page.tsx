@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { PageShell, Placeholder } from "@/components/PageShell";
+import { Panel } from "@/components/Panel";
+import { ProjectGrid } from "@/components/ProjectGrid";
+import { projects, projectsIntro } from "@/content/projects";
 
 export const metadata: Metadata = { title: "Projects" };
 
 export default function ProjectsPage() {
   return (
-    <PageShell title="Projects" intro="Placeholder: a one-line intro to the projects page.">
-      <Placeholder title="Project cards">Placeholder: project cards with a short summary, tech used, and links.</Placeholder>
-      <Placeholder title="Project details">Placeholder: each project can get its own page at /projects/[name].</Placeholder>
-    </PageShell>
+    <Panel label="Projects">
+      <div className="pg-head">
+        <h2>Projects</h2>
+        <p>{projectsIntro}</p>
+      </div>
+      <ProjectGrid projects={projects} />
+    </Panel>
   );
 }

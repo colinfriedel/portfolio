@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { PageShell } from "@/components/PageShell";
+import { Panel } from "@/components/Panel";
 
 export default function NotFound() {
   return (
-    <PageShell title="Page not found" intro="That page doesn't exist.">
-      <Link href="/" className="font-semibold text-ink underline underline-offset-4">
-        Back to the homepage
-      </Link>
-    </PageShell>
+    <Panel label="Page not found">
+      <div className="pg-head">
+        <h2>Page not found</h2>
+        <p>That page doesn&apos;t exist.</p>
+      </div>
+    </Panel>
   );
 }

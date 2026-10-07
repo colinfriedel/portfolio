@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import { PageShell, Placeholder } from "@/components/PageShell";
+import { Panel } from "@/components/Panel";
 
 export const metadata: Metadata = { title: "Hobbies and Interests" };
 
 export default function HobbiesPage() {
   return (
-    <PageShell title="Hobbies and Interests" intro="Placeholder: a one-line intro about life outside of code.">
-      <Placeholder title="Hobbies">Placeholder: what you do for fun.</Placeholder>
-      <Placeholder title="Interests">Placeholder: things you&apos;re into or learning about.</Placeholder>
-    </PageShell>
+    <Panel label="Hobbies and Interests">
+      <div className="pg-head">
+        <h2>Hobbies and Interests</h2>
+        <p className="ph">Placeholder: life outside of code.</p>
+      </div>
+    </Panel>
   );
 }

@@ -15,26 +15,34 @@ npm run lint
 
 | What | Where |
 | --- | --- |
-| Name, intro text, social links, nav items, image paths | `src/content/site.ts` |
-| Homepage section order | `src/app/page.tsx` (`sections` array) |
-| Inner pages | `src/app/projects`, `src/app/resume`, `src/app/hobbies` |
-| Shared inner-page layout and header (mobile menu) | `src/components/PageShell.tsx`, `src/components/SiteHeader.tsx` |
-| Colors and font | `src/app/globals.css` (`@theme`) |
+| Intro text, social links, nav items, image paths | `src/content/site.ts` |
+| Projects (cards and detail pages) | `src/content/projects.ts` |
+| Resume page | `src/app/resume/page.tsx` |
+| Hobbies page (placeholder) | `src/app/hobbies/page.tsx` |
+| All styling | `src/app/site.css` (ported from the original `index.html`) |
 | Images and resume PDF | `public/images/`, `public/Colin_Friedel_Resume.pdf` |
+
+Tailwind utilities are available, but Tailwind's CSS reset (preflight) is left out on purpose because the original styles rely on browser defaults. See `src/app/globals.css`.
+
+### Adding a project
+
+Add an entry to `projects` in `src/content/projects.ts`. Entries with `detail` get a page at `/projects/<slug>`; entries without it show as "Details coming soon".
 
 ### Adding a page
 
-1. Create `src/app/<slug>/page.tsx` using `PageShell` (copy one of the existing pages).
-2. Add `{ label, href: "/<slug>" }` to `navItems` in `src/content/site.ts`. It shows up in both the homepage nav and the inner-page header.
+1. Create `src/app/<slug>/page.tsx` using `Panel` (copy `src/app/hobbies/page.tsx`).
+2. Add `{ label, href: "/<slug>" }` to `navItems` in `src/content/site.ts`.
 
 ## Images
 
-The files in `public/images/` are labeled placeholders. Replace them with the real photos using the same filenames:
+All in `public/images/`. To change one, replace the file and keep the same name.
 
-| File | What it is |
-| --- | --- |
-| `public/images/hero.jpg` | Full-screen background (Mt. Diablo sunset). Landscape, ~2400px wide, under ~1 MB. |
-| `public/images/name.png` | Handwritten name, transparent background, cropped tight. |
-| `public/images/me.jpg` | Photo of me, square crop works best (shown as a circle), ~800×800. |
+| File | What | Size used now |
+| --- | --- | --- |
+| `hero-desktop.jpg` | Background photo for wide screens | 2200×1472 |
+| `hero-mobile.jpg` | Background photo for phones (portrait crop) | 900×1600 |
+| `name-colin.png` | Handwritten "Colin" | 367×180 |
+| `name-friedel.png` | Handwritten "Friedel" | 411×180 |
+| `me.jpg` | Photo of me (shown as a circle) | 480×480 |
 
-After swapping `name.png` or `me.jpg`, update their `width`/`height` in `src/content/site.ts` to the new files' pixel sizes.
+If you change the size of a name image, update its `width`/`height` in `src/content/site.ts`. The phone background is lined up so the intro text sits above the ridgeline (`RIDGE` in `src/components/FitBackground.tsx`); a different mobile photo may need that number adjusted.

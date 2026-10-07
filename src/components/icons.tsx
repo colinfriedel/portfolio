@@ -9,7 +9,7 @@ const paths: Record<SocialLink["icon"], string> = {
 
 export function SocialIcon({ icon, className }: { icon: SocialLink["icon"]; className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
       <path d={paths[icon]} />
     </svg>
   );
