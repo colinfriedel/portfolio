@@ -45,4 +45,6 @@ All in `public/images/`. To change one, replace the file and keep the same name.
 | `name-friedel.png` | Handwritten "Friedel" | 411×180 |
 | `me.jpg` | Photo of me (shown as a circle) | 779×779 |
 
+The tab icon (handwritten "CF", cut from the name images) is `src/app/favicon.ico` (16/32/48px), `src/app/icon.png` (512px) and `src/app/apple-icon.png` (180px, iPhone home screen).
+
 If you change the size of a name image, update its `width`/`height` in `src/content/site.ts`. The phone background is lined up so the intro text sits above the ridgeline (`RIDGE` in `src/components/FitBackground.tsx`); a different mobile photo may need that number adjusted.
