@@ -43,6 +43,6 @@ All in `public/images/`. To change one, replace the file and keep the same name.
 | `hero-mobile.jpg` | Background photo for phones (portrait crop) | 900×1600 |
 | `name-colin.png` | Handwritten "Colin" | 367×180 |
 | `name-friedel.png` | Handwritten "Friedel" | 411×180 |
-| `me.jpg` | Photo of me (shown as a circle) | 480×480 |
+| `me.jpg` | Photo of me (shown as a circle) | 779×779 |
 
 If you change the size of a name image, update its `width`/`height` in `src/content/site.ts`. The phone background is lined up so the intro text sits above the ridgeline (`RIDGE` in `src/components/FitBackground.tsx`); a different mobile photo may need that number adjusted.
