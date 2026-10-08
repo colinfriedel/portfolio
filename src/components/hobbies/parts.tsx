@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
 import { fmt, type MusicStats } from "./types";
 
 export const ImgIcon = () => (
@@ -91,24 +91,34 @@ export function Slot({ src, alt, label, i, className = "" }: { src: string | nul
   );
 }
 
-const avatarBg = (i: number) => `linear-gradient(135deg,hsl(${(i * 37 + 18) % 360} 55% 72%),hsl(${(i * 37 + 40) % 360} 45% 52%))`;
+/** Artist photo or album cover from Spotify. With no image the row has none (an empty slot keeps alignment). */
+const Thumb = ({ src, square, show }: { src?: string; square?: boolean; show: boolean }) =>
+  !show ? null : src ? (
+    <img className={`av${square ? " sq" : ""}`} src={src} alt="" width={28} height={28} loading="lazy" referrerPolicy="no-referrer" />
+  ) : (
+    <span className={`av empty${square ? " sq" : ""}`} />
+  );
+
+/** Spotify asks that its artwork and metadata link back to Spotify. */
+const Name = ({ url, children }: { url?: string; children: ReactNode }) =>
+  url ? <a href={url} target="_blank" rel="noopener noreferrer">{children}</a> : <>{children}</>;
 
 export function ListenLists({ stats, rangeId, n }: { stats: MusicStats; rangeId: string; n: number }) {
   const r = stats.ranges.find((x) => x.id === rangeId) ?? stats.ranges[0];
+  const artists = r.artists.slice(0, n);
+  const tracks = r.tracks.slice(0, n);
+  const artistPics = artists.some((a) => a.image);
+  const trackPics = tracks.some((t) => t.image);
   return (
     <div className="cols">
       <div>
         <p className="lbl">Top artists</p>
         <ol className="rank">
-          {r.artists.slice(0, n).map((a, i) => (
+          {artists.map((a, i) => (
             <li key={a.name}>
               <span className="n">{i + 1}</span>
-              {a.image ? (
-                <img className="av" src={a.image} alt="" />
-              ) : (
-                <span className="av" style={{ background: avatarBg(i) }}>{a.name.replace(/^The /, "")[0]}</span>
-              )}
-              <span className="tx"><b>{a.name}</b></span>
+              <Thumb src={a.image} show={artistPics} />
+              <span className="tx"><b><Name url={a.url}>{a.name}</Name></b></span>
             </li>
           ))}
         </ol>
@@ -116,11 +126,11 @@ export function ListenLists({ stats, rangeId, n }: { stats: MusicStats; rangeId:
       <div>
         <p className="lbl">Top tracks</p>
         <ol className="rank">
-          {r.tracks.slice(0, n).map((t, i) => (
+          {tracks.map((t, i) => (
             <li key={`${t.title}-${t.artist}`}>
               <span className="n">{i + 1}</span>
-              <span className="av sq" style={{ background: avatarBg(i + 3) }}>&#9834;</span>
-              <span className="tx"><b>{t.title}</b><i>{t.artist}</i></span>
+              <Thumb src={t.image} square show={trackPics} />
+              <span className="tx"><b><Name url={t.url}>{t.title}</Name></b><i>{t.artist}</i></span>
             </li>
           ))}
         </ol>
@@ -140,6 +150,10 @@ export function RangeChips({ stats, value, onChange }: { stats: MusicStats; valu
     </div>
   );
 }
+
+/** "Sample data" until the stats are real, then a small "via Spotify" credit. */
+export const SourceTag = ({ stats }: { stats: MusicStats }) =>
+  stats.sample ? <SampleTag show /> : stats.source === "spotify" ? <span className="sample">via Spotify</span> : null;
 
 export const SampleTag = ({ show, text = "Sample data" }: { show: boolean; text?: string }) =>
   show ? <span className="sample">{text}</span> : null;

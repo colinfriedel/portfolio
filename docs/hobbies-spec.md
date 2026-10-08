@@ -16,10 +16,10 @@ The panel is fixed to viewport height (min 640px). Below 981px the cards stack a
 Each card has an expand button (top right) that opens a detail modal. URL hash `#music`, `#outdoors`, `#photo` opens the modal; Esc, scrim click and Close button dismiss it; focus returns to the opener.
 
 ## Music card
-- Tabs: Listening / Playing.
-- Listening: range chips 1 month, 6 months, 12 months (from Spotify; it has no all-time range, so the chips follow the ranges in music-stats.json). Top 5 artists (letter avatars) and top 5 tracks. "Sample data" tag while `sample` is true.
+- Tabs: Playing / Listening (opens on Playing).
+- Listening: range chips Recently (about 4 weeks) and This year (about 12 months), from Spotify; the chips follow the ranges in music-stats.json. Top 5 artists (artist photos) and top 5 tracks (album covers); with no image there is no avatar. Names link to Spotify. "Sample data" tag while `sample` is true.
 - Playing: the four guitars (Yamaha FG-TA, PRS Custom 24, Yamaha FG-JR1, Suzuki SUA-D, "my first guitar") and three performance slots (Valley Oak Respite Center, college band, a cappella).
-- Modal: top 10 lists with range chips, full-size guitars and performance grid.
+- Modal: full-size guitars and performance grid, then top 10 lists with range chips.
 
 ## Outdoors & Travel card
 - Left column: miles hiked this year (with 12-month bar mini chart) and all time (count-up animation), US / World switch, "National parks" toggle, counts and legend.
