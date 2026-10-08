@@ -96,7 +96,7 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
   const cap = (t: string) => <>{t}{O.sample && <> <em>(sample)</em></>}</>;
   return (
     <Card
-      cls="c-ot" id="h-ot" kicker={`${o.states.length} states · ${o.parks.length} national parks · ${o.countries.length} countries`}
+      cls="c-ot" id="h-ot" kicker=""
       title={<>Outdoors &amp; Travel</>} expandLabel="Expand Outdoors and Travel" onOpen={onOpen}
     >
       {(seen) => (
@@ -228,7 +228,7 @@ function MusicModal({ data }: { data: HobbiesData }) {
       <GuitarGrid items={C.music.guitars} big />
       <h3 className="sec">On stage</h3>
       <StageGrid items={C.music.stage} big />
-      <h3 className="sec">Listening</h3>
+      <h3 className="sec">What I&apos;m listening to</h3>
       <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SourceTag stats={M} /></div>
       <ListenLists stats={M} rangeId={range} n={10} />
     </>
