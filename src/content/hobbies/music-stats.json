@@ -1,0 +1,320 @@
+{
+  "_readme": "Listening stats. SAMPLE values now. Later a scheduled job (Last.fm is the plan: it supports 1 month, 6 months, 12 months and overall, and only needs a free API key) rewrites this file. Keep the shape: ranges[] in display order, each with the top 10 artists and tracks. Set sample to false once real.",
+  "sample": true,
+  "updated": null,
+  "source": "sample",
+  "ranges": [
+    {
+      "id": "1m",
+      "label": "1 month",
+      "artists": [
+        {
+          "name": "Zach Bryan"
+        },
+        {
+          "name": "Turnpike Troubadours"
+        },
+        {
+          "name": "The Avett Brothers"
+        },
+        {
+          "name": "Noah Kahan"
+        },
+        {
+          "name": "Tyler Childers"
+        },
+        {
+          "name": "Fleet Foxes"
+        },
+        {
+          "name": "Billy Strings"
+        },
+        {
+          "name": "Mumford & Sons"
+        },
+        {
+          "name": "Colter Wall"
+        },
+        {
+          "name": "The Lumineers"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Something in the Orange",
+          "artist": "Zach Bryan"
+        },
+        {
+          "title": "Diamonds & Gasoline",
+          "artist": "Turnpike Troubadours"
+        },
+        {
+          "title": "Murder in the City",
+          "artist": "The Avett Brothers"
+        },
+        {
+          "title": "Stick Season",
+          "artist": "Noah Kahan"
+        },
+        {
+          "title": "Feathered Indians",
+          "artist": "Tyler Childers"
+        },
+        {
+          "title": "White Winter Hymnal",
+          "artist": "Fleet Foxes"
+        },
+        {
+          "title": "Dust in a Baggie",
+          "artist": "Billy Strings"
+        },
+        {
+          "title": "Little Lion Man",
+          "artist": "Mumford & Sons"
+        },
+        {
+          "title": "Sleeping on the Blacktop",
+          "artist": "Colter Wall"
+        },
+        {
+          "title": "Ho Hey",
+          "artist": "The Lumineers"
+        }
+      ]
+    },
+    {
+      "id": "6m",
+      "label": "6 months",
+      "artists": [
+        {
+          "name": "Noah Kahan"
+        },
+        {
+          "name": "Tyler Childers"
+        },
+        {
+          "name": "Fleet Foxes"
+        },
+        {
+          "name": "Billy Strings"
+        },
+        {
+          "name": "Mumford & Sons"
+        },
+        {
+          "name": "Colter Wall"
+        },
+        {
+          "name": "The Lumineers"
+        },
+        {
+          "name": "Zach Bryan"
+        },
+        {
+          "name": "Turnpike Troubadours"
+        },
+        {
+          "name": "The Avett Brothers"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Stick Season",
+          "artist": "Noah Kahan"
+        },
+        {
+          "title": "Feathered Indians",
+          "artist": "Tyler Childers"
+        },
+        {
+          "title": "White Winter Hymnal",
+          "artist": "Fleet Foxes"
+        },
+        {
+          "title": "Dust in a Baggie",
+          "artist": "Billy Strings"
+        },
+        {
+          "title": "Little Lion Man",
+          "artist": "Mumford & Sons"
+        },
+        {
+          "title": "Sleeping on the Blacktop",
+          "artist": "Colter Wall"
+        },
+        {
+          "title": "Ho Hey",
+          "artist": "The Lumineers"
+        },
+        {
+          "title": "Something in the Orange",
+          "artist": "Zach Bryan"
+        },
+        {
+          "title": "Diamonds & Gasoline",
+          "artist": "Turnpike Troubadours"
+        },
+        {
+          "title": "Murder in the City",
+          "artist": "The Avett Brothers"
+        }
+      ]
+    },
+    {
+      "id": "12m",
+      "label": "12 months",
+      "artists": [
+        {
+          "name": "Fleet Foxes"
+        },
+        {
+          "name": "Billy Strings"
+        },
+        {
+          "name": "Mumford & Sons"
+        },
+        {
+          "name": "Colter Wall"
+        },
+        {
+          "name": "The Lumineers"
+        },
+        {
+          "name": "Zach Bryan"
+        },
+        {
+          "name": "Turnpike Troubadours"
+        },
+        {
+          "name": "The Avett Brothers"
+        },
+        {
+          "name": "Noah Kahan"
+        },
+        {
+          "name": "Tyler Childers"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "White Winter Hymnal",
+          "artist": "Fleet Foxes"
+        },
+        {
+          "title": "Dust in a Baggie",
+          "artist": "Billy Strings"
+        },
+        {
+          "title": "Little Lion Man",
+          "artist": "Mumford & Sons"
+        },
+        {
+          "title": "Sleeping on the Blacktop",
+          "artist": "Colter Wall"
+        },
+        {
+          "title": "Ho Hey",
+          "artist": "The Lumineers"
+        },
+        {
+          "title": "Something in the Orange",
+          "artist": "Zach Bryan"
+        },
+        {
+          "title": "Diamonds & Gasoline",
+          "artist": "Turnpike Troubadours"
+        },
+        {
+          "title": "Murder in the City",
+          "artist": "The Avett Brothers"
+        },
+        {
+          "title": "Stick Season",
+          "artist": "Noah Kahan"
+        },
+        {
+          "title": "Feathered Indians",
+          "artist": "Tyler Childers"
+        }
+      ]
+    },
+    {
+      "id": "all",
+      "label": "All time",
+      "artists": [
+        {
+          "name": "Mumford & Sons"
+        },
+        {
+          "name": "Colter Wall"
+        },
+        {
+          "name": "The Lumineers"
+        },
+        {
+          "name": "Zach Bryan"
+        },
+        {
+          "name": "Turnpike Troubadours"
+        },
+        {
+          "name": "The Avett Brothers"
+        },
+        {
+          "name": "Noah Kahan"
+        },
+        {
+          "name": "Tyler Childers"
+        },
+        {
+          "name": "Fleet Foxes"
+        },
+        {
+          "name": "Billy Strings"
+        }
+      ],
+      "tracks": [
+        {
+          "title": "Little Lion Man",
+          "artist": "Mumford & Sons"
+        },
+        {
+          "title": "Sleeping on the Blacktop",
+          "artist": "Colter Wall"
+        },
+        {
+          "title": "Ho Hey",
+          "artist": "The Lumineers"
+        },
+        {
+          "title": "Something in the Orange",
+          "artist": "Zach Bryan"
+        },
+        {
+          "title": "Diamonds & Gasoline",
+          "artist": "Turnpike Troubadours"
+        },
+        {
+          "title": "Murder in the City",
+          "artist": "The Avett Brothers"
+        },
+        {
+          "title": "Stick Season",
+          "artist": "Noah Kahan"
+        },
+        {
+          "title": "Feathered Indians",
+          "artist": "Tyler Childers"
+        },
+        {
+          "title": "White Winter Hymnal",
+          "artist": "Fleet Foxes"
+        },
+        {
+          "title": "Dust in a Baggie",
+          "artist": "Billy Strings"
+        }
+      ]
+    }
+  ]
+}

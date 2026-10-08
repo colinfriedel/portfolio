@@ -1,0 +1,9 @@
+{
+  "_readme": "Hiking numbers. SAMPLE values now. Later this file is rewritten from Strava (a personal data export first, a scheduled job if the API becomes available). Keep these field names so the page does not need to change. Set sample to false once the numbers are real.",
+  "sample": true,
+  "updated": null,
+  "year": 2026,
+  "milesThisYear": 412,
+  "milesAllTime": 1380,
+  "milesByMonth": [18, 22, 35, 41, 52, 58, 63, 49, 44, 30, 0, 0]
+}

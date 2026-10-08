@@ -6,6 +6,7 @@ export function Panel({
   label,
   doc,
   className = "",
+  pageClassName = "",
   back = { href: "/", label: "Home" },
   actions,
   children,
@@ -13,13 +14,14 @@ export function Panel({
   label: string;
   doc?: boolean;
   className?: string;
+  pageClassName?: string;
   back?: { href: string; label: string };
   actions?: ReactNode;
   children: ReactNode;
 }) {
   const Tag = doc ? "article" : "section";
   return (
-    <main className="page" aria-label={label}>
+    <main className={`page ${pageClassName}`.trim()} aria-label={label}>
       <Tag className={`panel ${doc ? "doc" : ""} ${className}`.trim()}>
         <div className="topbar">
           <Link className="back" href={back.href}>

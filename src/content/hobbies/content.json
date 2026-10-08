@@ -1,0 +1,338 @@
+{
+  "_readme": "Everything you type by hand on the Hobbies page lives here. Photo fields: set to a path like /images/hobbies/guitars/prs-custom-24.jpg (files go in public/images/hobbies/...), or leave null to show a placeholder box. After changing 'outdoors.states', 'outdoors.parks' or 'outdoors.countries', run `npm run build:geo` so the map and globe update. Text below is PLACEHOLDER copy to be replaced with the owner's own writing.",
+  "page": {
+    "title": "Hobbies and Interests",
+    "intro": "Life outside of code: the music I play and listen to, the places I hike and travel, and the photos I take."
+  },
+  "music": {
+    "kicker": "Listening and playing",
+    "blurb": "Playing guitar and singing since COVID: a college band, three years of a cappella, and monthly sets at Valley Oak Respite Center.",
+    "guitars": [
+      {
+        "name": "Yamaha FG-TA",
+        "type": "TransAcoustic acoustic",
+        "photo": null
+      },
+      {
+        "name": "PRS Custom 24",
+        "type": "Electric",
+        "photo": null
+      },
+      {
+        "name": "Yamaha FG-JR1",
+        "type": "Travel-size acoustic",
+        "photo": null
+      },
+      {
+        "name": "Suzuki SUA-D",
+        "type": "My first guitar",
+        "photo": null
+      }
+    ],
+    "stage": [
+      {
+        "name": "Valley Oak Respite Center",
+        "photo": null
+      },
+      {
+        "name": "College band",
+        "photo": null
+      },
+      {
+        "name": "A cappella",
+        "photo": null
+      }
+    ]
+  },
+  "outdoors": {
+    "kicker": "Outdoors & Travel",
+    "blurb": "Backpacking, hiking, and climbing a few times a week, plus the places they have taken me.",
+    "states": [
+      "California",
+      "Oregon",
+      "Washington",
+      "Idaho",
+      "Nevada",
+      "Utah",
+      "Arizona",
+      "Alaska",
+      "Hawaii",
+      "Montana",
+      "Wyoming",
+      "Colorado",
+      "Texas",
+      "North Dakota",
+      "Minnesota",
+      "Iowa",
+      "Illinois",
+      "Tennessee",
+      "Georgia",
+      "Florida",
+      "North Carolina",
+      "Virginia",
+      "Pennsylvania",
+      "Maryland",
+      "New York",
+      "Massachusetts",
+      "Maine"
+    ],
+    "parks": [
+      {
+        "name": "Crater Lake",
+        "lat": 42.94,
+        "lon": -122.11
+      },
+      {
+        "name": "Mount Rainier",
+        "lat": 46.85,
+        "lon": -121.75
+      },
+      {
+        "name": "Olympic",
+        "lat": 47.8,
+        "lon": -123.6
+      },
+      {
+        "name": "Arches",
+        "lat": 38.73,
+        "lon": -109.59
+      },
+      {
+        "name": "Bryce Canyon",
+        "lat": 37.59,
+        "lon": -112.19
+      },
+      {
+        "name": "Canyonlands",
+        "lat": 38.2,
+        "lon": -109.93
+      },
+      {
+        "name": "Capitol Reef",
+        "lat": 38.2,
+        "lon": -111.17
+      },
+      {
+        "name": "Grand Canyon",
+        "lat": 36.11,
+        "lon": -112.11
+      },
+      {
+        "name": "Zion",
+        "lat": 37.3,
+        "lon": -113.03
+      },
+      {
+        "name": "Channel Islands",
+        "lat": 34.01,
+        "lon": -119.42
+      },
+      {
+        "name": "Death Valley",
+        "lat": 36.24,
+        "lon": -116.82
+      },
+      {
+        "name": "Joshua Tree",
+        "lat": 33.87,
+        "lon": -115.9
+      },
+      {
+        "name": "Lassen Volcanic",
+        "lat": 40.49,
+        "lon": -121.51
+      },
+      {
+        "name": "Pinnacles",
+        "lat": 36.49,
+        "lon": -121.17
+      },
+      {
+        "name": "Yosemite",
+        "lat": 37.87,
+        "lon": -119.54
+      },
+      {
+        "name": "Black Canyon of the Gunnison",
+        "lat": 38.58,
+        "lon": -107.72
+      },
+      {
+        "name": "Grand Teton",
+        "lat": 43.79,
+        "lon": -110.68
+      },
+      {
+        "name": "Glacier",
+        "lat": 48.76,
+        "lon": -113.79
+      },
+      {
+        "name": "Mesa Verde",
+        "lat": 37.18,
+        "lon": -108.49
+      },
+      {
+        "name": "Rocky Mountain",
+        "lat": 40.34,
+        "lon": -105.68
+      },
+      {
+        "name": "Yellowstone",
+        "lat": 44.6,
+        "lon": -110.5
+      }
+    ],
+    "countries": [
+      {
+        "name": "United States",
+        "geoName": "United States of America",
+        "focus": [
+          -98,
+          39
+        ]
+      },
+      {
+        "name": "Mexico",
+        "geoName": "Mexico"
+      },
+      {
+        "name": "Canada",
+        "geoName": "Canada",
+        "focus": [
+          -96,
+          57
+        ]
+      },
+      {
+        "name": "France",
+        "geoName": "France",
+        "focus": [
+          2.5,
+          46.6
+        ]
+      },
+      {
+        "name": "Germany",
+        "geoName": "Germany"
+      },
+      {
+        "name": "Liechtenstein",
+        "geoName": "Liechtenstein",
+        "focus": [
+          9.55,
+          47.16
+        ],
+        "marker": true
+      },
+      {
+        "name": "Switzerland",
+        "geoName": "Switzerland"
+      },
+      {
+        "name": "Austria",
+        "geoName": "Austria"
+      },
+      {
+        "name": "Poland",
+        "geoName": "Poland"
+      }
+    ]
+  },
+  "photography": {
+    "kicker": "Favorites and gear",
+    "blurb": "Favorite shots from the trail, the road, and around home.",
+    "categories": [
+      "Trail",
+      "Landscape",
+      "Travel",
+      "Music"
+    ],
+    "cameras": [
+      {
+        "name": "Canon PowerShot SD1000",
+        "type": "Digital ELPH compact",
+        "photo": null
+      },
+      {
+        "name": "Nikon D60",
+        "type": "DSLR",
+        "photo": null
+      }
+    ],
+    "photos": [
+      {
+        "title": "Mt. Diablo sunset",
+        "category": "Landscape",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Yosemite valley",
+        "category": "Landscape",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Desert arch",
+        "category": "Travel",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Ridge line",
+        "category": "Trail",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Coastline",
+        "category": "Landscape",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Live set",
+        "category": "Music",
+        "favorite": true,
+        "src": null
+      },
+      {
+        "title": "Alpine lake",
+        "category": "Trail",
+        "favorite": false,
+        "src": null
+      },
+      {
+        "title": "Old town street",
+        "category": "Travel",
+        "favorite": false,
+        "src": null
+      },
+      {
+        "title": "Campfire",
+        "category": "Trail",
+        "favorite": false,
+        "src": null
+      },
+      {
+        "title": "Alpine village",
+        "category": "Travel",
+        "favorite": false,
+        "src": null
+      },
+      {
+        "title": "Stage lights",
+        "category": "Music",
+        "favorite": false,
+        "src": null
+      },
+      {
+        "title": "Morning fog",
+        "category": "Landscape",
+        "favorite": false,
+        "src": null
+      }
+    ]
+  }
+}
