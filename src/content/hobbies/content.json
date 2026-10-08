@@ -5,7 +5,7 @@
     "intro": "Life outside of code: the music I play and listen to, the places I hike and travel, and the photos I take."
   },
   "music": {
-    "kicker": "Listening and playing",
+    "kicker": "",
     "blurb": "Playing guitar and singing since COVID: a college band, three years of a cappella, and monthly sets at Valley Oak Respite Center.",
     "guitars": [
       {
@@ -240,7 +240,7 @@
     ]
   },
   "photography": {
-    "kicker": "Favorites and gear",
+    "kicker": "",
     "blurb": "Favorite shots from the trail, the road, and around home.",
     "categories": [
       "Trail",

@@ -5,6 +5,7 @@ export type Gear = { name: string; type: string; photo: string | null };
 export type HobbiesContent = {
   page: { title: string; intro: string };
   music: {
+    /** Small line above the card title; "" shows none. */
     kicker: string;
     blurb: string;
     guitars: Gear[];
@@ -29,11 +30,14 @@ export type HobbiesContent = {
 /** src/content/hobbies/music-stats.json (rewritten daily from Spotify by scripts/spotify-stats.mjs). */
 export type MusicStats = {
   sample: boolean;
+  source?: string;
   ranges: {
     id: string;
     label: string;
-    artists: { name: string; image?: string }[];
-    tracks: { title: string; artist: string }[];
+    /** image: artist photo URL; url: the artist's Spotify page. */
+    artists: { name: string; image?: string; url?: string }[];
+    /** image: album cover URL; url: the track's Spotify page. */
+    tracks: { title: string; artist: string; image?: string; url?: string }[];
   }[];
 };
 

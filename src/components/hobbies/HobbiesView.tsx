@@ -3,9 +3,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { MapStage } from "./MapStage";
-import {
-  Bars, CameraGrid, CountUp, ExpandIcon, GuitarGrid, ListenLists, RangeChips, SampleTag, Slot, StageGrid, TreeIcon, useSeen,
-} from "./parts";
+import { Bars, CameraGrid, CountUp, ExpandIcon, GuitarGrid, ListenLists, RangeChips, SampleTag, Slot, SourceTag, StageGrid, TreeIcon, useSeen } from "./parts";
 import { type HobbiesData } from "./types";
 
 type ModalKind = "music" | "outdoors" | "photo";
@@ -51,7 +49,7 @@ function Card({ cls, id, kicker, title, expandLabel, onOpen, children }: {
   return (
     <section ref={ref} className={`card ${cls} ${seen ? "in" : ""}`.trim()} aria-labelledby={id}>
       <div className="chead">
-        <div><span className="kind">{kicker}</span><h3 className="t" id={id}>{title}</h3></div>
+        <div>{kicker && <span className="kind">{kicker}</span>}<h3 className="t" id={id}>{title}</h3></div>
         <button type="button" className="xbtn" aria-label={expandLabel} onClick={onOpen}><ExpandIcon /></button>
       </div>
       {children(seen)}
@@ -62,18 +60,18 @@ function Card({ cls, id, kicker, title, expandLabel, onOpen, children }: {
 /* ---------------------------------- music ---------------------------------- */
 function MusicCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void }) {
   const { content: C, music: M } = data;
-  const [tab, setTab] = useState<"listen" | "play">("listen");
+  const [tab, setTab] = useState<"listen" | "play">("play");
   const [range, setRange] = useState(M.ranges[0].id);
   return (
     <Card cls="c-music" id="h-music" kicker={C.music.kicker} title="Music" expandLabel="Expand Music" onOpen={onOpen}>
       {() => (
         <div className="music-body">
           <div className="filters tabs" role="tablist" aria-label="Music view">
-            <button type="button" className="chip" role="tab" aria-selected={tab === "listen"} onClick={() => setTab("listen")}>Listening</button>
             <button type="button" className="chip" role="tab" aria-selected={tab === "play"} onClick={() => setTab("play")}>Playing</button>
+            <button type="button" className="chip" role="tab" aria-selected={tab === "listen"} onClick={() => setTab("listen")}>What I&apos;m listening to</button>
           </div>
           <div className="pane" hidden={tab !== "listen"}>
-            <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SampleTag show={M.sample} /></div>
+            <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SourceTag stats={M} /></div>
             <ListenLists stats={M} rangeId={range} n={5} />
           </div>
           <div className="pane" hidden={tab !== "play"}>
@@ -98,7 +96,7 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
   const cap = (t: string) => <>{t}{O.sample && <> <em>(sample)</em></>}</>;
   return (
     <Card
-      cls="c-ot" id="h-ot" kicker={`${o.states.length} states · ${o.parks.length} national parks · ${o.countries.length} countries`}
+      cls="c-ot" id="h-ot" kicker=""
       title={<>Outdoors &amp; Travel</>} expandLabel="Expand Outdoors and Travel" onOpen={onOpen}
     >
       {(seen) => (
@@ -226,13 +224,13 @@ function MusicModal({ data }: { data: HobbiesData }) {
   const [range, setRange] = useState(M.ranges[0].id);
   return (
     <>
-      <h3 className="sec">Listening</h3>
-      <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SampleTag show={M.sample} /></div>
-      <ListenLists stats={M} rangeId={range} n={10} />
       <h3 className="sec">Guitars</h3>
       <GuitarGrid items={C.music.guitars} big />
       <h3 className="sec">On stage</h3>
       <StageGrid items={C.music.stage} big />
+      <h3 className="sec">What I&apos;m listening to</h3>
+      <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SourceTag stats={M} /></div>
+      <ListenLists stats={M} rangeId={range} n={10} />
     </>
   );
 }
