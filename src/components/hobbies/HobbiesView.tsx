@@ -49,7 +49,7 @@ function Card({ cls, id, kicker, title, expandLabel, onOpen, children }: {
   return (
     <section ref={ref} className={`card ${cls} ${seen ? "in" : ""}`.trim()} aria-labelledby={id}>
       <div className="chead">
-        <div><span className="kind">{kicker}</span><h3 className="t" id={id}>{title}</h3></div>
+        <div>{kicker && <span className="kind">{kicker}</span>}<h3 className="t" id={id}>{title}</h3></div>
         <button type="button" className="xbtn" aria-label={expandLabel} onClick={onOpen}><ExpandIcon /></button>
       </div>
       {children(seen)}
@@ -68,7 +68,7 @@ function MusicCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void }) 
         <div className="music-body">
           <div className="filters tabs" role="tablist" aria-label="Music view">
             <button type="button" className="chip" role="tab" aria-selected={tab === "play"} onClick={() => setTab("play")}>Playing</button>
-            <button type="button" className="chip" role="tab" aria-selected={tab === "listen"} onClick={() => setTab("listen")}>Listening</button>
+            <button type="button" className="chip" role="tab" aria-selected={tab === "listen"} onClick={() => setTab("listen")}>What I&apos;m listening to</button>
           </div>
           <div className="pane" hidden={tab !== "listen"}>
             <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SourceTag stats={M} /></div>

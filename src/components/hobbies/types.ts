@@ -5,6 +5,7 @@ export type Gear = { name: string; type: string; photo: string | null };
 export type HobbiesContent = {
   page: { title: string; intro: string };
   music: {
+    /** Small line above the card title; "" shows none. */
     kicker: string;
     blurb: string;
     guitars: Gear[];
