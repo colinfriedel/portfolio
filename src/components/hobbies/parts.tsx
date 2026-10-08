@@ -179,7 +179,7 @@ export function Bars({ vals, h, run }: { vals: number[]; h: number; run: boolean
 export function PerformanceGrid({ items, big }: { items: HobbiesContent["music"]["performances"]; big?: boolean }) {
   return (
     <div className={`perf ${big ? "big" : ""}`.trim()}>
-      {items.map((p) => (
+      {items.filter((p) => big || !p.expandedOnly).map((p) => (
         <img key={p.src} src={p.src} alt={p.alt} loading="lazy" decoding="async" style={big ? undefined : { objectPosition: p.focus }} />
       ))}
     </div>

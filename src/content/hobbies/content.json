@@ -6,7 +6,7 @@
   },
   "music": {
     "kicker": "",
-    "blurb": "Playing guitar and singing since COVID: a college band, three years of a cappella, and monthly sets at Valley Oak Respite Center.",
+    "blurb": "Playing guitar and singing since COVID. College bands, a cappella, and solo performances.",
     "performances": [
       {
         "src": "/images/hobbies/stage/recital-hall.jpg",
@@ -32,6 +32,16 @@
         "src": "/images/hobbies/stage/campfire.jpg",
         "alt": "Playing acoustic guitar by a campfire on the beach",
         "focus": "90% 65%"
+      },
+      {
+        "src": "/images/hobbies/stage/two-guitars.jpg",
+        "alt": "Close-up of two guitarists playing electric guitars on stage",
+        "expandedOnly": true
+      },
+      {
+        "src": "/images/hobbies/stage/backyard-show.jpg",
+        "alt": "A band playing a backyard show at night for a packed crowd",
+        "expandedOnly": true
       }
     ],
     "recording": {
