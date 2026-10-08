@@ -106,12 +106,12 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
             <div className="ot-side">
               <div className="stat">
                 <div className="big"><CountUp to={O.milesThisYear} run={seen} /></div>
-                <div className="cap">{cap(`mi hiked in ${O.year}`)}</div>
+                <div className="cap">{cap(`mi hiked/ran in ${O.year}`)}</div>
                 <Bars vals={O.milesByMonth} h={26} run={seen} />
               </div>
               <div className="stat">
                 <div className="big"><CountUp to={O.milesAllTime} run={seen} /></div>
-                <div className="cap">{cap("mi hiked all time")}</div>
+                <div className="cap">{cap(O.since ? `mi hiked/ran since ${O.since}` : "mi hiked/ran all time")}</div>
               </div>
               <div className="filters tabs" role="tablist" aria-label="Map view">
                 <button type="button" className="chip" role="tab" aria-selected={view === "us"} onClick={() => setView("us")}>US</button>

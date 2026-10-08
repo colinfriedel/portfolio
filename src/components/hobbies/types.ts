@@ -49,6 +49,8 @@ export type MusicStats = {
 export type OutdoorsStats = {
   sample: boolean;
   year: number;
+  /** Year of the first counted Strava activity. */
+  since?: number;
   milesThisYear: number;
   milesAllTime: number;
   milesByMonth: number[];
