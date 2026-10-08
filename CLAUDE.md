@@ -24,7 +24,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 
 ## Data refresh contracts (when asked to build them)
 - Last.fm: GitHub Actions cron, secret `LASTFM_API_KEY`. Use `user.getTopArtists`/`user.getTopTracks` with periods `1month`, `6month`, `12month`, `overall` and write `music-stats.json` in the existing shape (`ranges[{id,label,artists[{name}],tracks[{title,artist}]}]`, ids `1m 6m 12m all`), set `sample:false`, `updated` ISO date. Commit only if changed. No live API calls from the site.
-- Strava: from the personal data export (`activities.csv`) sum hike distance into `milesThisYear`, `milesAllTime`, `milesByMonth` (12 numbers), set `sample:false`. Provide `scripts/strava-from-export.mjs`.
+- Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike activities only by default (`--types Hike,Walk` to widen), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.
 
 ## Checking a change
 `npm run lint`, `npm run build`, then load `/hobbies` and check: Listening/Playing tabs and range chips, parks toggle + tooltips, World switch + globe + country chips, the three expanded views (and `/hobbies#music|outdoors|photo`), photo category filter, no console errors.
