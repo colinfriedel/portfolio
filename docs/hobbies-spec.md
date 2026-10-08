@@ -17,7 +17,7 @@ Each card has an expand button (top right) that opens a detail modal. URL hash `
 
 ## Music card
 - Tabs: Listening / Playing.
-- Listening: range chips 1 month, 6 months, 12 months, All time. Top 5 artists (letter avatars) and top 5 tracks. "Sample data" tag while `sample` is true.
+- Listening: range chips 1 month, 6 months, 12 months (from Spotify; it has no all-time range, so the chips follow the ranges in music-stats.json). Top 5 artists (letter avatars) and top 5 tracks. "Sample data" tag while `sample` is true.
 - Playing: the four guitars (Yamaha FG-TA, PRS Custom 24, Yamaha FG-JR1, Suzuki SUA-D, "my first guitar") and three performance slots (Valley Oak Respite Center, college band, a cappella).
 - Modal: top 10 lists with range chips, full-size guitars and performance grid.
 

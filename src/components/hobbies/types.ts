@@ -26,7 +26,7 @@ export type HobbiesContent = {
   };
 };
 
-/** src/content/hobbies/music-stats.json (rewritten later by the Last.fm job). */
+/** src/content/hobbies/music-stats.json (rewritten daily from Spotify by scripts/spotify-stats.mjs). */
 export type MusicStats = {
   sample: boolean;
   ranges: {

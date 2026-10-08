@@ -1,5 +1,5 @@
 {
-  "_readme": "Listening stats. SAMPLE values now. Later a scheduled job (Last.fm is the plan: it supports 1 month, 6 months, 12 months and overall, and only needs a free API key) rewrites this file. Keep the shape: ranges[] in display order, each with the top 10 artists and tracks. Set sample to false once real.",
+  "_readme": "Listening stats. SAMPLE values until the first Spotify run: the daily GitHub Action (scripts/spotify-stats.mjs) then rewrites this file with three ranges (1 month, 6 months, 12 months), top 10 each, and sets sample to false.",
   "sample": true,
   "updated": null,
   "source": "sample",

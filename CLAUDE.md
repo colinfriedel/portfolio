@@ -13,7 +13,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 
 ## Where things live
 - `src/content/hobbies/content.json`: all hand-written text, guitar/camera/stage/photo lists, visited states, parks (lat/lon), countries.
-- `src/content/hobbies/music-stats.json`: top artists/tracks per range. `"sample": true` shows "Sample data" labels. To be rewritten by a Last.fm job.
+- `src/content/hobbies/music-stats.json`: top artists/tracks per range. `"sample": true` shows "Sample data" labels. GENERATED daily from Spotify by `.github/workflows/spotify-stats.yml`; never hand-edit once real.
 - `src/content/hobbies/outdoors-stats.json`: hiking miles (`"sample": true` shows "(sample)"). To be rewritten from the Strava export.
 - `src/content/hobbies/geo-us.json` and `public/data/hobbies-geo-world.json`: GENERATED, never hand-edit. After changing `outdoors.states`, `outdoors.parks` or `outdoors.countries` in content.json run `npm run build:geo` (`scripts/build-geo.mjs`).
 
@@ -23,7 +23,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 - Valley Oak Respite Center: residents are adults with dementia. Only use stage photos where no resident is identifiable; ask Colin if unsure.
 
 ## Data refresh contracts (when asked to build them)
-- Last.fm: GitHub Actions cron, secret `LASTFM_API_KEY`. Use `user.getTopArtists`/`user.getTopTracks` with periods `1month`, `6month`, `12month`, `overall` and write `music-stats.json` in the existing shape (`ranges[{id,label,artists[{name}],tracks[{title,artist}]}]`, ids `1m 6m 12m all`), set `sample:false`, `updated` ISO date. Commit only if changed. No live API calls from the site.
+- Spotify: `.github/workflows/spotify-stats.yml` runs `scripts/spotify-stats.mjs` daily (and on demand via "Run workflow") with secrets `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` (get the token once with `node scripts/spotify-auth.mjs` on Colin's computer; scope `user-top-read`). Uses `/v1/me/top/{artists,tracks}` with `short_term`, `medium_term`, `long_term` mapped to ids `1m 6m 12m` (Spotify has no all-time range, so there is no "All time" chip). Writes the existing shape (`ranges[{id,label,artists[{name}],tracks[{title,artist}]}]`), `sample:false`, `source:"spotify"`, `updated` ISO date; only writes when the lists change, and skips with a warning if the secrets are missing. No live API calls from the site.
 - Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike activities only by default (`--types Hike,Walk` to widen), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.
 
 ## Checking a change
