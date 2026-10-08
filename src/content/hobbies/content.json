@@ -244,7 +244,8 @@
       "Trail",
       "Landscape",
       "Travel",
-      "Music"
+      "Music",
+      "Wildlife"
     ],
     "cameras": [
       {
@@ -260,76 +261,40 @@
     ],
     "photos": [
       {
-        "title": "Mt. Diablo sunset",
+        "title": "House at Point Reyes",
         "category": "Landscape",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/cypress-house.jpg"
       },
       {
-        "title": "Yosemite valley",
+        "title": "Half Moon Bay",
         "category": "Landscape",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/driftwood-beach.jpg"
       },
       {
-        "title": "Desert arch",
-        "category": "Travel",
+        "title": "Hummingbird in the canna lilies",
+        "category": "Wildlife",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/hummingbird.jpg"
       },
       {
-        "title": "Ridge line",
+        "title": "Backpacking in Pacifica",
         "category": "Trail",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/coastal-trail.jpg"
       },
       {
-        "title": "Coastline",
-        "category": "Landscape",
-        "favorite": true,
-        "src": null
-      },
-      {
-        "title": "Live set",
-        "category": "Music",
-        "favorite": true,
-        "src": null
-      },
-      {
-        "title": "Alpine lake",
-        "category": "Trail",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Old town street",
+        "title": "Delicate Arch",
         "category": "Travel",
-        "favorite": false,
-        "src": null
+        "favorite": true,
+        "src": "/images/hobbies/photos/delicate-arch.jpg"
       },
       {
-        "title": "Campfire",
-        "category": "Trail",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Alpine village",
+        "title": "Banff National Park",
         "category": "Travel",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Stage lights",
-        "category": "Music",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Morning fog",
-        "category": "Landscape",
-        "favorite": false,
-        "src": null
+        "favorite": true,
+        "src": "/images/hobbies/photos/banff.jpg"
       }
     ]
   }

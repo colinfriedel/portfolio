@@ -140,9 +140,13 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
 }
 
 /* ---------------------------------- photography ---------------------------------- */
+/** Categories that have at least one photo, in content.json order (empty ones are hidden). */
+const usedCategories = (P: HobbiesData["content"]["photography"]) => P.categories.filter((c) => P.photos.some((p) => p.category === c));
+
 function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind, cat?: string) => void }) {
   const P = data.content.photography;
   const favs = P.photos.filter((p) => p.favorite).slice(0, 6);
+  const cats = usedCategories(P);
   return (
     <Card cls="c-photo" id="h-photo" kicker={P.kicker} title="Photography" expandLabel="Expand Photography" onOpen={() => onOpen("photo")}>
       {() => (
@@ -159,7 +163,7 @@ function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind,
           <div className="cats">
             <p className="lbl">Explore by category</p>
             <div className="chips">
-              {P.categories.map((c) => (
+              {cats.map((c) => (
                 <button key={c} type="button" className="chip sm" onClick={() => onOpen("photo", c)}>{c}</button>
               ))}
             </div>
@@ -265,7 +269,7 @@ function PhotoModal({ data, initialCat }: { data: HobbiesData; initialCat: strin
   return (
     <>
       <div className="filters" role="group" aria-label="Category">
-        {["All", ...P.categories].map((c) => (
+        {["All", ...usedCategories(P)].map((c) => (
           <button key={c} type="button" className="chip" aria-pressed={c === cat} onClick={() => setCat(c)}>{c}</button>
         ))}
       </div>
