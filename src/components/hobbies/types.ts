@@ -8,8 +8,10 @@ export type HobbiesContent = {
     /** Small line above the card title; "" shows none. */
     kicker: string;
     blurb: string;
-    guitars: Gear[];
-    stage: { name: string; photo: string | null }[];
+    /** Performance photos, shown in this order. focus = CSS object-position for the square thumbnail crop. */
+    performances: { src: string; alt: string; focus?: string }[];
+    /** Most recent recording project. All null shows a placeholder. link opens in a new tab. */
+    recording: { title: string | null; note: string | null; cover: string | null; link: string | null; linkLabel: string | null };
   };
   outdoors: {
     kicker: string;
