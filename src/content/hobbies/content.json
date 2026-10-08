@@ -295,6 +295,30 @@
         "category": "Travel",
         "favorite": true,
         "src": "/images/hobbies/photos/banff.jpg"
+      },
+      {
+        "title": "Santa Cruz",
+        "category": "Landscape",
+        "favorite": false,
+        "src": "/images/hobbies/photos/beach-sunset.jpg"
+      },
+      {
+        "title": "Kennedy Lake",
+        "category": "Trail",
+        "favorite": false,
+        "src": "/images/hobbies/photos/mountain-meadow.jpg"
+      },
+      {
+        "title": "Lake Tahoe",
+        "category": "Travel",
+        "favorite": false,
+        "src": "/images/hobbies/photos/snowy-street.jpg"
+      },
+      {
+        "title": "Las Trampas",
+        "category": "Trail",
+        "favorite": false,
+        "src": "/images/hobbies/photos/golden-hills.jpg"
       }
     ]
   }
