@@ -143,10 +143,11 @@ body.hob-lock{overflow:hidden}
 .hob .pcol{display:flex;flex-direction:column;min-height:0}
 .hob .pcol-h{font-size:1.05rem;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:10px}
 .hob .pcol-h span{font-size:.82rem;font-weight:400;color:var(--ink-soft)}
-.hob .pcol-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:16px;padding-right:6px}
+.hob .pcol-list{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:26px;padding-right:6px}
 .hob .pcol-list:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .hob .ptile img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:#e9e2d8}
-.hob .ptile figcaption{margin-top:6px;font-size:.88rem;font-weight:600;color:var(--ink)}
+.hob .ptile{flex:none} .hob .ptile button.zoom{height:auto;line-height:0}
+.hob .ptile figcaption{margin-top:6px;font-size:.88rem;line-height:1.3;font-weight:600;color:var(--ink)}
 @media (max-width:719px){ .hob .mbody-photo{display:block;overflow:auto} .hob .pcols{display:flex;flex-direction:column;gap:26px} .hob .pcol{min-height:auto} .hob .pcol-list{flex:none;overflow:visible;padding-right:0} }
 
 /* ===== clickable photos + full-screen viewer (Lightbox.tsx) ===== */
