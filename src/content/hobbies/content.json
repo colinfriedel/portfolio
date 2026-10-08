@@ -250,12 +250,17 @@
   "photography": {
     "kicker": "",
     "blurb": "Some of my favorite photos over the years",
-    "categories": [
-      "Trail",
-      "Landscape",
-      "Travel",
-      "Music",
-      "Wildlife"
+    "groups": [
+      {
+        "id": "dslr",
+        "label": "DSLR",
+        "camera": "Nikon D60"
+      },
+      {
+        "id": "digicam",
+        "label": "Digicam",
+        "camera": "Canon PowerShot SD1000"
+      }
     ],
     "cameras": [
       {
@@ -274,61 +279,61 @@
     "photos": [
       {
         "title": "House at Point Reyes",
-        "category": "Landscape",
+        "camera": "digicam",
         "favorite": true,
         "src": "/images/hobbies/photos/cypress-house.jpg"
       },
       {
         "title": "Half Moon Bay",
-        "category": "Landscape",
+        "camera": "digicam",
         "favorite": true,
         "src": "/images/hobbies/photos/driftwood-beach.jpg"
       },
       {
         "title": "Hummingbird in the canna lilies",
-        "category": "Wildlife",
+        "camera": "dslr",
         "favorite": true,
         "src": "/images/hobbies/photos/hummingbird.jpg"
       },
       {
         "title": "Backpacking in Pacifica",
-        "category": "Trail",
+        "camera": "dslr",
         "favorite": true,
         "src": "/images/hobbies/photos/coastal-trail.jpg"
       },
       {
         "title": "Delicate Arch",
-        "category": "Travel",
+        "camera": "dslr",
         "favorite": true,
         "src": "/images/hobbies/photos/delicate-arch.jpg"
       },
       {
         "title": "Banff National Park",
-        "category": "Travel",
+        "camera": "digicam",
         "favorite": true,
         "src": "/images/hobbies/photos/banff.jpg"
       },
       {
         "title": "Santa Cruz",
-        "category": "Landscape",
+        "camera": "digicam",
         "favorite": false,
         "src": "/images/hobbies/photos/beach-sunset.jpg"
       },
       {
         "title": "Kennedy Lake",
-        "category": "Trail",
+        "camera": "digicam",
         "favorite": false,
         "src": "/images/hobbies/photos/mountain-meadow.jpg"
       },
       {
         "title": "Lake Tahoe",
-        "category": "Travel",
+        "camera": "digicam",
         "favorite": false,
         "src": "/images/hobbies/photos/snowy-street.jpg"
       },
       {
         "title": "Las Trampas",
-        "category": "Trail",
+        "camera": "dslr",
         "favorite": false,
         "src": "/images/hobbies/photos/golden-hills.jpg"
       }
