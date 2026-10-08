@@ -1,7 +1,8 @@
 import type { Feature, FeatureCollection, Geometry } from "geojson";
 
 /** Shape of src/content/hobbies/content.json (all hand-written text and lists). */
-export type Gear = { name: string; type: string; photo: string | null };
+/** focus = CSS object-position for the photo crop (default centered). */
+export type Gear = { name: string; type: string; photo: string | null; focus?: string };
 export type HobbiesContent = {
   page: { title: string; intro: string };
   music: {

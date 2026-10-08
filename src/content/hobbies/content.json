@@ -31,7 +31,7 @@
       {
         "src": "/images/hobbies/stage/campfire.jpg",
         "alt": "Playing acoustic guitar by a campfire on the beach",
-        "focus": "62% 62%"
+        "focus": "90% 65%"
       }
     ],
     "recording": {
@@ -239,7 +239,7 @@
   },
   "photography": {
     "kicker": "",
-    "blurb": "Favorite shots from the trail, the road, and around home.",
+    "blurb": "Some of my favorite photos over the years",
     "categories": [
       "Trail",
       "Landscape",
@@ -251,12 +251,14 @@
       {
         "name": "Canon PowerShot SD1000",
         "type": "Digital ELPH compact",
-        "photo": null
+        "photo": "/images/hobbies/cameras/canon-powershot.jpg",
+        "focus": "50% 33%"
       },
       {
         "name": "Nikon D60",
         "type": "DSLR",
-        "photo": null
+        "photo": "/images/hobbies/cameras/nikon-d60.jpg",
+        "focus": "50% 27%"
       }
     ],
     "photos": [
