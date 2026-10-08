@@ -12,13 +12,13 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 - Keep all text rendering through React (escaped); never use `dangerouslySetInnerHTML` for data.
 
 ## Where things live
-- `src/content/hobbies/content.json`: all hand-written text, guitar/camera/stage/photo lists, visited states, parks (lat/lon), countries.
+- `src/content/hobbies/content.json`: all hand-written text, performance photos (`music.performances`), latest recording (`music.recording`), camera/photo lists, visited states, parks (lat/lon), countries.
 - `src/content/hobbies/music-stats.json`: top artists/tracks per range. `"sample": true` shows "Sample data" labels. GENERATED daily from Spotify by `.github/workflows/spotify-stats.yml`; never hand-edit once real.
 - `src/content/hobbies/outdoors-stats.json`: hiking miles (`"sample": true` shows "(sample)"). To be rewritten from the Strava export.
 - `src/content/hobbies/geo-us.json` and `public/data/hobbies-geo-world.json`: GENERATED, never hand-edit. After changing `outdoors.states`, `outdoors.parks` or `outdoors.countries` in content.json run `npm run build:geo` (`scripts/build-geo.mjs`).
 
 ## Images
-- Put photos in `public/images/hobbies/{guitars,cameras,stage,photos}/` and set the path in content.json (`photo` or `src`, e.g. `/images/hobbies/guitars/prs-custom-24.jpg`). `null` shows a dashed placeholder.
+- Put photos in `public/images/hobbies/{stage,cameras,photos}/` (performance photos go in `stage/`) and set the path in content.json (`photo` or `src`, e.g. `/images/hobbies/stage/rooftop.jpg`). `null` shows a dashed placeholder.
 - Before committing: resize to ~1600px on the long edge, JPEG quality ~80 (under ~400 KB), and strip EXIF/GPS metadata.
 - Valley Oak Respite Center: residents are adults with dementia. Only use stage photos where no resident is identifiable; ask Colin if unsure.
 

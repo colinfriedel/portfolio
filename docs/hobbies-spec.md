@@ -18,8 +18,8 @@ Each card has an expand button (top right) that opens a detail modal. URL hash `
 ## Music card
 - Tabs: Playing / Listening (opens on Playing).
 - Listening: range chips Recently (about 4 weeks) and This year (about 12 months), from Spotify; the chips follow the ranges in music-stats.json. Top 5 artists (artist photos) and top 5 tracks (album covers); with no image there is no avatar. Names link to Spotify. "Sample data" tag while `sample` is true.
-- Playing: the four guitars (Yamaha FG-TA, PRS Custom 24, Yamaha FG-JR1, Suzuki SUA-D, "my first guitar") and three performance slots (Valley Oak Respite Center, college band, a cappella).
-- Modal: full-size guitars and performance grid, then top 10 lists with range chips.
+- Playing: "Performances", a row of performance photos (square-ish crops that grow to fill the card on desktop; `focus` in content.json sets each crop), then "Latest recording" (`music.recording`: title, note, cover, link; all null shows a dashed placeholder).
+- Modal: performance photos uncropped in columns, the latest recording, then top 10 lists with range chips.
 
 ## Outdoors & Travel card
 - Left column: miles hiked this year (with 12-month bar mini chart) and all time (count-up animation), US / World switch, "National parks" toggle, counts and legend.

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { MapStage } from "./MapStage";
-import { Bars, CameraGrid, CountUp, ExpandIcon, GuitarGrid, ListenLists, RangeChips, SampleTag, Slot, SourceTag, StageGrid, TreeIcon, useSeen } from "./parts";
+import { Bars, CameraGrid, CountUp, ExpandIcon, ListenLists, PerformanceGrid, RangeChips, Recording, SampleTag, Slot, SourceTag, TreeIcon, useSeen } from "./parts";
 import { type HobbiesData } from "./types";
 
 type ModalKind = "music" | "outdoors" | "photo";
@@ -75,10 +75,10 @@ function MusicCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void }) 
             <ListenLists stats={M} rangeId={range} n={5} />
           </div>
           <div className="pane" hidden={tab !== "play"}>
-            <p className="lbl">Guitars</p>
-            <GuitarGrid items={C.music.guitars} compact />
-            <p className="lbl">On stage</p>
-            <StageGrid items={C.music.stage} compact />
+            <p className="lbl">Performances</p>
+            <PerformanceGrid items={C.music.performances} />
+            <p className="lbl">Latest recording</p>
+            <Recording rec={C.music.recording} />
           </div>
         </div>
       )}
@@ -224,10 +224,10 @@ function MusicModal({ data }: { data: HobbiesData }) {
   const [range, setRange] = useState(M.ranges[0].id);
   return (
     <>
-      <h3 className="sec">Guitars</h3>
-      <GuitarGrid items={C.music.guitars} big />
-      <h3 className="sec">On stage</h3>
-      <StageGrid items={C.music.stage} big />
+      <h3 className="sec">Performances</h3>
+      <PerformanceGrid items={C.music.performances} big />
+      <h3 className="sec">Latest recording</h3>
+      <Recording rec={C.music.recording} big />
       <h3 className="sec">What I&apos;m listening to</h3>
       <div className="rangebar"><RangeChips stats={M} value={range} onChange={setRange} /><SourceTag stats={M} /></div>
       <ListenLists stats={M} rangeId={range} n={10} />

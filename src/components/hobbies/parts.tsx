@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
-import { fmt, type MusicStats } from "./types";
+import { fmt, type HobbiesContent, type MusicStats } from "./types";
 
 export const ImgIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -176,28 +176,30 @@ export function Bars({ vals, h, run }: { vals: number[]; h: number; run: boolean
   );
 }
 
-export function GuitarGrid({ items, big, compact }: { items: { name: string; type: string; photo: string | null }[]; big?: boolean; compact?: boolean }) {
+export function PerformanceGrid({ items, big }: { items: HobbiesContent["music"]["performances"]; big?: boolean }) {
   return (
-    <div className={`guitars ${big ? "big" : ""} ${compact ? "compact" : ""}`.trim()}>
-      {items.map((g, i) => (
-        <figure className="tile" key={g.name}>
-          <Slot src={g.photo} alt={g.name} label="Photo of me playing it" i={i} />
-          <figcaption><b>{g.name}</b><span>{g.type}</span></figcaption>
-        </figure>
+    <div className={`perf ${big ? "big" : ""}`.trim()}>
+      {items.map((p) => (
+        <img key={p.src} src={p.src} alt={p.alt} loading="lazy" decoding="async" style={big ? undefined : { objectPosition: p.focus }} />
       ))}
     </div>
   );
 }
 
-export function StageGrid({ items, big, compact }: { items: { name: string; photo: string | null }[]; big?: boolean; compact?: boolean }) {
+export function Recording({ rec, big }: { rec: HobbiesContent["music"]["recording"]; big?: boolean }) {
+  if (!rec.title) return <Slot src={null} alt="Recording project" label="Recording project goes here" i={1} className="rec-slot" />;
   return (
-    <div className={`stagepics ${big ? "big" : ""} ${compact ? "compact" : ""}`.trim()}>
-      {items.map((s, i) => (
-        <figure className="tile" key={s.name}>
-          <Slot src={s.photo} alt={s.name} label="Photo goes here" i={i + 2} />
-          <figcaption><b>{s.name}</b></figcaption>
-        </figure>
-      ))}
+    <div className={`rec ${big ? "big" : ""}`.trim()}>
+      {rec.cover && <img className="rec-cover" src={rec.cover} alt="" loading="lazy" />}
+      <div className="rec-tx">
+        <b>{rec.title}</b>
+        {rec.note && <span>{rec.note}</span>}
+        {rec.link && (
+          <a className="chip sm" href={rec.link} target="_blank" rel="noopener noreferrer">
+            {rec.linkLabel ?? "Listen"} &rarr;
+          </a>
+        )}
+      </div>
     </div>
   );
 }

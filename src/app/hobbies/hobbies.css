@@ -65,9 +65,21 @@ body.hob-lock{overflow:hidden}
 .hob .rank .tx a{color:inherit;text-decoration:none} .hob .rank .tx a:hover{text-decoration:underline}
 .hob .rank .tx{min-width:0;font-size:.85rem;line-height:1.2} .hob .rank .tx b,
 .hob .rank .tx i{display:block;font-weight:600;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .hob .rank .tx i{font-weight:400;font-size:.75rem;color:var(--ink-soft)}
-.hob .guitars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px} .hob .guitars.big{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.hob .stagepics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px} .hob .stagepics.big{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
-.hob .compact .slot{aspect-ratio:1/.85} .hob .stagepics.compact .slot{aspect-ratio:2/1} .hob .compact .slot-l{display:none} .hob .compact figcaption{font-size:.72rem}
+.hob .perf{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px}
+.hob .perf img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:#e9e2d8}
+/* desktop: the photo row grows into the card's spare height (the card is a fixed height there) */
+@media (min-width:981px){
+  .hob .c-music .music-body{flex:1;display:flex;flex-direction:column;min-height:0}
+  .hob .c-music .pane:not([hidden]){flex:1;display:flex;flex-direction:column;min-height:0}
+  .hob .c-music .perf:not(.big){flex:1;min-height:84px;max-height:240px;grid-template-rows:minmax(0,1fr)}
+  .hob .c-music .perf:not(.big) img{aspect-ratio:auto;height:100%}
+}
+.hob .perf.big{display:block;columns:3 220px;column-gap:14px;margin:0}
+.hob .perf.big img{aspect-ratio:auto;height:auto;margin-bottom:14px;break-inside:avoid}
+.hob .rec-slot{aspect-ratio:auto;min-height:64px;flex-direction:row;gap:8px} .hob .rec-slot .slot-l{font-size:.8rem}
+.hob .rec{display:flex;align-items:center;gap:12px;min-width:0} .hob .rec-cover{flex:none;width:64px;height:64px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.hob .rec-tx{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;font-size:.85rem;line-height:1.3} .hob .rec-tx span{color:var(--ink-soft)} .hob .rec-tx .chip{text-decoration:none;margin-top:2px}
+.hob .rec.big .rec-cover{width:120px;height:120px}
 
 /* ===== outdoors & travel ===== */
 .hob .ot-layout{flex:1;display:flex;gap:14px;min-height:0}

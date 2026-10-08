@@ -7,42 +7,40 @@
   "music": {
     "kicker": "",
     "blurb": "Playing guitar and singing since COVID: a college band, three years of a cappella, and monthly sets at Valley Oak Respite Center.",
-    "guitars": [
+    "performances": [
       {
-        "name": "Yamaha FG-TA",
-        "type": "TransAcoustic acoustic",
-        "photo": null
+        "src": "/images/hobbies/stage/recital-hall.jpg",
+        "alt": "Playing acoustic guitar and singing on a concert hall stage",
+        "focus": "50% 72%"
       },
       {
-        "name": "PRS Custom 24",
-        "type": "Electric",
-        "photo": null
+        "src": "/images/hobbies/stage/band-night.jpg",
+        "alt": "Singing and playing electric guitar at an outdoor night show",
+        "focus": "50% 30%"
       },
       {
-        "name": "Yamaha FG-JR1",
-        "type": "Travel-size acoustic",
-        "photo": null
+        "src": "/images/hobbies/stage/rooftop.jpg",
+        "alt": "Playing electric guitar sitting on a rooftop",
+        "focus": "68% 50%"
       },
       {
-        "name": "Suzuki SUA-D",
-        "type": "My first guitar",
-        "photo": null
+        "src": "/images/hobbies/stage/string-lights.jpg",
+        "alt": "Playing electric guitar under string lights at a night show",
+        "focus": "47% 40%"
+      },
+      {
+        "src": "/images/hobbies/stage/campfire.jpg",
+        "alt": "Playing acoustic guitar by a campfire on the beach",
+        "focus": "62% 62%"
       }
     ],
-    "stage": [
-      {
-        "name": "Valley Oak Respite Center",
-        "photo": null
-      },
-      {
-        "name": "College band",
-        "photo": null
-      },
-      {
-        "name": "A cappella",
-        "photo": null
-      }
-    ]
+    "recording": {
+      "title": null,
+      "note": null,
+      "cover": null,
+      "link": null,
+      "linkLabel": null
+    }
   },
   "outdoors": {
     "kicker": "Outdoors & Travel",
