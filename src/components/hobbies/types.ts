@@ -25,9 +25,11 @@ export type HobbiesContent = {
   photography: {
     kicker: string;
     blurb: string;
-    categories: string[];
+    /** Columns of the expanded view, in order. camera = name shown under the label. */
+    groups: { id: string; label: string; camera: string }[];
     cameras: Gear[];
-    photos: { title: string; category: string; favorite: boolean; src: string | null }[];
+    /** camera = id of the group (column) the photo belongs to. */
+    photos: { title: string; camera: string; favorite: boolean; src: string | null }[];
   };
 };
 

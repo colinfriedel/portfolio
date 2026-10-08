@@ -28,10 +28,10 @@ Each card has an expand button (top right) that opens a detail modal. URL hash `
 - Modal: larger map/globe plus stat tiles and full lists.
 
 ## Photography card
-Favorites row (6 squares), cameras (Canon PowerShot SD1000, Nikon D60), category chips (Trail, Landscape, Travel, Music) and an "All photos →" button. Modal: gallery with category filter chips.
+Favorites row (6 squares), cameras (Canon PowerShot SD1000, Nikon D60) and an "All photos →" button. Modal: two columns, one per camera (`photography.groups`: DSLR / Nikon D60, Digicam / Canon PowerShot SD1000; each photo has `camera`), photos full column width and uncropped with their titles; on screens 720px and wider each column scrolls on its own, narrower screens stack them.
 
 ## Photo viewer
-Every real photo (performance photos, photography favorites and gallery, camera photos; on the cards and in the expanded views) opens a full-screen viewer (`src/components/hobbies/Lightbox.tsx`). It flips through the set the photo belongs to: all performance photos, the card's favorites, the gallery's current category filter, or the cameras. Arrow buttons, arrow keys and swipe move between photos; Esc, the close button or a click on the backdrop closes it and returns focus to the photo. It sits above the expanded views, and Esc closes only the viewer. Photography photos show their title and category; performance photos show no caption.
+Every real photo (performance photos, photography favorites and gallery, camera photos; on the cards and in the expanded views) opens a full-screen viewer (`src/components/hobbies/Lightbox.tsx`). It flips through the set the photo belongs to: all performance photos, the card's favorites, one camera column of the expanded view, or the cameras. Arrow buttons, arrow keys and swipe move between photos; Esc, the close button or a click on the backdrop closes it and returns focus to the photo. It sits above the expanded views, and Esc closes only the viewer. Photography photos show their title (cameras: name and type); performance photos show no caption.
 
 ## Data contracts
 See `src/content/hobbies/*.json` (`_readme` at the top of each). The JSON is imported at build time; only the world geo (`public/data/hobbies-geo-world.json`) is fetched, the first time the globe opens.
@@ -47,7 +47,7 @@ All copy, sample listening and hiking numbers, and every photo slot are placehol
 - [ ] Matches homepage tokens/fonts/background; no new fonts or CDNs.
 - [ ] No scroll at 1280x720, 1366x680, 1440x800, 1920x1080; mobile 390px has no horizontal overflow.
 - [ ] Listening/Playing tabs and range chips work; parks toggle zooms and shows tooltips; World switch loads the globe, drag and country chips work.
-- [ ] Three expanded views open/close (hash, Esc, scrim, Close); photo category filter works.
+- [ ] Three expanded views open/close (hash, Esc, scrim, Close); Photography columns scroll independently.
 - [ ] A photo path in content.json renders an image (cover crop); null shows the placeholder.
 - [ ] `npm run build:geo` regenerates the geo files; unknown state/country names give a clear error.
 - [ ] `npm run lint` and `npm run build` pass; no console errors.

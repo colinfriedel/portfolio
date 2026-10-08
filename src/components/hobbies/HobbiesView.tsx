@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { LightboxProvider, useLightbox, type LightboxItem } from "./Lightbox";
+import { LightboxProvider, useLightbox, Zoomable, type LightboxItem } from "./Lightbox";
 import { MapStage } from "./MapStage";
 import { Bars, CameraGrid, CountUp, ExpandIcon, ListenLists, PerformanceGrid, RangeChips, Recording, SampleTag, Slot, SourceTag, TreeIcon, useSeen } from "./parts";
 import { type HobbiesData } from "./types";
@@ -143,15 +143,11 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
 /* ---------------------------------- photography ---------------------------------- */
 /** Photography photos (with an image) as items for the full-screen viewer. */
 const toViewerItems = (photos: HobbiesData["content"]["photography"]["photos"]): LightboxItem[] =>
-  photos.filter((p) => p.src).map((p) => ({ src: p.src!, alt: p.title, caption: p.title, sub: p.category }));
-
-/** Categories that have at least one photo, in content.json order (empty ones are hidden). */
-const usedCategories = (P: HobbiesData["content"]["photography"]) => P.categories.filter((c) => P.photos.some((p) => p.category === c));
+  photos.filter((p) => p.src).map((p) => ({ src: p.src!, alt: p.title, caption: p.title }));
 
 function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind, cat?: string) => void }) {
   const P = data.content.photography;
   const favs = P.photos.filter((p) => p.favorite).slice(0, 6);
-  const cats = usedCategories(P);
   const openViewer = useLightbox();
   const favItems = toViewerItems(favs);
   return (
@@ -170,13 +166,7 @@ function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind,
           </div>
           <div><p className="lbl">Cameras</p><CameraGrid items={P.cameras} /></div>
           <div className="cats">
-            <p className="lbl">Explore by category</p>
-            <div className="chips">
-              {cats.map((c) => (
-                <button key={c} type="button" className="chip sm" onClick={() => onOpen("photo", c)}>{c}</button>
-              ))}
-            </div>
-            <button type="button" className="dl" onClick={() => onOpen("photo", "All")}>All photos &rarr;</button>
+            <button type="button" className="dl" onClick={() => onOpen("photo")}>All photos &rarr;</button>
           </div>
         </div>
       )}
@@ -221,10 +211,10 @@ function Modal({ open, onClose, data }: { open: { kind: ModalKind; cat?: string 
           <div><h2 id="hob-m-title">{title}</h2><p className="blurb">{blurb}</p></div>
           <button ref={closeRef} type="button" className="back" onClick={onClose}>Close</button>
         </header>
-        <div className="mbody" key={shown ? `${shown.kind}-${shown.cat ?? ""}` : "none"}>
+        <div className={`mbody ${shown ? `mbody-${shown.kind}` : ""}`.trim()} key={shown ? `${shown.kind}-${shown.cat ?? ""}` : "none"}>
           {shown?.kind === "music" && <MusicModal data={data} />}
           {shown?.kind === "outdoors" && <OutdoorsModal data={data} run={!!open} />}
-          {shown?.kind === "photo" && <PhotoModal data={data} initialCat={shown.cat ?? "All"} />}
+          {shown?.kind === "photo" && <PhotoModal data={data} />}
         </div>
       </section>
     </div>,
@@ -272,29 +262,31 @@ function OutdoorsModal({ data, run }: { data: HobbiesData; run: boolean }) {
   );
 }
 
-function PhotoModal({ data, initialCat }: { data: HobbiesData; initialCat: string }) {
+function PhotoModal({ data }: { data: HobbiesData }) {
   const P = data.content.photography;
-  const [cat, setCat] = useState(initialCat);
   const openViewer = useLightbox();
-  const shownItems = toViewerItems(P.photos.filter((p) => cat === "All" || p.category === cat));
   return (
-    <>
-      <div className="filters" role="group" aria-label="Category">
-        {["All", ...usedCategories(P)].map((c) => (
-          <button key={c} type="button" className="chip" aria-pressed={c === cat} onClick={() => setCat(c)}>{c}</button>
-        ))}
-      </div>
-      <div className="gallery">
-        {P.photos.map((p, i) => (
-          <figure className="tile pop" key={p.title} hidden={cat !== "All" && p.category !== cat}>
-            <Slot src={p.src} alt={p.title} label={p.title} i={i} onOpen={p.src ? () => openViewer(shownItems, shownItems.findIndex((x) => x.src === p.src)) : undefined} />
-            <figcaption><b>{p.title}</b><span>{p.category}</span></figcaption>
-          </figure>
-        ))}
-      </div>
-      <h3 className="sec">Cameras</h3>
-      <CameraGrid items={P.cameras} />
-    </>
+    <div className="pcols">
+      {P.groups.map((g) => {
+        const photos = P.photos.filter((p) => p.camera === g.id && p.src);
+        const items = toViewerItems(photos);
+        return (
+          <section className="pcol" key={g.id} aria-labelledby={`pcol-${g.id}`}>
+            <h3 className="pcol-h" id={`pcol-${g.id}`}>{g.label}<span>{g.camera}</span></h3>
+            <div className="pcol-list" tabIndex={0} aria-label={`${g.label} photos`}>
+              {photos.map((p, i) => (
+                <figure className="ptile" key={p.src}>
+                  <Zoomable label={p.title} onOpen={() => openViewer(items, i)}>
+                    <img src={p.src!} alt={p.title} loading="lazy" decoding="async" />
+                  </Zoomable>
+                  <figcaption>{p.title}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        );
+      })}
+    </div>
   );
 }
 
