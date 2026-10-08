@@ -30,6 +30,9 @@ Each card has an expand button (top right) that opens a detail modal. URL hash `
 ## Photography card
 Favorites row (6 squares), cameras (Canon PowerShot SD1000, Nikon D60), category chips (Trail, Landscape, Travel, Music) and an "All photos →" button. Modal: gallery with category filter chips.
 
+## Photo viewer
+Every real photo (performance photos, photography favorites and gallery, camera photos; on the cards and in the expanded views) opens a full-screen viewer (`src/components/hobbies/Lightbox.tsx`). It flips through the set the photo belongs to: all performance photos, the card's favorites, the gallery's current category filter, or the cameras. Arrow buttons, arrow keys and swipe move between photos; Esc, the close button or a click on the backdrop closes it and returns focus to the photo. It sits above the expanded views, and Esc closes only the viewer. Photography photos show their title and category; performance photos show no caption.
+
 ## Data contracts
 See `src/content/hobbies/*.json` (`_readme` at the top of each). The JSON is imported at build time; only the world geo (`public/data/hobbies-geo-world.json`) is fetched, the first time the globe opens.
 

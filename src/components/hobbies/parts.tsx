@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode } from "react";
+import { useLightbox, Zoomable, type LightboxItem } from "./Lightbox";
 import { fmt, type HobbiesContent, type MusicStats } from "./types";
 
 export const ImgIcon = () => (
@@ -74,11 +75,12 @@ const GRADS = [
   ["rgba(204,232,255,.95)", "rgba(20,35,58,.22)"],
   ["rgba(255,226,204,.95)", "rgba(204,232,255,.85)"],
 ];
-export function Slot({ src, alt, label, i, className = "", focus }: { src: string | null; alt: string; label: string; i: number; className?: string; focus?: string }) {
+export function Slot({ src, alt, label, i, className = "", focus, onOpen }: { src: string | null; alt: string; label: string; i: number; className?: string; focus?: string; onOpen?: () => void }) {
   if (src) {
+    const img = <img src={src} alt={alt} loading="lazy" decoding="async" style={focus ? { objectPosition: focus } : undefined} />;
     return (
       <div className={`slot has-img ${className}`.trim()}>
-        <img src={src} alt={alt} loading="lazy" decoding="async" style={focus ? { objectPosition: focus } : undefined} />
+        {onOpen ? <Zoomable onOpen={onOpen} label={alt}>{img}</Zoomable> : img}
       </div>
     );
   }
@@ -177,10 +179,14 @@ export function Bars({ vals, h, run }: { vals: number[]; h: number; run: boolean
 }
 
 export function PerformanceGrid({ items, big }: { items: HobbiesContent["music"]["performances"]; big?: boolean }) {
+  const openViewer = useLightbox();
+  const all: LightboxItem[] = items.map((p) => ({ src: p.src, alt: p.alt }));
   return (
     <div className={`perf ${big ? "big" : ""}`.trim()}>
       {items.filter((p) => big || !p.expandedOnly).map((p) => (
-        <img key={p.src} src={p.src} alt={p.alt} loading="lazy" decoding="async" style={big ? undefined : { objectPosition: p.focus }} />
+        <Zoomable key={p.src} label={p.alt} onOpen={() => openViewer(all, items.indexOf(p))}>
+          <img src={p.src} alt={p.alt} loading="lazy" decoding="async" style={big ? undefined : { objectPosition: p.focus }} />
+        </Zoomable>
       ))}
     </div>
   );
@@ -205,11 +211,15 @@ export function Recording({ rec, big }: { rec: HobbiesContent["music"]["recordin
 }
 
 export function CameraGrid({ items }: { items: HobbiesContent["photography"]["cameras"] }) {
+  const openViewer = useLightbox();
+  const withPhoto = items.filter((c) => c.photo);
+  const viewerItems: LightboxItem[] = withPhoto.map((c) => ({ src: c.photo!, alt: `Holding the ${c.name}`, caption: c.name, sub: c.type }));
   return (
     <div className="cams">
       {items.map((c, i) => (
         <figure className="tile" key={c.name}>
-          <Slot src={c.photo} alt={c.photo ? `Holding the ${c.name}` : c.name} label="Me holding it" i={i + 1} focus={c.focus} />
+          <Slot src={c.photo} alt={c.photo ? `Holding the ${c.name}` : c.name} label="Me holding it" i={i + 1} focus={c.focus}
+            onOpen={c.photo ? () => openViewer(viewerItems, withPhoto.indexOf(c)) : undefined} />
           <figcaption><b>{c.name}</b><span>{c.type}</span></figcaption>
         </figure>
       ))}
