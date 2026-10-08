@@ -14,7 +14,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 ## Where things live
 - `src/content/hobbies/content.json`: all hand-written text, performance photos (`music.performances`), latest recording (`music.recording`), camera/photo lists, visited states, parks (lat/lon), countries.
 - `src/content/hobbies/music-stats.json`: top artists/tracks per range. `"sample": true` shows "Sample data" labels. GENERATED daily from Spotify by `.github/workflows/spotify-stats.yml`; never hand-edit once real.
-- `src/content/hobbies/outdoors-stats.json`: hiking miles (`"sample": true` shows "(sample)"). To be rewritten from the Strava export.
+- `src/content/hobbies/outdoors-stats.json`: hiking + running miles from the Strava export (`"sample": true` shows "(sample)").
 - `src/content/hobbies/geo-us.json` and `public/data/hobbies-geo-world.json`: GENERATED, never hand-edit. After changing `outdoors.states`, `outdoors.parks` or `outdoors.countries` in content.json run `npm run build:geo` (`scripts/build-geo.mjs`).
 
 ## Images
@@ -24,7 +24,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 
 ## Data refresh contracts (when asked to build them)
 - Spotify: `.github/workflows/spotify-stats.yml` runs `scripts/spotify-stats.mjs` daily (and on demand via "Run workflow") with secrets `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` (get the token once with `node scripts/spotify-auth.mjs` on Colin's computer; scope `user-top-read`). Uses `/v1/me/top/{artists,tracks}` with `short_term` -> id `recent` ("Recently") and `long_term` -> id `year` ("This year"). Writes `ranges[{id,label,artists[{name,image,url}],tracks[{title,artist,image,url}]}]` (image = artist photo / album cover hotlinked from Spotify's CDN, url = Spotify page; names link to Spotify, as Spotify's guidelines ask), `sample:false`, `source:"spotify"`, `updated` ISO date; only writes when the lists change, and skips with a warning if the secrets are missing. No live API calls from the site.
-- Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike activities only by default (`--types Hike,Walk` to widen), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.
+- Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike and Run activities by default (`--types` to change, e.g. `Hike,Run,Walk`; `since` = year of the first counted activity), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.
 
 ## Checking a change
 `npm run lint`, `npm run build`, then load `/hobbies` and check: Playing/Listening tabs and range chips, the photo viewer (open from a card and from an expanded view, arrows, Esc), parks toggle + tooltips, World switch + globe + country chips, the three expanded views (and `/hobbies#music|outdoors|photo`), photo category filter, no console errors.
