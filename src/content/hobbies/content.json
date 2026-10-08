@@ -2,7 +2,7 @@
   "_readme": "Everything you type by hand on the Hobbies page lives here. Photo fields: set to a path like /images/hobbies/guitars/prs-custom-24.jpg (files go in public/images/hobbies/...), or leave null to show a placeholder box. After changing 'outdoors.states', 'outdoors.parks' or 'outdoors.countries', run `npm run build:geo` so the map and globe update. Text below is PLACEHOLDER copy to be replaced with the owner's own writing.",
   "page": {
     "title": "Hobbies and Interests",
-    "intro": "Life outside of code: the music I play and listen to, the places I hike and travel, and the photos I take."
+    "intro": "A glimpse into my life outside of code"
   },
   "music": {
     "kicker": "",
@@ -54,7 +54,7 @@
   },
   "outdoors": {
     "kicker": "Outdoors & Travel",
-    "blurb": "Backpacking, hiking, and climbing a few times a week, plus the places they have taken me.",
+    "blurb": "Getting outside!",
     "states": [
       "California",
       "Oregon",
