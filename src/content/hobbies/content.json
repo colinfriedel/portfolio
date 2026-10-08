@@ -2,11 +2,11 @@
   "_readme": "Everything you type by hand on the Hobbies page lives here. Photo fields: set to a path like /images/hobbies/guitars/prs-custom-24.jpg (files go in public/images/hobbies/...), or leave null to show a placeholder box. After changing 'outdoors.states', 'outdoors.parks' or 'outdoors.countries', run `npm run build:geo` so the map and globe update. Text below is PLACEHOLDER copy to be replaced with the owner's own writing.",
   "page": {
     "title": "Hobbies and Interests",
-    "intro": "Life outside of code: the music I play and listen to, the places I hike and travel, and the photos I take."
+    "intro": "A glimpse into my life outside of code"
   },
   "music": {
     "kicker": "",
-    "blurb": "Playing guitar and singing since COVID: a college band, three years of a cappella, and monthly sets at Valley Oak Respite Center.",
+    "blurb": "Playing guitar and singing since COVID. College bands, a cappella, and solo performances.",
     "performances": [
       {
         "src": "/images/hobbies/stage/recital-hall.jpg",
@@ -31,7 +31,17 @@
       {
         "src": "/images/hobbies/stage/campfire.jpg",
         "alt": "Playing acoustic guitar by a campfire on the beach",
-        "focus": "62% 62%"
+        "focus": "90% 65%"
+      },
+      {
+        "src": "/images/hobbies/stage/two-guitars.jpg",
+        "alt": "Close-up of two guitarists playing electric guitars on stage",
+        "expandedOnly": true
+      },
+      {
+        "src": "/images/hobbies/stage/backyard-show.jpg",
+        "alt": "A band playing a backyard show at night for a packed crowd",
+        "expandedOnly": true
       }
     ],
     "recording": {
@@ -44,7 +54,7 @@
   },
   "outdoors": {
     "kicker": "Outdoors & Travel",
-    "blurb": "Backpacking, hiking, and climbing a few times a week, plus the places they have taken me.",
+    "blurb": "Getting outside!",
     "states": [
       "California",
       "Oregon",
@@ -239,97 +249,88 @@
   },
   "photography": {
     "kicker": "",
-    "blurb": "Favorite shots from the trail, the road, and around home.",
+    "blurb": "Some of my favorite photos over the years",
     "categories": [
       "Trail",
       "Landscape",
       "Travel",
-      "Music"
+      "Music",
+      "Wildlife"
     ],
     "cameras": [
       {
         "name": "Canon PowerShot SD1000",
         "type": "Digital ELPH compact",
-        "photo": null
+        "photo": "/images/hobbies/cameras/canon-powershot.jpg",
+        "focus": "50% 33%"
       },
       {
         "name": "Nikon D60",
         "type": "DSLR",
-        "photo": null
+        "photo": "/images/hobbies/cameras/nikon-d60.jpg",
+        "focus": "50% 27%"
       }
     ],
     "photos": [
       {
-        "title": "Mt. Diablo sunset",
+        "title": "House at Point Reyes",
         "category": "Landscape",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/cypress-house.jpg"
       },
       {
-        "title": "Yosemite valley",
+        "title": "Half Moon Bay",
         "category": "Landscape",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/driftwood-beach.jpg"
       },
       {
-        "title": "Desert arch",
-        "category": "Travel",
+        "title": "Hummingbird in the canna lilies",
+        "category": "Wildlife",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/hummingbird.jpg"
       },
       {
-        "title": "Ridge line",
+        "title": "Backpacking in Pacifica",
         "category": "Trail",
         "favorite": true,
-        "src": null
+        "src": "/images/hobbies/photos/coastal-trail.jpg"
       },
       {
-        "title": "Coastline",
-        "category": "Landscape",
-        "favorite": true,
-        "src": null
-      },
-      {
-        "title": "Live set",
-        "category": "Music",
-        "favorite": true,
-        "src": null
-      },
-      {
-        "title": "Alpine lake",
-        "category": "Trail",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Old town street",
+        "title": "Delicate Arch",
         "category": "Travel",
-        "favorite": false,
-        "src": null
+        "favorite": true,
+        "src": "/images/hobbies/photos/delicate-arch.jpg"
       },
       {
-        "title": "Campfire",
-        "category": "Trail",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Alpine village",
+        "title": "Banff National Park",
         "category": "Travel",
-        "favorite": false,
-        "src": null
+        "favorite": true,
+        "src": "/images/hobbies/photos/banff.jpg"
       },
       {
-        "title": "Stage lights",
-        "category": "Music",
-        "favorite": false,
-        "src": null
-      },
-      {
-        "title": "Morning fog",
+        "title": "Santa Cruz",
         "category": "Landscape",
         "favorite": false,
-        "src": null
+        "src": "/images/hobbies/photos/beach-sunset.jpg"
+      },
+      {
+        "title": "Kennedy Lake",
+        "category": "Trail",
+        "favorite": false,
+        "src": "/images/hobbies/photos/mountain-meadow.jpg"
+      },
+      {
+        "title": "Lake Tahoe",
+        "category": "Travel",
+        "favorite": false,
+        "src": "/images/hobbies/photos/snowy-street.jpg"
+      },
+      {
+        "title": "Las Trampas",
+        "category": "Trail",
+        "favorite": false,
+        "src": "/images/hobbies/photos/golden-hills.jpg"
       }
     ]
   }

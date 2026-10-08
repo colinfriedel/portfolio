@@ -74,11 +74,11 @@ const GRADS = [
   ["rgba(204,232,255,.95)", "rgba(20,35,58,.22)"],
   ["rgba(255,226,204,.95)", "rgba(204,232,255,.85)"],
 ];
-export function Slot({ src, alt, label, i, className = "" }: { src: string | null; alt: string; label: string; i: number; className?: string }) {
+export function Slot({ src, alt, label, i, className = "", focus }: { src: string | null; alt: string; label: string; i: number; className?: string; focus?: string }) {
   if (src) {
     return (
       <div className={`slot has-img ${className}`.trim()}>
-        <img src={src} alt={alt} loading="lazy" decoding="async" />
+        <img src={src} alt={alt} loading="lazy" decoding="async" style={focus ? { objectPosition: focus } : undefined} />
       </div>
     );
   }
@@ -179,7 +179,7 @@ export function Bars({ vals, h, run }: { vals: number[]; h: number; run: boolean
 export function PerformanceGrid({ items, big }: { items: HobbiesContent["music"]["performances"]; big?: boolean }) {
   return (
     <div className={`perf ${big ? "big" : ""}`.trim()}>
-      {items.map((p) => (
+      {items.filter((p) => big || !p.expandedOnly).map((p) => (
         <img key={p.src} src={p.src} alt={p.alt} loading="lazy" decoding="async" style={big ? undefined : { objectPosition: p.focus }} />
       ))}
     </div>
@@ -204,12 +204,12 @@ export function Recording({ rec, big }: { rec: HobbiesContent["music"]["recordin
   );
 }
 
-export function CameraGrid({ items }: { items: { name: string; type: string; photo: string | null }[] }) {
+export function CameraGrid({ items }: { items: HobbiesContent["photography"]["cameras"] }) {
   return (
     <div className="cams">
       {items.map((c, i) => (
         <figure className="tile" key={c.name}>
-          <Slot src={c.photo} alt={c.name} label="Me holding it" i={i + 1} />
+          <Slot src={c.photo} alt={c.photo ? `Holding the ${c.name}` : c.name} label="Me holding it" i={i + 1} focus={c.focus} />
           <figcaption><b>{c.name}</b><span>{c.type}</span></figcaption>
         </figure>
       ))}
