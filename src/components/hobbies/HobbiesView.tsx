@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { LightboxProvider, useLightbox, type LightboxItem } from "./Lightbox";
 import { MapStage } from "./MapStage";
 import { Bars, CameraGrid, CountUp, ExpandIcon, ListenLists, PerformanceGrid, RangeChips, Recording, SampleTag, Slot, SourceTag, TreeIcon, useSeen } from "./parts";
 import { type HobbiesData } from "./types";
@@ -30,14 +31,14 @@ export function HobbiesView({ data }: { data: HobbiesData }) {
   }, []);
 
   return (
-    <>
+    <LightboxProvider>
       <div className="grid">
         <MusicCard data={data} onOpen={() => openModal("music")} />
         <OutdoorsCard data={data} onOpen={() => openModal("outdoors")} />
         <PhotoCard data={data} onOpen={openModal} />
       </div>
       <Modal open={open} onClose={closeModal} data={data} />
-    </>
+    </LightboxProvider>
   );
 }
 
@@ -140,6 +141,10 @@ function OutdoorsCard({ data, onOpen }: { data: HobbiesData; onOpen: () => void 
 }
 
 /* ---------------------------------- photography ---------------------------------- */
+/** Photography photos (with an image) as items for the full-screen viewer. */
+const toViewerItems = (photos: HobbiesData["content"]["photography"]["photos"]): LightboxItem[] =>
+  photos.filter((p) => p.src).map((p) => ({ src: p.src!, alt: p.title, caption: p.title, sub: p.category }));
+
 /** Categories that have at least one photo, in content.json order (empty ones are hidden). */
 const usedCategories = (P: HobbiesData["content"]["photography"]) => P.categories.filter((c) => P.photos.some((p) => p.category === c));
 
@@ -147,6 +152,8 @@ function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind,
   const P = data.content.photography;
   const favs = P.photos.filter((p) => p.favorite).slice(0, 6);
   const cats = usedCategories(P);
+  const openViewer = useLightbox();
+  const favItems = toViewerItems(favs);
   return (
     <Card cls="c-photo" id="h-photo" kicker={P.kicker} title="Photography" expandLabel="Expand Photography" onOpen={() => onOpen("photo")}>
       {() => (
@@ -155,7 +162,9 @@ function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind,
             <p className="lbl">Favorites</p>
             <div className="fav">
               {favs.map((p, i) => (
-                <figure className="tile" key={p.title}><Slot src={p.src} alt={p.title} label={p.title} i={i} /></figure>
+                <figure className="tile" key={p.title}>
+                  <Slot src={p.src} alt={p.title} label={p.title} i={i} onOpen={p.src ? () => openViewer(favItems, favItems.findIndex((x) => x.src === p.src)) : undefined} />
+                </figure>
               ))}
             </div>
           </div>
@@ -266,6 +275,8 @@ function OutdoorsModal({ data, run }: { data: HobbiesData; run: boolean }) {
 function PhotoModal({ data, initialCat }: { data: HobbiesData; initialCat: string }) {
   const P = data.content.photography;
   const [cat, setCat] = useState(initialCat);
+  const openViewer = useLightbox();
+  const shownItems = toViewerItems(P.photos.filter((p) => cat === "All" || p.category === cat));
   return (
     <>
       <div className="filters" role="group" aria-label="Category">
@@ -276,7 +287,7 @@ function PhotoModal({ data, initialCat }: { data: HobbiesData; initialCat: strin
       <div className="gallery">
         {P.photos.map((p, i) => (
           <figure className="tile pop" key={p.title} hidden={cat !== "All" && p.category !== cat}>
-            <Slot src={p.src} alt={p.title} label={p.title} i={i} />
+            <Slot src={p.src} alt={p.title} label={p.title} i={i} onOpen={p.src ? () => openViewer(shownItems, shownItems.findIndex((x) => x.src === p.src)) : undefined} />
             <figcaption><b>{p.title}</b><span>{p.category}</span></figcaption>
           </figure>
         ))}

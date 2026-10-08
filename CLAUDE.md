@@ -27,4 +27,4 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 - Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike activities only by default (`--types Hike,Walk` to widen), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.
 
 ## Checking a change
-`npm run lint`, `npm run build`, then load `/hobbies` and check: Listening/Playing tabs and range chips, parks toggle + tooltips, World switch + globe + country chips, the three expanded views (and `/hobbies#music|outdoors|photo`), photo category filter, no console errors.
+`npm run lint`, `npm run build`, then load `/hobbies` and check: Playing/Listening tabs and range chips, the photo viewer (open from a card and from an expanded view, arrows, Esc), parks toggle + tooltips, World switch + globe + country chips, the three expanded views (and `/hobbies#music|outdoors|photo`), photo category filter, no console errors.
