@@ -130,3 +130,9 @@ a.pcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,35,58,.16
 
 /* Background photos (previously inlined as data URIs). */
 .bg{--bg-d:url(/images/hero-desktop.jpg);--bg-m:url(/images/hero-mobile.jpg)}
+
+/* Keep the background the full window width even when a page has a scrollbar.
+   Otherwise taller pages (Projects, Resume) shrink it by the scrollbar's width
+   and the photo visibly re-scales when navigating from the homepage. The
+   scrollbar now just covers the photo's right edge. */
+.bg{right:auto;width:100vw}
