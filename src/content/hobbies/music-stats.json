@@ -9,76 +9,116 @@
       "label": "Recently",
       "artists": [
         {
-          "name": "The Avett Brothers"
+          "name": "The Avett Brothers",
+          "image": "https://i.scdn.co/image/ab6761610000f178a8258195e525b7a4c7fca7df",
+          "url": "https://open.spotify.com/artist/196lKsA13K3keVXMDFK66q"
         },
         {
-          "name": "Jason Isbell and the 400 Unit"
+          "name": "Jason Isbell and the 400 Unit",
+          "image": "https://i.scdn.co/image/ab6761610000f178bd5ffed84abc55085599e2b3",
+          "url": "https://open.spotify.com/artist/3Lg3FGwBxOGuefqekQzRUf"
         },
         {
-          "name": "The Beatles"
+          "name": "The Beatles",
+          "image": "https://i.scdn.co/image/ab6761610000f178357fdaf56c64a36a36741538",
+          "url": "https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2"
         },
         {
-          "name": "Turnpike Troubadours"
+          "name": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab6761610000f178efef937e4fbe2faf0e47350d",
+          "url": "https://open.spotify.com/artist/1YSA4byX5AL1zoTsSTlB03"
         },
         {
-          "name": "Tyler Childers"
+          "name": "Tyler Childers",
+          "image": "https://i.scdn.co/image/ab6761610000f178f4e08c9a3cea561e8f3332a5",
+          "url": "https://open.spotify.com/artist/13ZEDW6vyBF12HYcZRr4EV"
         },
         {
-          "name": "Fruit Bats"
+          "name": "Fruit Bats",
+          "image": "https://i.scdn.co/image/ab6761610000f178410c81a30aa992866a7b74b6",
+          "url": "https://open.spotify.com/artist/6Qm9stX6XO1a4c7BXQDDgc"
         },
         {
-          "name": "The Band"
+          "name": "The Band",
+          "image": "https://i.scdn.co/image/ab6761610000f178f4f262f1f5d28fcdc4c4226f",
+          "url": "https://open.spotify.com/artist/4vpDg7Y7fU982Ds30zawDA"
         },
         {
-          "name": "Hummingbird Lane"
+          "name": "Hummingbird Lane",
+          "image": "https://i.scdn.co/image/ab67616d0000485185aee9947ec73f29e97dd463",
+          "url": "https://open.spotify.com/artist/0QEeGoQLsUCnvxlitYDdjA"
         },
         {
-          "name": "Zach Bryan"
+          "name": "Zach Bryan",
+          "image": "https://i.scdn.co/image/ab6761610000f178c742fbc057bdbc64834a6cdc",
+          "url": "https://open.spotify.com/artist/40ZNYROS4zLfyyBSs2PGe2"
         },
         {
-          "name": "Shinyribs"
+          "name": "Shinyribs",
+          "image": "https://i.scdn.co/image/ab6761610000f1789bed45c1f33c7ab926b9ee3b",
+          "url": "https://open.spotify.com/artist/3xkZ4A3btzE9F5oVuY25UF"
         }
       ],
       "tracks": [
         {
           "title": "Who Built the Moon",
-          "artist": "Shinyribs"
+          "artist": "Shinyribs",
+          "image": "https://i.scdn.co/image/ab67616d0000485138aaa4003fa63ed248fdf23c",
+          "url": "https://open.spotify.com/track/74AGKeviSXmSHtRhgJLblx"
         },
         {
           "title": "Strawberry Woman",
-          "artist": "Jason Isbell and the 400 Unit, Jason Isbell"
+          "artist": "Jason Isbell and the 400 Unit, Jason Isbell",
+          "image": "https://i.scdn.co/image/ab67616d00004851e3de9f21692cb4be99b9b635",
+          "url": "https://open.spotify.com/track/4ABeiTbfMPzISpIeehvxRg"
         },
         {
           "title": "Shores of Galilee",
-          "artist": "Shinyribs"
+          "artist": "Shinyribs",
+          "image": "https://i.scdn.co/image/ab67616d0000485138aaa4003fa63ed248fdf23c",
+          "url": "https://open.spotify.com/track/36RJliDllmCKmSG1D0OoLY"
         },
         {
           "title": "How You Remind Me",
-          "artist": "Nickelback"
+          "artist": "Nickelback",
+          "image": "https://i.scdn.co/image/ab67616d00004851699a422d25adc550dc5aa11c",
+          "url": "https://open.spotify.com/track/0gmbgwZ8iqyMPmXefof8Yf"
         },
         {
           "title": "Tupelo",
-          "artist": "Jason Isbell and the 400 Unit, Jason Isbell"
+          "artist": "Jason Isbell and the 400 Unit, Jason Isbell",
+          "image": "https://i.scdn.co/image/ab67616d000048518aac8a5f5e60ea65ec028392",
+          "url": "https://open.spotify.com/track/6NEnPyVS7opzxuT4f54V1y"
         },
         {
           "title": "Old Hickory",
-          "artist": "Old Crow Medicine Show"
+          "artist": "Old Crow Medicine Show",
+          "image": "https://i.scdn.co/image/ab67616d0000485192d5da73047beaad41678f84",
+          "url": "https://open.spotify.com/track/0G31Ami5h0lyJh95x6r0Ct"
         },
         {
           "title": "Eatin' Big Time",
-          "artist": "Tyler Childers"
+          "artist": "Tyler Childers",
+          "image": "https://i.scdn.co/image/ab67616d00004851e47f3451435776271b3d43da",
+          "url": "https://open.spotify.com/track/6b77gsnwtmE0mY1Xkv3Tyn"
         },
         {
           "title": "A Little Honey",
-          "artist": "Nathaniel Rateliff & The Night Sweats"
+          "artist": "Nathaniel Rateliff & The Night Sweats",
+          "image": "https://i.scdn.co/image/ab67616d00004851a5fc85d072362ae12d7840c2",
+          "url": "https://open.spotify.com/track/1q5wF1wZQD41ura41yVqXb"
         },
         {
           "title": "Summer's End",
-          "artist": "Nathaniel Rateliff, Courtney Marie Andrews"
+          "artist": "Nathaniel Rateliff, Courtney Marie Andrews",
+          "image": "https://i.scdn.co/image/ab67616d00004851b05da2574945d4f453a4d87e",
+          "url": "https://open.spotify.com/track/0t3RxYkYDEl777X14mS0n2"
         },
         {
           "title": "Feelin' Good Again",
-          "artist": "Turnpike Troubadours, Sierra Hull"
+          "artist": "Turnpike Troubadours, Sierra Hull",
+          "image": "https://i.scdn.co/image/ab67616d000048510ad144748c534384a5754d79",
+          "url": "https://open.spotify.com/track/7ur3BWiEDGPx7V9QkAwGBx"
         }
       ]
     },
@@ -87,76 +127,116 @@
       "label": "This year",
       "artists": [
         {
-          "name": "Grateful Dead"
+          "name": "Grateful Dead",
+          "image": "https://i.scdn.co/image/ab6761610000f178e9aa458c09e4cf7c32232f4a",
+          "url": "https://open.spotify.com/artist/4TMHGUX5WI7OOm53PqSDAT"
         },
         {
-          "name": "Zach Bryan"
+          "name": "Zach Bryan",
+          "image": "https://i.scdn.co/image/ab6761610000f178c742fbc057bdbc64834a6cdc",
+          "url": "https://open.spotify.com/artist/40ZNYROS4zLfyyBSs2PGe2"
         },
         {
-          "name": "Turnpike Troubadours"
+          "name": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab6761610000f178efef937e4fbe2faf0e47350d",
+          "url": "https://open.spotify.com/artist/1YSA4byX5AL1zoTsSTlB03"
         },
         {
-          "name": "Tyler Childers"
+          "name": "Tyler Childers",
+          "image": "https://i.scdn.co/image/ab6761610000f178f4e08c9a3cea561e8f3332a5",
+          "url": "https://open.spotify.com/artist/13ZEDW6vyBF12HYcZRr4EV"
         },
         {
-          "name": "Eric Church"
+          "name": "Eric Church",
+          "image": "https://i.scdn.co/image/ab6761610000f178f8c66abe99819bbf7a32957a",
+          "url": "https://open.spotify.com/artist/2IvkS5MXK0vPGnwyJsrEyV"
         },
         {
-          "name": "Trampled by Turtles"
+          "name": "Trampled by Turtles",
+          "image": "https://i.scdn.co/image/ab6761610000f178d4cf2946b17505a08693a3d9",
+          "url": "https://open.spotify.com/artist/3GjVVVcFmUgEJEAAsbGkf4"
         },
         {
-          "name": "Watchhouse"
+          "name": "Watchhouse",
+          "image": "https://i.scdn.co/image/ab6761610000f178bf832300f2032e64d42fe763",
+          "url": "https://open.spotify.com/artist/675tsBPpaZtqyiBwEf3ZEP"
         },
         {
-          "name": "Taylor Swift"
+          "name": "Taylor Swift",
+          "image": "https://i.scdn.co/image/ab6761610000f17812184bdd29403de54cb9d9c7",
+          "url": "https://open.spotify.com/artist/06HL4z0CvFAxyc27GXpf02"
         },
         {
-          "name": "Jim Croce"
+          "name": "Jim Croce",
+          "image": "https://i.scdn.co/image/ac6acaf00e9a2201a9a9785a1bd83d1419545f1f",
+          "url": "https://open.spotify.com/artist/1R6Hx1tJ2VOUyodEpC12xM"
         },
         {
-          "name": "Death Cab for Cutie"
+          "name": "Death Cab for Cutie",
+          "image": "https://i.scdn.co/image/ab6761610000f1785325c0e98f2975b4fe7847e2",
+          "url": "https://open.spotify.com/artist/0YrtvWJMgSdVrk3SfNjTbx"
         }
       ],
       "tracks": [
         {
           "title": "Drink In My Hand",
-          "artist": "Eric Church"
+          "artist": "Eric Church",
+          "image": "https://i.scdn.co/image/ab67616d00004851c1bc36faa8afff2b5273490b",
+          "url": "https://open.spotify.com/track/1cktZnxiONH0hR6Q3DKy8h"
         },
         {
           "title": "On The Red River",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d0000485152832d5a7ad62e4a7a7455ca",
+          "url": "https://open.spotify.com/track/4Dux8krNnAru08XQTiiIYM"
         },
         {
           "title": "A Tornado Warning",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d000048515e617e94e79cf9f016c67f9f",
+          "url": "https://open.spotify.com/track/2qLXShzDzzrMhSoJI9oX51"
         },
         {
           "title": "The Mercury",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d0000485102768ae39a303ae7029ebeaf",
+          "url": "https://open.spotify.com/track/0vNTlunI1KuAEM9N1bqH13"
         },
         {
           "title": "The Winding Stair Mountain Blues",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d000048515e617e94e79cf9f016c67f9f",
+          "url": "https://open.spotify.com/track/3bdHG1YWgZ6bjMbM373vyu"
         },
         {
           "title": "Pay No Rent",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d000048515e617e94e79cf9f016c67f9f",
+          "url": "https://open.spotify.com/track/4FIIaVhMlCDlIRPUWtd7Ax"
         },
         {
           "title": "Heartache On The Dance Floor",
-          "artist": "Jon Pardi"
+          "artist": "Jon Pardi",
+          "image": "https://i.scdn.co/image/ab67616d0000485114d09c1ad67f2028764ee0f4",
+          "url": "https://open.spotify.com/track/0w3Q14i073jLoew1hgJkwD"
         },
         {
           "title": "7 & 7",
-          "artist": "Turnpike Troubadours"
+          "artist": "Turnpike Troubadours",
+          "image": "https://i.scdn.co/image/ab67616d00004851635b3ab0f7ecda463021ccdd",
+          "url": "https://open.spotify.com/track/62EcdBCqjB62CxnhgBkkJT"
         },
         {
           "title": "The New Year",
-          "artist": "Death Cab for Cutie"
+          "artist": "Death Cab for Cutie",
+          "image": "https://i.scdn.co/image/ab67616d00004851ac5899ddc449d1e54a1b8880",
+          "url": "https://open.spotify.com/track/3yLgtIF1dEk9LJzaARBRxJ"
         },
         {
           "title": "Doses & Mimosas",
-          "artist": "Cherub"
+          "artist": "Cherub",
+          "image": "https://i.scdn.co/image/ab67616d000048518544567bdc5afbafaffc3449",
+          "url": "https://open.spotify.com/track/44CZRkOxv7UItaAUmh8PgN"
         }
       ]
     }
