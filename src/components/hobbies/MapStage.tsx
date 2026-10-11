@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type PointerEvent as RPointerEvent } from "react";
-import { geoDistance, geoGraticule10, geoOrthographic, geoPath, type GeoSphere } from "d3-geo";
+import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath, type GeoProjection, type GeoSphere } from "d3-geo";
 import { TREE_POINTS, usePrefersReducedMotion } from "./parts";
 import type { GeoUS, GeoWorld } from "./types";
 
@@ -101,7 +101,16 @@ export function MapStage({
           </g>
         </svg>
       </div>
-      <Globe active={view === "world"} selected={selected} reduce={reduce} />
+      <Globe
+        active={view === "world"}
+        selected={selected}
+        reduce={reduce}
+        onTip={(t) => {
+          if (!t) { setTip(null); return; }
+          const [x, y] = rel(t.x, t.y);
+          setTip({ x, y: y - 4, name: t.name, sub: "Visited" });
+        }}
+      />
       <div className={`tip ${tip ? "on" : ""}`} style={tip ? { left: tip.x, top: tip.y } : undefined}>
         {tip?.name}
         <small>{tip?.sub}</small>
@@ -114,7 +123,10 @@ export function MapStage({
 const SPHERE: GeoSphere = { type: "Sphere" };
 const ZOOM_MAX = 4;
 
-function Globe({ active, selected, reduce }: { active: boolean; selected: number; reduce: boolean }) {
+/** Hovering (or tapping) a visited country highlights it and reports its name for the tooltip. */
+type GlobeTip = { name: string; x: number; y: number } | null; // x/y are client coordinates
+
+function Globe({ active, selected, reduce, onTip }: { active: boolean; selected: number; reduce: boolean; onTip: (t: GlobeTip) => void }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [world, setWorld] = useState<GeoWorld | null>(null);
   const [failed, setFailed] = useState(false);
@@ -131,6 +143,9 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
   const zoomTo = useRef<((z: number) => void) | null>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const pinch = useRef<{ dist: number; z: number } | null>(null);
+  const hover = useRef(-1); // index of the visited country under the pointer
+  const projRef = useRef<GeoProjection | null>(null);
+  const downAt = useRef<{ x: number; y: number } | null>(null);
 
   /* the world shapes are ~400 KB, so they load the first time the globe is opened */
   useEffect(() => {
@@ -160,6 +175,7 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     if (!ctx) return;
     const w0 = world;
     const proj = geoOrthographic().clipAngle(90);
+    projRef.current = proj;
     const gpath = geoPath(proj, ctx);
     const grat = geoGraticule10();
     let w = 0, h = 0, dpr = 1, raf = 0, running = true, base = 10;
@@ -179,6 +195,10 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
       ctx!.beginPath(); gpath(grat); ctx!.strokeStyle = "rgba(255,248,240,.14)"; ctx!.lineWidth = 0.6; ctx!.stroke();
       ctx!.beginPath(); gpath(w0.land); ctx!.fillStyle = "rgba(255,248,240,.34)"; ctx!.fill();
       ctx!.beginPath(); gpath(w0.visited); ctx!.fillStyle = "#e0773a"; ctx!.fill(); ctx!.strokeStyle = "rgba(255,248,240,.75)"; ctx!.lineWidth = 0.6; ctx!.stroke();
+      const hv = hover.current;
+      if (hv > -1 && hv !== sel.current && w0.visited.features[hv]) {
+        ctx!.beginPath(); gpath(w0.visited.features[hv]); ctx!.fillStyle = "#f4a06a"; ctx!.fill(); ctx!.strokeStyle = "#fff8f0"; ctx!.lineWidth = 1.2; ctx!.stroke();
+      }
       const s = sel.current;
       if (s > -1 && w0.visited.features[s]) {
         ctx!.beginPath(); gpath(w0.visited.features[s]); ctx!.fillStyle = "#ffd9b8"; ctx!.fill(); ctx!.strokeStyle = "#fff8f0"; ctx!.lineWidth = 1.6; ctx!.stroke();
@@ -187,7 +207,8 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
         if (!k.dot || geoDistance([-spin.current[0], -spin.current[1]], k.dot) > 1.45) return;
         const p = proj(k.dot);
         if (!p) return;
-        ctx!.beginPath(); ctx!.arc(p[0], p[1], 3.4, 0, 6.2832); ctx!.fillStyle = "#ffd9b8"; ctx!.fill(); ctx!.strokeStyle = "#fff8f0"; ctx!.lineWidth = 1.2; ctx!.stroke();
+        const on = w0.countries.indexOf(k) === hover.current;
+        ctx!.beginPath(); ctx!.arc(p[0], p[1], on ? 4.6 : 3.4, 0, 6.2832); ctx!.fillStyle = on ? "#f4a06a" : "#ffd9b8"; ctx!.fill(); ctx!.strokeStyle = "#fff8f0"; ctx!.lineWidth = 1.2; ctx!.stroke();
       });
     }
     function size() {
@@ -233,12 +254,36 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     raf = requestAnimationFrame(loop);
     const ro = new ResizeObserver(() => size());
     ro.observe(canvas.parentElement!);
-    return () => { running = false; cancelAnimationFrame(raf); ro.disconnect(); canvas.removeEventListener("wheel", onWheel); redraw.current = null; zoomTo.current = null; };
+    return () => { running = false; cancelAnimationFrame(raf); ro.disconnect(); canvas.removeEventListener("wheel", onWheel); redraw.current = null; zoomTo.current = null; projRef.current = null; };
   }, [active, world, reduce]);
+
+  /** Index of the visited country at a client point (marker dots for tiny countries count), or -1. */
+  const hitTest = (clientX: number, clientY: number) => {
+    const proj = projRef.current, canvas = canvasRef.current;
+    if (!proj || !canvas || !world) return -1;
+    const r = canvas.getBoundingClientRect(), x = clientX - r.left, y = clientY - r.top;
+    const center: [number, number] = [-spin.current[0], -spin.current[1]];
+    for (let i = 0; i < world.countries.length; i++) {
+      const dot = world.countries[i].dot;
+      if (!dot || geoDistance(center, dot) > 1.45) continue;
+      const p = proj(dot);
+      if (p && Math.hypot(p[0] - x, p[1] - y) <= 9) return i;
+    }
+    const ll = proj.invert?.([x, y]);
+    if (!ll || Number.isNaN(ll[0]) || geoDistance(center, ll) > Math.PI / 2) return -1; // off the globe or its back side
+    return world.visited.features.findIndex((f) => geoContains(f, ll));
+  };
+  const showHover = (i: number, clientX: number, clientY: number) => {
+    if (i !== hover.current) { hover.current = i; redraw.current?.(); }
+    onTip(i > -1 && world ? { name: world.countries[i].n, x: clientX, y: clientY } : null);
+  };
+  const clearHover = () => { if (hover.current !== -1) { hover.current = -1; redraw.current?.(); } onTip(null); };
 
   const gap = () => { const [a, b] = [...pointers.current.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
   const onDown = (e: RPointerEvent<HTMLCanvasElement>) => {
     pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    downAt.current = { x: e.clientX, y: e.clientY };
+    clearHover();
     anim.current = null;
     try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* pointer already gone */ }
     if (pointers.current.size === 2) { // second finger: pinch to zoom instead of spinning
@@ -253,12 +298,21 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     if (pointers.current.has(e.pointerId)) pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (pinch.current && pointers.current.size === 2) { zoomTo.current?.(pinch.current.z * (gap() / pinch.current.dist)); return; }
     const d = drag.current;
-    if (!d) return;
+    if (!d) {
+      if (e.pointerType === "mouse") { idleUntil.current = performance.now() + 3500; showHover(hitTest(e.clientX, e.clientY), e.clientX, e.clientY); }
+      return;
+    }
     const k = 57.3 / scaleRef.current;
     spin.current = [d.s[0] + (e.clientX - d.x) * k, Math.max(-80, Math.min(80, d.s[1] - (e.clientY - d.y) * k))];
     redraw.current?.();
   };
   const onUp = (e: RPointerEvent<HTMLCanvasElement>) => {
+    const start = downAt.current, wasPinch = !!pinch.current;
+    downAt.current = null;
+    // a tap (or a click without dragging) shows the country under it; after a mouse drag, re-check what's under the cursor
+    if (e.type === "pointerup" && !wasPinch && (e.pointerType === "mouse" || (start && Math.hypot(e.clientX - start.x, e.clientY - start.y) < 6))) {
+      showHover(hitTest(e.clientX, e.clientY), e.clientX, e.clientY);
+    }
     pointers.current.delete(e.pointerId);
     if (pointers.current.size < 2) pinch.current = null;
     drag.current = null; idleUntil.current = performance.now() + 3500;
@@ -267,7 +321,7 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
 
   return (
     <div className={`view ${active ? "on" : ""}`}>
-      <canvas ref={canvasRef} className="globe" aria-label="Globe with visited countries highlighted" onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} />
+      <canvas ref={canvasRef} className="globe" aria-label="Globe with visited countries highlighted" onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} onPointerLeave={(e) => { if (e.pointerType === "mouse") clearHover(); }} />
       <span className="mini">{failed ? "Could not load the globe." : !world ? "Loading globe…" : "Drag to spin, scroll or pinch to zoom"}</span>
       {world && (
         <div className="gzoom">
