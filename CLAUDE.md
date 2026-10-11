@@ -22,6 +22,9 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 - Before committing: resize to ~1600px on the long edge, JPEG quality ~80 (under ~400 KB), and strip EXIF/GPS metadata.
 - Valley Oak Respite Center: residents are adults with dementia. Only use stage photos where no resident is identifiable; ask Colin if unsure.
 
+## Audio
+- The latest recording lives in `public/audio/` and is set in `music.recording.audio`. Use AAC (.m4a) or MP3 around 192-256 kbps, never WAV (too large). Strip metadata and move the index to the front so it streams: `ffmpeg -i in.m4a -map 0:a -c copy -map_metadata -1 -movflags +faststart out.m4a`.
+
 ## Data refresh contracts (when asked to build them)
 - Spotify: `.github/workflows/spotify-stats.yml` runs `scripts/spotify-stats.mjs` daily (and on demand via "Run workflow") with secrets `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN` (get the token once with `node scripts/spotify-auth.mjs` on Colin's computer; scope `user-top-read`). Uses `/v1/me/top/{artists,tracks}` with `short_term` -> id `recent` ("Recently") and `long_term` -> id `year` ("This year"). Writes `ranges[{id,label,artists[{name,image,url}],tracks[{title,artist,image,url}]}]` (image = artist photo / album cover hotlinked from Spotify's CDN, url = Spotify page; names link to Spotify, as Spotify's guidelines ask), `sample:false`, `source:"spotify"`, `updated` ISO date; only writes when the lists change, and skips with a warning if the secrets are missing. No live API calls from the site.
 - Strava: `node scripts/strava-from-export.mjs path/to/activities.csv` (from the personal data export) rewrites `outdoors-stats.json`: Hike and Run activities by default (`--types` to change, e.g. `Hike,Run,Walk`; `since` = year of the first counted activity), months bucketed in America/Los_Angeles (`--tz`), `--dry-run` to preview. Never commit the CSV or the rest of the export.

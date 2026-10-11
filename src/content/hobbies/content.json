@@ -45,11 +45,10 @@
       }
     ],
     "recording": {
-      "title": null,
-      "note": null,
-      "cover": null,
-      "link": null,
-      "linkLabel": null
+      "title": "Shores of Galilee (Cover)",
+      "note": "Recorded at home with garageband. All instruments/vocals performed by me, and midi drum track written by me.",
+      "audio": "/audio/shores-of-galilee.m4a",
+      "link": null
     }
   },
   "outdoors": {
