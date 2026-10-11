@@ -166,6 +166,17 @@ export const projects: Project[] = [
     title: "Hemming My Jeans",
     summary: "Teaching myself to hem a pair of jeans.",
     tags: ["Sewing", "Learning a new skill"],
+    image: { src: "/images/projects/jean-hem.jpg", alt: "The hemmed legs of a pair of jeans on a windowsill", focus: "40% 60%" },
+  },
+  {
+    // Placeholder wording until Colin sends his own title and summary.
+    slug: "jean-pockets",
+    filter: "hands",
+    kind: "Hands-on",
+    title: "Extending My Jean Pockets",
+    summary: "Extending the pockets on a pair of jeans.",
+    tags: ["Sewing", "Learning a new skill"],
+    image: { src: "/images/projects/jean-pockets.jpg", alt: "Jeans turned inside out, showing the lengthened pocket linings" },
   },
   {
     slug: "floor-mats",
@@ -174,6 +185,7 @@ export const projects: Project[] = [
     title: "New Floor Mats for My Car",
     summary: "Making new floor mats for my car.",
     tags: ["Car", "DIY"],
+    image: { src: "/images/projects/floor-mats.jpg", alt: "A patterned rug floor mat in the driver's footwell of the Acura" },
   },
   {
     slug: "music",
