@@ -21,7 +21,8 @@ export type HobbiesContent = {
     blurb: string;
     states: string[];
     parks: { name: string; lat: number; lon: number }[];
-    countries: { name: string; geoName: string; focus?: [number, number]; marker?: boolean }[];
+    /** overseas: false = fill only the mainland and nearby islands (e.g. France without French Guiana). */
+    countries: { name: string; geoName: string; focus?: [number, number]; marker?: boolean; overseas?: boolean }[];
   };
   photography: {
     kicker: string;

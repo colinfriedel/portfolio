@@ -217,7 +217,8 @@
         "focus": [
           2.5,
           46.6
-        ]
+        ],
+        "overseas": false
       },
       {
         "name": "Germany",
