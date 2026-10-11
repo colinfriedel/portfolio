@@ -48,12 +48,13 @@ for (const c of content.countries) {
   const f = all50.find((x) => x.properties.name === c.geoName);
   if (!f) throw new Error(`Country "${c.geoName}" not found. Natural Earth names include: ` + all50.map((x) => x.properties.name).filter((n) => n[0] === c.geoName[0]).join(', '));
   // "overseas": false drops overseas territories (e.g. French Guiana for France): only the parts
-  // within 2000 km of the country's largest part are kept, so nearby islands like Corsica stay.
-  if (c.overseas === false && f.geometry.type === 'MultiPolygon') {
+  // within 2000 km of the country's largest part are kept, so nearby islands stay.
+  // "mainlandOnly": true keeps just the largest part (e.g. France without Corsica).
+  if ((c.overseas === false || c.mainlandOnly) && f.geometry.type === 'MultiPolygon') {
     const parts = f.geometry.coordinates.map((p) => ({ p, ctr: geoCentroid({ type: 'Polygon', coordinates: p }), a: geoArea({ type: 'Polygon', coordinates: p }) }));
     const main = parts.reduce((m, x) => (x.a > m.a ? x : m));
-    const kept = parts.filter((x) => geoDistance(x.ctr, main.ctr) * 6371 <= 2000);
-    console.log(`${c.name}: dropped ${parts.length - kept.length} overseas part(s)`);
+    const kept = c.mainlandOnly ? [main] : parts.filter((x) => geoDistance(x.ctr, main.ctr) * 6371 <= 2000);
+    console.log(`${c.name}: kept ${kept.length} of ${parts.length} part(s)`);
     f.geometry = { type: 'MultiPolygon', coordinates: kept.map((x) => x.p) };
   }
   f.geometry.coordinates = round(f.geometry.coordinates);

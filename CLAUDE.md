@@ -15,7 +15,7 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 - `src/content/hobbies/content.json`: all hand-written text, performance photos (`music.performances`), latest recording (`music.recording`), camera/photo lists, visited states, parks (lat/lon), countries.
 - `src/content/hobbies/music-stats.json`: top artists/tracks per range. `"sample": true` shows "Sample data" labels. GENERATED daily from Spotify by `.github/workflows/spotify-stats.yml`; never hand-edit once real.
 - `src/content/hobbies/outdoors-stats.json`: hiking + running miles from the Strava export (`"sample": true` shows "(sample)").
-- `src/content/hobbies/geo-us.json` and `public/data/hobbies-geo-world.json`: GENERATED, never hand-edit. After changing `outdoors.states`, `outdoors.parks` or `outdoors.countries` in content.json run `npm run build:geo` (`scripts/build-geo.mjs`). A country with overseas territories you haven't visited gets `"overseas": false` (France has it, so French Guiana etc. are not filled).
+- `src/content/hobbies/geo-us.json` and `public/data/hobbies-geo-world.json`: GENERATED, never hand-edit. After changing `outdoors.states`, `outdoors.parks` or `outdoors.countries` in content.json run `npm run build:geo` (`scripts/build-geo.mjs`). A country with overseas territories you haven't visited gets `"overseas": false` (keeps the mainland and nearby islands), or `"mainlandOnly": true` to fill only the largest part (France uses this: no French Guiana or other overseas parts, no Corsica).
 
 ## Images
 - Put photos in `public/images/hobbies/{stage,cameras,photos}/` (performance photos go in `stage/`) and set the path in content.json (`photo` or `src`, e.g. `/images/hobbies/stage/rooftop.jpg`). `null` shows a dashed placeholder.

@@ -108,12 +108,12 @@ export function MapStage({
         onTip={(t) => {
           if (!t) { setTip(null); return; }
           const [x, y] = rel(t.x, t.y);
-          setTip({ x, y: y - 4, name: t.name, sub: "Visited" });
+          setTip({ x, y: y - 4, name: t.name, sub: "" });
         }}
       />
       <div className={`tip ${tip ? "on" : ""}`} style={tip ? { left: tip.x, top: tip.y } : undefined}>
         {tip?.name}
-        <small>{tip?.sub}</small>
+        {tip?.sub && <small>{tip.sub}</small>}
       </div>
     </div>
   );
