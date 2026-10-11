@@ -23,8 +23,8 @@ Each card has an expand button (top right) that opens a detail modal. URL hash `
 
 ## Outdoors & Travel card
 - Left column: miles hiked this year (with 12-month bar mini chart) and all time (count-up animation), US / World switch, "National parks" toggle, counts and legend.
-- US view: SVG map of states, visited states filled accent. "National parks" toggle fades in 21 tree-shaped pins and animates a zoom to the western US so the Utah cluster is readable. Hover/focus/tap a pin shows the park name tooltip.
-- World view: orthographic globe on canvas, visited countries filled, drag to rotate, slow auto-spin that pauses after interaction, chips per country rotate the globe to it. Liechtenstein is tiny so it gets a dot marker (`marker: true`). World data is lazy-loaded the first time the globe opens.
+- US view: SVG map of states, visited states filled accent. "National parks" toggle fades in 21 tree-shaped pins and animates a zoom to the western US so the Utah cluster is readable. Hover/focus/tap a pin shows the park name tooltip; in parks mode states show no name and do not highlight on hover.
+- World view: orthographic globe on canvas, visited countries filled, drag to rotate, zoom 1x to 4x (scroll wheel / trackpad, pinch, or the +/- buttons), slow auto-spin that pauses after interaction and while zoomed in, chips per country rotate the globe to it. Hovering (or tapping) a visited country highlights it lighter orange and shows its name (same tooltip style as the US map, name only); unvisited countries and the ocean do nothing. Liechtenstein is tiny so it gets a dot marker (`marker: true`). World data is lazy-loaded the first time the globe opens.
 - Modal: larger map/globe plus stat tiles and full lists.
 
 ## Photography card

@@ -108,11 +108,16 @@ body.hob-lock{overflow:hidden}
 .hob .usmap{width:100%;height:100%;display:block}
 .hob .st{fill:rgba(20,35,58,.1);stroke:rgba(20,35,58,.32);stroke-width:1;vector-effect:non-scaling-stroke;transition:fill .2s}
 .hob .st:hover{fill:rgba(20,35,58,.2)} .hob .st.v{fill:var(--accent)} .hob .st.v:hover{fill:#cf6a2e}
+.hob .show-parks .st:hover{fill:rgba(20,35,58,.1)} .hob .show-parks .st.v:hover{fill:var(--accent)} /* parks mode: states don't react to hover */
 .hob .pins{opacity:0;pointer-events:none;transition:opacity .4s ease .25s} .hob .show-parks .pins{opacity:1;pointer-events:auto}
 .hob .pin{cursor:pointer;outline:none} .hob .pin .hit{fill:transparent} .hob .pin .dot{fill:var(--ink);stroke:var(--paper);stroke-width:1.4;transition:fill .2s} .hob .pin .tree{fill:var(--paper);pointer-events:none}
 .hob .pin:hover .dot,
 .hob .pin:focus-visible .dot{fill:#2c4468;stroke:#fff}
 .hob .globe{width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab} .hob .globe.grab{cursor:grabbing}
+.hob .globe ~ .mini{padding:2px 9px;border-radius:999px;background:rgba(255,248,240,.85)} /* readable over the dark globe when zoomed */
+.hob .gzoom{position:absolute;right:10px;bottom:10px;display:flex;flex-direction:column;gap:6px}
+.hob .gzoom button{width:32px;height:32px;padding:0;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line);background:rgba(255,248,240,.9);color:var(--ink);font:600 1.1rem/1 inherit;cursor:pointer}
+.hob .gzoom button:hover{background:#fff} .hob .gzoom button:disabled{opacity:.4;cursor:default}
 .hob .mini{position:absolute;left:12px;bottom:8px;font-size:.74rem;color:var(--ink-soft);pointer-events:none}
 .hob .tip{position:absolute;z-index:3;transform:translate(-50%,-125%);pointer-events:none;background:var(--ink);color:#fff;padding:5px 10px;border-radius:8px;font-size:.8rem;font-weight:600;white-space:nowrap;box-shadow:0 8px 20px rgba(20,35,58,.3);opacity:0;transition:opacity .15s}
 .hob .tip.on{opacity:1} .hob .tip small{display:block;font-weight:400;opacity:.75;font-size:.7rem}
