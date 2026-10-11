@@ -74,6 +74,7 @@ export function MapStage({
           onPointerMove={(e) => {
             const t = e.target as Element;
             if (t.closest(".pin")) return;
+            if (parksOn) { setTip(null); return; } // parks mode: only park names, no state names
             const p = t.closest("path.st");
             if (!p) { setTip(null); return; }
             const [x, y] = rel(e.clientX, e.clientY);

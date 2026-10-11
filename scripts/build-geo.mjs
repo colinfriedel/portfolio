@@ -6,7 +6,7 @@
 // Writes src/content/hobbies/geo-us.json (bundled with the page) and
 // public/data/hobbies-geo-world.json (loaded the first time someone opens the globe).
 import fs from 'fs';
-import { geoPath, geoAlbersUsa, geoCentroid } from 'd3-geo';
+import { geoPath, geoAlbersUsa, geoCentroid, geoArea, geoDistance } from 'd3-geo';
 import { feature } from 'topojson-client';
 
 const read = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -47,6 +47,15 @@ const visited = { type: 'FeatureCollection', features: [] }, countries = [];
 for (const c of content.countries) {
   const f = all50.find((x) => x.properties.name === c.geoName);
   if (!f) throw new Error(`Country "${c.geoName}" not found. Natural Earth names include: ` + all50.map((x) => x.properties.name).filter((n) => n[0] === c.geoName[0]).join(', '));
+  // "overseas": false drops overseas territories (e.g. French Guiana for France): only the parts
+  // within 2000 km of the country's largest part are kept, so nearby islands like Corsica stay.
+  if (c.overseas === false && f.geometry.type === 'MultiPolygon') {
+    const parts = f.geometry.coordinates.map((p) => ({ p, ctr: geoCentroid({ type: 'Polygon', coordinates: p }), a: geoArea({ type: 'Polygon', coordinates: p }) }));
+    const main = parts.reduce((m, x) => (x.a > m.a ? x : m));
+    const kept = parts.filter((x) => geoDistance(x.ctr, main.ctr) * 6371 <= 2000);
+    console.log(`${c.name}: dropped ${parts.length - kept.length} overseas part(s)`);
+    f.geometry = { type: 'MultiPolygon', coordinates: kept.map((x) => x.p) };
+  }
   f.geometry.coordinates = round(f.geometry.coordinates);
   visited.features.push({ type: 'Feature', properties: { name: c.name }, geometry: f.geometry });
   const ctr = c.focus || geoCentroid(f);
