@@ -15,11 +15,15 @@ export type Project = {
   title: string;
   summary: string;
   tags: string[];
-  /** Photo shown across the top of the project's card (files in /public/images/projects). */
+  /** Photo shown across the top of the project's card and first on its page (files in /public/images/projects). */
   image?: { src: string; alt: string; focus?: string };
+  /** More photos shown after `image` on the project's page. */
+  gallery?: { src: string; alt: string }[];
   detail?: {
     lede: string;
+    /** Empty list: no facts row. */
     facts: { label: string; value: string; href?: string }[];
+    /** Empty list: a "Highlights" placeholder until there's real text. */
     highlights: string[];
     flowTitle?: string;
     flow?: FlowStep[];
@@ -160,13 +164,19 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "jeans",
+    slug: "jean-hem",
     filter: "hands",
     kind: "Hands-on",
     title: "Hemming My Jeans",
     summary: "Teaching myself to hem a pair of jeans.",
     tags: ["Sewing", "Learning a new skill"],
     image: { src: "/images/projects/jean-hem.jpg", alt: "The hemmed legs of a pair of jeans on a windowsill", focus: "40% 60%" },
+    detail: {
+      lede: "Teaching myself to hem a pair of jeans.",
+      facts: [],
+      highlights: [],
+      learned: learnedPlaceholder,
+    },
   },
   {
     // Placeholder wording until Colin sends his own title and summary.
@@ -177,6 +187,12 @@ export const projects: Project[] = [
     summary: "Extending the pockets on a pair of jeans.",
     tags: ["Sewing", "Learning a new skill"],
     image: { src: "/images/projects/jean-pockets.jpg", alt: "Jeans turned inside out, showing the lengthened pocket linings" },
+    detail: {
+      lede: "Extending the pockets on a pair of jeans.",
+      facts: [],
+      highlights: [],
+      learned: learnedPlaceholder,
+    },
   },
   {
     slug: "floor-mats",
@@ -186,6 +202,16 @@ export const projects: Project[] = [
     summary: "Making new floor mats for my car.",
     tags: ["Car", "DIY"],
     image: { src: "/images/projects/floor-mats.jpg", alt: "A patterned rug floor mat in the driver's footwell of the Acura" },
+    gallery: [
+      { src: "/images/projects/floor-mats-front.jpg", alt: "The driver's side floor mat with the door open, showing the Acura's red paint" },
+      { src: "/images/projects/floor-mats-rear.jpg", alt: "The rear floor mat behind the front passenger seat" },
+    ],
+    detail: {
+      lede: "Making new floor mats for my car.",
+      facts: [],
+      highlights: [],
+      learned: learnedPlaceholder,
+    },
   },
   {
     slug: "music",

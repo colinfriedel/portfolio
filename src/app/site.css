@@ -97,6 +97,15 @@ a.pcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,35,58,.16
 .facts dt{font-size:.8rem;font-weight:600;color:var(--ink-soft);margin-bottom:2px}
 .facts dd{margin:0;font-size:.95rem;line-height:1.4}
 .facts a{color:var(--ink)}
+/* project page photos: first full width, the rest two across; click opens the full-screen viewer */
+.pgal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 4px}
+.pgal-item{display:block;padding:0;border:0;background:#e9e2d8;border-radius:12px;overflow:hidden;cursor:default;font:inherit}
+.pgal-item:first-child{grid-column:1/-1}
+.pgal-item img{display:block;width:100%;height:100%;aspect-ratio:3/2;object-fit:cover;transition:filter .15s}
+.pgal-item:first-child img{aspect-ratio:16/9}
+.pgal-item:hover img{filter:brightness(1.06)}
+.pgal.one .pgal-item:first-child img{aspect-ratio:auto;height:auto;max-height:520px}
+@media (max-width:560px){ .pgal{grid-template-columns:1fr} }
 .media{border:2px dashed var(--line);border-radius:12px;min-height:170px;display:grid;place-items:center;text-align:center;color:var(--ink-soft);padding:16px;font-size:.95rem}
 .hl{padding-left:1.15rem;margin:0}
 .hl li{margin-bottom:6px;line-height:1.5}

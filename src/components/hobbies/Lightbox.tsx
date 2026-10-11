@@ -2,6 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import "./lightbox.css";
 
 /** One photo in the full-screen viewer. caption/sub are optional text shown under it. */
 export type LightboxItem = { src: string; alt: string; caption?: string; sub?: string };
