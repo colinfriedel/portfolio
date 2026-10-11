@@ -27,7 +27,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
           const hidden = filter !== "all" && p.filter !== filter;
           const body = (
             <>
-              {p.image && <img className="pcard-img" src={p.image.src} alt={p.image.alt} loading="lazy" decoding="async" />}
+              {p.image && <img className="pcard-img" src={p.image.src} alt={p.image.alt} loading="lazy" decoding="async" style={p.image.focus ? { objectPosition: p.image.focus } : undefined} />}
               <span className="kind">{p.kind}</span>
               <h3>{p.title}</h3>
               <p>{p.summary}</p>

@@ -16,7 +16,7 @@ export type Project = {
   summary: string;
   tags: string[];
   /** Photo shown across the top of the project's card (files in /public/images/projects). */
-  image?: { src: string; alt: string };
+  image?: { src: string; alt: string; focus?: string };
   detail?: {
     lede: string;
     facts: { label: string; value: string; href?: string }[];
@@ -135,6 +135,11 @@ export const projects: Project[] = [
     title: "Automatic Radio Recording System",
     summary: "A cloud service that records every hour of the station and emails it to the DJ, with no one touching it.",
     tags: ["Python", "AWS"],
+    image: {
+      src: "/images/projects/radio.jpg",
+      alt: "Working the mixing board in the KSCU radio station studio",
+      focus: "60% 50%",
+    },
     detail: {
       lede: "A cloud service that records each hour of the radio station and emails the recording to the DJ who was on air.",
       facts: [
