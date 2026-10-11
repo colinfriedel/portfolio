@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Panel } from "@/components/Panel";
+import { ProjectGallery } from "@/components/ProjectGallery";
 import { projects } from "@/content/projects";
 
 const detailed = projects.filter((p) => p.detail);
@@ -42,30 +43,40 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       <p className="kind">{project.kind}</p>
       <h2>{project.title}</h2>
       <p className="lede">{d.lede}</p>
-      <dl className="facts">
-        {d.facts.map((f) => (
-          <div key={f.label}>
-            <dt>{f.label}</dt>
-            <dd>
-              {f.href ? (
-                <a href={f.href} target="_blank" rel="noopener">
-                  {f.value}
-                </a>
-              ) : (
-                f.value
-              )}
-            </dd>
-          </div>
-        ))}
-      </dl>
-      <div className="media">Photo or demo video goes here</div>
+      {d.facts.length > 0 && (
+        <dl className="facts">
+          {d.facts.map((f) => (
+            <div key={f.label}>
+              <dt>{f.label}</dt>
+              <dd>
+                {f.href ? (
+                  <a href={f.href} target="_blank" rel="noopener">
+                    {f.value}
+                  </a>
+                ) : (
+                  f.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {project.image ? (
+        <ProjectGallery photos={[project.image, ...(project.gallery ?? [])]} />
+      ) : (
+        <div className="media">Photo or demo video goes here</div>
+      )}
       <section>
         <h3>Highlights</h3>
-        <ul className="hl">
-          {d.highlights.map((h) => (
-            <li key={h}>{h}</li>
-          ))}
-        </ul>
+        {d.highlights.length > 0 ? (
+          <ul className="hl">
+            {d.highlights.map((h) => (
+              <li key={h}>{h}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="ph">Placeholder: what you did and what went into it.</p>
+        )}
       </section>
       {d.flow && (
         <section>
