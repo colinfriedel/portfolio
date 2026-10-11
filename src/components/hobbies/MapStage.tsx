@@ -112,6 +112,7 @@ export function MapStage({
 
 /* ---------------------------- globe (canvas, d3 orthographic) ---------------------------- */
 const SPHERE: GeoSphere = { type: "Sphere" };
+const ZOOM_MAX = 4;
 
 function Globe({ active, selected, reduce }: { active: boolean; selected: number; reduce: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -125,6 +126,11 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
   const sel = useRef(-1);
   const redraw = useRef<(() => void) | null>(null);
   const scaleRef = useRef(1);
+  const zoom = useRef(1);
+  const [zoomLevel, setZoomLevel] = useState(1); // mirrors zoom.current for the +/- buttons
+  const zoomTo = useRef<((z: number) => void) | null>(null);
+  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const pinch = useRef<{ dist: number; z: number } | null>(null);
 
   /* the world shapes are ~400 KB, so they load the first time the globe is opened */
   useEffect(() => {
@@ -156,7 +162,7 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     const proj = geoOrthographic().clipAngle(90);
     const gpath = geoPath(proj, ctx);
     const grat = geoGraticule10();
-    let w = 0, h = 0, dpr = 1, raf = 0, running = true;
+    let w = 0, h = 0, dpr = 1, raf = 0, running = true, base = 10;
 
     function draw() {
       if (w < 2) return;
@@ -188,10 +194,25 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
       const r = canvas!.parentElement!.getBoundingClientRect();
       w = r.width; h = r.height; dpr = Math.min(2, window.devicePixelRatio || 1);
       canvas!.width = Math.round(w * dpr); canvas!.height = Math.round(h * dpr);
-      proj.scale(Math.max(10, Math.min(w, h) / 2 - 8)).translate([w / 2, h / 2]);
+      base = Math.max(10, Math.min(w, h) / 2 - 8);
+      proj.scale(base * zoom.current).translate([w / 2, h / 2]);
       scaleRef.current = proj.scale();
       draw();
     }
+    zoomTo.current = (z: number) => {
+      zoom.current = Math.min(ZOOM_MAX, Math.max(1, z));
+      proj.scale(base * zoom.current);
+      scaleRef.current = proj.scale();
+      idleUntil.current = performance.now() + 3500;
+      setZoomLevel(zoom.current);
+      draw();
+    };
+    /* wheel / trackpad zoom (native listener: React's onWheel can't preventDefault) */
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      zoomTo.current?.(zoom.current * Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0015)));
+    };
+    canvas.addEventListener("wheel", onWheel, { passive: false });
     function loop(now: number) {
       if (!running) return;
       let dirty = false;
@@ -201,7 +222,7 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
         spin.current = [a.from[0] + (a.to[0] - a.from[0]) * e, a.from[1] + (a.to[1] - a.from[1]) * e];
         if (p >= 1) anim.current = null;
         dirty = true; idleUntil.current = now + 4500;
-      } else if (!drag.current && !reduce && now > idleUntil.current) { // slow auto-spin until the user interacts
+      } else if (!drag.current && !reduce && zoom.current === 1 && now > idleUntil.current) { // slow auto-spin until the user interacts (not while zoomed in)
         spin.current = [spin.current[0] + 0.1, spin.current[1]]; dirty = true;
       }
       if (dirty) draw();
@@ -212,16 +233,25 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     raf = requestAnimationFrame(loop);
     const ro = new ResizeObserver(() => size());
     ro.observe(canvas.parentElement!);
-    return () => { running = false; cancelAnimationFrame(raf); ro.disconnect(); redraw.current = null; };
+    return () => { running = false; cancelAnimationFrame(raf); ro.disconnect(); canvas.removeEventListener("wheel", onWheel); redraw.current = null; zoomTo.current = null; };
   }, [active, world, reduce]);
 
+  const gap = () => { const [a, b] = [...pointers.current.values()]; return Math.hypot(a.x - b.x, a.y - b.y) || 1; };
   const onDown = (e: RPointerEvent<HTMLCanvasElement>) => {
-    drag.current = { x: e.clientX, y: e.clientY, s: [...spin.current] };
+    pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
     anim.current = null;
-    e.currentTarget.setPointerCapture(e.pointerId);
+    try { e.currentTarget.setPointerCapture(e.pointerId); } catch { /* pointer already gone */ }
+    if (pointers.current.size === 2) { // second finger: pinch to zoom instead of spinning
+      drag.current = null;
+      pinch.current = { dist: gap(), z: zoom.current };
+      return;
+    }
+    drag.current = { x: e.clientX, y: e.clientY, s: [...spin.current] };
     e.currentTarget.classList.add("grab");
   };
   const onMove = (e: RPointerEvent<HTMLCanvasElement>) => {
+    if (pointers.current.has(e.pointerId)) pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pinch.current && pointers.current.size === 2) { zoomTo.current?.(pinch.current.z * (gap() / pinch.current.dist)); return; }
     const d = drag.current;
     if (!d) return;
     const k = 57.3 / scaleRef.current;
@@ -229,6 +259,8 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
     redraw.current?.();
   };
   const onUp = (e: RPointerEvent<HTMLCanvasElement>) => {
+    pointers.current.delete(e.pointerId);
+    if (pointers.current.size < 2) pinch.current = null;
     drag.current = null; idleUntil.current = performance.now() + 3500;
     e.currentTarget.classList.remove("grab");
   };
@@ -236,7 +268,13 @@ function Globe({ active, selected, reduce }: { active: boolean; selected: number
   return (
     <div className={`view ${active ? "on" : ""}`}>
       <canvas ref={canvasRef} className="globe" aria-label="Globe with visited countries highlighted" onPointerDown={onDown} onPointerMove={onMove} onPointerUp={onUp} onPointerCancel={onUp} />
-      <span className="mini">{failed ? "Could not load the globe." : !world ? "Loading globe…" : "Drag to spin"}</span>
+      <span className="mini">{failed ? "Could not load the globe." : !world ? "Loading globe…" : "Drag to spin, scroll or pinch to zoom"}</span>
+      {world && (
+        <div className="gzoom">
+          <button type="button" aria-label="Zoom in" disabled={zoomLevel >= ZOOM_MAX} onClick={() => zoomTo.current?.(zoom.current * 1.5)}>+</button>
+          <button type="button" aria-label="Zoom out" disabled={zoomLevel <= 1} onClick={() => zoomTo.current?.(zoom.current / 1.5)}>&minus;</button>
+        </div>
+      )}
     </div>
   );
 }
