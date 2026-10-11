@@ -15,6 +15,8 @@ export type Project = {
   title: string;
   summary: string;
   tags: string[];
+  /** Photo shown across the top of the project's card (files in /public/images/projects). */
+  image?: { src: string; alt: string };
   detail?: {
     lede: string;
     facts: { label: string; value: string; href?: string }[];
@@ -46,6 +48,10 @@ export const projects: Project[] = [
     summary:
       "Underwater sensor data sent through the water by acoustic modem, then to the cloud over cellular for live monitoring.",
     tags: ["Embedded", "Serial protocols", "Cellular IoT"],
+    image: {
+      src: "/images/projects/reef.jpg",
+      alt: "The reef monitoring hardware on a dock: a clear sensor housing, a tether reel and cabling on an aluminum frame",
+    },
     detail: {
       lede: "Getting data off an underwater reef sensor network and onto a live web page, by chaining serial, acoustic, and cellular links together.",
       facts: [
@@ -91,6 +97,10 @@ export const projects: Project[] = [
     title: "Arduino Volume Knob for My Car",
     summary: "A physical volume knob for my Acura, built from a sunroof switch and an Arduino.",
     tags: ["Arduino", "Hardware", "Problem solving"],
+    image: {
+      src: "/images/projects/volume-knob.jpg",
+      alt: "The sunroof switch installed as a volume control in the Acura's dashboard switch panel",
+    },
     detail: {
       lede: "My Acura has no steering wheel controls, so I built a physical volume knob out of a sunroof switch and an Arduino.",
       facts: [
