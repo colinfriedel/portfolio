@@ -12,8 +12,9 @@ export type HobbiesContent = {
     /** Performance photos, shown in this order. focus = CSS object-position for the card's crop;
         expandedOnly = shown only in the expanded Music view, not on the card. */
     performances: { src: string; alt: string; focus?: string; expandedOnly?: boolean }[];
-    /** Most recent recording project. All null shows a placeholder. link opens in a new tab. */
-    recording: { title: string | null; note: string | null; cover: string | null; link: string | null; linkLabel: string | null };
+    /** Most recent recording project. title null shows a placeholder. audio = file in /public/audio (MP3/AAC),
+        played inline; link = optional page elsewhere (e.g. SoundCloud), opens in a new tab. */
+    recording: { title: string | null; note: string | null; audio: string | null; link: string | null };
   };
   outdoors: {
     kicker: string;

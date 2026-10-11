@@ -196,16 +196,20 @@ export function Recording({ rec, big }: { rec: HobbiesContent["music"]["recordin
   if (!rec.title) return <Slot src={null} alt="Recording project" label="Recording project goes here" i={1} className="rec-slot" />;
   return (
     <div className={`rec ${big ? "big" : ""}`.trim()}>
-      {rec.cover && <img className="rec-cover" src={rec.cover} alt="" loading="lazy" />}
       <div className="rec-tx">
         <b>{rec.title}</b>
         {rec.note && <span>{rec.note}</span>}
-        {rec.link && (
-          <a className="chip sm" href={rec.link} target="_blank" rel="noopener noreferrer">
-            {rec.linkLabel ?? "Listen"} &rarr;
-          </a>
-        )}
       </div>
+      {rec.audio && (
+        <audio className="rec-audio" controls preload="metadata" src={rec.audio}>
+          <a href={rec.audio}>Download {rec.title}</a>
+        </audio>
+      )}
+      {rec.link && (
+        <a className="chip sm" href={rec.link} target="_blank" rel="noopener noreferrer">
+          Listen &rarr;
+        </a>
+      )}
     </div>
   );
 }
