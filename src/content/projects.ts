@@ -111,6 +111,11 @@ export const projects: Project[] = [
         { label: "My role", value: "Everything: design, wiring, and code" },
         { label: "Built with", value: "Arduino Nano, 2003 Acura RSX sunroof switch, 12V to 5V buck converter" },
         { label: "Works with", value: "JVC KW-M560BT head unit" },
+        {
+          label: "Code",
+          value: "github.com/colinfriedel/jvc-carplay-remote",
+          href: "https://github.com/colinfriedel/jvc-carplay-remote",
+        },
       ],
       highlights: [
         "Repurposed a 2003 Acura RSX sunroof switch (part M20778) and mounted it in the blank fog light switch cutout, since the car has no fog lights",
