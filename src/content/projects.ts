@@ -26,6 +26,8 @@ export type Project = {
     /** Empty list: a "Highlights" placeholder until there's real text. */
     highlights: string[];
     flowTitle?: string;
+    /** Small facts shown under the flow diagram (e.g. compatibility). */
+    flowFacts?: { label: string; value: string }[];
     flow?: FlowStep[];
     deepDive?: string[];
     learned: string;
@@ -95,22 +97,21 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "knob",
+    slug: "volume-switch",
     filter: "tech",
     kind: "Personal build",
-    title: "Arduino Volume Knob for My Car",
-    summary: "A physical volume knob for my Acura, built from a sunroof switch and an Arduino.",
+    title: "Arduino Volume Switch for My Car",
+    summary: "A physical volume control for my Acura, built from a sunroof switch and an Arduino.",
     tags: ["Arduino", "Hardware", "Problem solving"],
     image: {
       src: "/images/projects/volume-knob.jpg",
       alt: "The sunroof switch installed as a volume control in the Acura's dashboard switch panel",
     },
     detail: {
-      lede: "My Acura has no steering wheel controls, so I built a physical volume knob out of a sunroof switch and an Arduino.",
+      lede: "My Acura RSX has no steering wheel controls, so I built a physical volume control out of a sunroof switch and an Arduino.",
       facts: [
         { label: "My role", value: "Everything: design, wiring, and code" },
         { label: "Built with", value: "Arduino Nano, 2003 Acura RSX sunroof switch, 12V to 5V buck converter" },
-        { label: "Works with", value: "JVC KW-M560BT head unit" },
         {
           label: "Code",
           value: "github.com/colinfriedel/jvc-carplay-remote",
@@ -123,6 +124,7 @@ export const projects: Project[] = [
         "Powered from the car's 12V wiring through a buck converter that steps it down to 5V",
       ],
       flowTitle: "How it works",
+      flowFacts: [{ label: "Works with", value: "JVC KW-M560BT head unit" }],
       flow: [
         { title: "Sunroof switch", text: "Press up or down, mounted where the fog light switch would go" },
         { via: "Pins D3 and D5", title: "Arduino Nano", text: "Reads the switch and decides which command to send" },

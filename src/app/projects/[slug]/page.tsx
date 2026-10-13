@@ -90,6 +90,16 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               </li>
             ))}
           </ol>
+          {d.flowFacts && d.flowFacts.length > 0 && (
+            <dl className="facts facts-sm">
+              {d.flowFacts.map((f) => (
+                <div key={f.label}>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </section>
       )}
       {d.deepDive && (
