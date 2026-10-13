@@ -336,6 +336,18 @@
         "camera": "dslr",
         "favorite": false,
         "src": "/images/hobbies/photos/golden-hills.jpg"
+      },
+      {
+        "title": "Mt. Diablo",
+        "camera": "dslr",
+        "favorite": false,
+        "src": "/images/hobbies/photos/diablo-fog.jpg"
+      },
+      {
+        "title": "Banff National Park",
+        "camera": "digicam",
+        "favorite": false,
+        "src": "/images/hobbies/photos/rescue-helicopter.jpg"
       }
     ]
   }

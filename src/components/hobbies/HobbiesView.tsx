@@ -158,7 +158,7 @@ function PhotoCard({ data, onOpen }: { data: HobbiesData; onOpen: (k: ModalKind,
             <p className="lbl">Favorites</p>
             <div className="fav">
               {favs.map((p, i) => (
-                <figure className="tile" key={p.title}>
+                <figure className="tile" key={p.src ?? p.title}>
                   <Slot src={p.src} alt={p.title} label={p.title} i={i} onOpen={p.src ? () => openViewer(favItems, favItems.findIndex((x) => x.src === p.src)) : undefined} />
                 </figure>
               ))}
