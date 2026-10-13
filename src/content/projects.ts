@@ -111,10 +111,7 @@ export const projects: Project[] = [
       lede: "My Acura RSX has no steering wheel controls, so I built a physical volume control out of a sunroof switch and an Arduino.",
       facts: [
         { label: "My role", value: "Everything: design, wiring, and code" },
-        {
-          label: "Built with",
-          value: "Arduino Nano clone (ATmega328P, CH340, 5V 16MHz, 32KB Flash), 2003 Acura RSX sunroof switch, 12V to 5V buck converter",
-        },
+        { label: "Built with", value: "Arduino Nano clone (ATmega328P), 2003 Acura RSX sunroof switch, 12V to 5V buck converter" },
         {
           label: "Code",
           value: "github.com/colinfriedel/jvc-carplay-remote",
