@@ -166,7 +166,7 @@ export const projects: Project[] = [
     filter: "tech",
     kind: "Software project",
     title: "Automatic Radio Recording System",
-    summary: "A cloud service that records every hour of the station and emails it to the DJ, with no one touching it.",
+    summary: "A cloud service that records every show on the station and emails it to the DJ, with no one touching it.",
     tags: ["Python", "AWS"],
     image: {
       src: "/images/projects/radio.jpg",
@@ -174,10 +174,10 @@ export const projects: Project[] = [
       focus: "60% 50%",
     },
     detail: {
-      lede: "A cloud service that records each hour of the radio station and emails the recording to the DJ who was on air.",
+      lede: "A cloud service that records each show on the radio station and emails the recording to the DJ who was on air.",
       facts: [
         { label: "My role", value: "Built the service and its cloud storage pipeline" },
-        { label: "Built with", value: "Python, AWS EC2, AWS S3" },
+        { label: "Built with", value: "Python, AWS EC2, AWS S3, ffmpeg, Spinitron API, yagmail" },
         {
           label: "Code",
           value: "github.com/colinfriedel/KSCU-Show-Recorder",
@@ -185,11 +185,25 @@ export const projects: Project[] = [
         },
       ],
       highlights: [
-        "A Python service on AWS EC2 that runs continuously and records the station's output every hour",
-        "Emails each recording straight to the DJ who was on air, in a downloadable format",
-        "Recordings go through a cloud storage pipeline on AWS S3, and the whole thing runs unattended 24/7 with no manual steps",
+        "Built for KSCU 103.3 FM, Santa Clara University's student-run radio station, after a previous recording system had gone down and DJs were no longer receiving recordings of their shows",
+        "A Python service on AWS EC2 that runs continuously and records each show from the station's live stream",
+        "Pulls the show schedule, with each DJ's name and email, from the Spinitron API to know who is on air",
+        "Stores each recording in AWS S3 and emails the DJ a link to download it",
+        "Runs unattended 24/7; the one manual step is creating the new schedule each quarter",
+        "Distributed recordings to 130+ active DJs and volunteers over several months, and the recording and distribution logic has since been adopted and extended as part of a broader station management platform",
       ],
-      learned: learnedPlaceholder,
+      flowTitle: "How it works",
+      flow: [
+        { title: "Live station stream", text: "KSCU's on-air broadcast" },
+        { title: "Python service on AWS EC2", text: "Records each show with ffmpeg, using the schedule to know who is on air" },
+        { title: "AWS S3", text: "Stores the recording" },
+        { via: "Email (yagmail)", title: "The DJ's inbox", text: "A link to download their show" },
+      ],
+      learned: [
+        "Using AWS: EC2 to host an always-on service and S3 for cloud storage",
+        "Building and testing an automated system that runs unattended",
+        "Working with Python libraries like yagmail and boto3",
+      ],
     },
   },
   {
