@@ -6,7 +6,7 @@
 
 export type ProjectFilter = "tech" | "hands";
 
-export type FlowStep = { via?: string; title: string; text: string };
+export type FlowStep = { via?: string; title: string; text?: string };
 
 export type Project = {
   slug: string;
@@ -25,12 +25,15 @@ export type Project = {
     facts: { label: string; value: string; href?: string }[];
     /** Empty list: a "Highlights" placeholder until there's real text. */
     highlights: string[];
+    /** Optional "Features" list shown after Highlights. */
+    features?: string[];
     flowTitle?: string;
     /** Small facts shown under the flow diagram (e.g. compatibility). */
     flowFacts?: { label: string; value: string }[];
     flow?: FlowStep[];
     deepDive?: string[];
-    learned: string;
+    /** A placeholder string, or a list of bullet points once written. */
+    learned: string | string[];
   };
 };
 
@@ -41,7 +44,7 @@ export const projectFilters: { key: "all" | ProjectFilter; label: string }[] = [
 ];
 
 export const projectsIntro =
-  "Things I've built and figured out, from embedded systems to sewing. Open any project for the full story.";
+  "Things I've built and figured out, both technical and creative. Select a project to see more details.";
 
 const learnedPlaceholder = "Placeholder: what was hardest, how I figured it out, and what I'd do differently.";
 
@@ -59,12 +62,12 @@ export const projects: Project[] = [
       alt: "The reef monitoring hardware on a dock: a clear sensor housing, a tether reel and cabling on an aluminum frame",
     },
     detail: {
-      lede: "Getting data off an underwater reef sensor network and onto a live web page, by chaining serial, acoustic, and cellular links together.",
+      lede: "Getting data from an underwater reef sensor network onto a live web page by chaining serial, acoustic, and cellular links together.",
       facts: [
         { label: "My role", value: "Led the software and data pipeline" },
         {
           label: "Built with",
-          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modem, Particle Boron 4G LTE",
+          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modems, Particle Boron 4G LTE",
         },
         {
           label: "Code",
@@ -74,15 +77,15 @@ export const projects: Project[] = [
       ],
       highlights: [
         "Led the software and data pipeline, covering the whole path from underwater sensor to the cloud",
-        "Connected three different kinds of links: wired serial (RS-485 and RS-232), sound through water, and 4G LTE cellular",
-        "Built for a reef off Palos Verdes, with the data feeding a public Google Site for live monitoring",
+        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic signals through water, and 4G LTE cellular",
+        "Built for the Palos Verdes artificial reef, with the data feeding a public Google Site for live monitoring",
       ],
       flowTitle: "How the data travels",
       flow: [
         { title: "Underwater sensor network", text: "Collects the reef data" },
         { via: "RS-485", title: "Feather Adalogger M0", text: "Pulls the data in and buffers it locally" },
         { via: "RS-232", title: "Acoustic modem", text: "Succorfish Delphis, driven by the converted signal" },
-        { via: "Sound through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
+        { via: "Acoustic signals through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
         { via: "RS-232 and RS-485", title: "Feather Adalogger M0", text: "An identical chain on the receiving side" },
         { title: "Particle Boron 4G LTE", text: "Programmed to publish the data to the cloud" },
         { via: "4G LTE cellular", title: "Cloud and Google Sheet", text: "The published data feeds a Google Sheet" },
@@ -93,7 +96,12 @@ export const projects: Project[] = [
         "Converted the signal to RS-232 to drive a Succorfish Delphis acoustic modem, transmitting it through the water column to a second acoustic modem and back through an identical RS-232/RS-485/Feather Adalogger M0 chain",
         "Programmed a Particle Boron 4G LTE module (404X) to publish the received data to the cloud, feeding a Google Sheet embedded in a public Google Site for live monitoring",
       ],
-      learned: learnedPlaceholder,
+      learned: [
+        "Designing, implementing, and debugging different data transmission protocols (serial, acoustic, and cellular)",
+        "Working with an interdisciplinary team on a common goal with differing deadlines and progress checkpoints",
+        "Waterproofing microcontrollers, electrical connections, and data cables",
+        "Managing a materials budget across multiple funding sources",
+      ],
     },
   },
   {
@@ -108,10 +116,13 @@ export const projects: Project[] = [
       alt: "The sunroof switch installed as a volume control in the Acura's dashboard switch panel",
     },
     detail: {
-      lede: "My Acura RSX has no steering wheel controls, so I built a physical volume control out of a sunroof switch and an Arduino.",
+      lede: "My 2003 Acura RSX has no steering wheel controls, so I built a physical volume control out of a junkyard sunroof switch and an Arduino.",
       facts: [
         { label: "My role", value: "Everything: design, wiring, and code" },
-        { label: "Built with", value: "Arduino Nano clone (ATmega328P), 2003 Acura RSX sunroof switch, 12V to 5V buck converter" },
+        {
+          label: "Built with",
+          value: "Arduino Nano clone (ATmega328P), factory sunroof switch, 12V to 5V buck converter, 1A inline fuse",
+        },
         {
           label: "Code",
           value: "github.com/colinfriedel/jvc-carplay-remote",
@@ -119,9 +130,17 @@ export const projects: Project[] = [
         },
       ],
       highlights: [
-        "Repurposed a 2003 Acura RSX sunroof switch (part M20778) and mounted it in the blank fog light switch cutout, since the car has no fog lights",
-        "An Arduino Nano clone (ATmega328P) reads the switch and sends volume up and down commands to the head unit's steering wheel control input",
-        "Powered from the car's 12V wiring through a buck converter that steps it down to 5V",
+        "Repurposed a 2003 Acura RSX sunroof switch (part M20778) and mounted it in the blank fog light switch cutout, since my car has no fog lights",
+        "An Arduino Nano clone (ATmega328P) reads the switch inputs and sends volume up and down commands to the head unit's steering wheel control input",
+        "Powered from the car's 12V cigarette lighter wiring through a buck converter that steps it down to 5V",
+      ],
+      // Gestures from the project README (github.com/colinfriedel/jvc-carplay-remote).
+      features: [
+        "Tap: volume up or down one step",
+        "Long hold: continuous volume up or down",
+        "Short hold, then release: next or previous track",
+        "Double tap up: Siri",
+        "Double tap down: mute",
       ],
       flowTitle: "How it works",
       flowFacts: [{ label: "Works with", value: "JVC KW-M560BT head unit" }],
@@ -132,11 +151,14 @@ export const projects: Project[] = [
       ],
       deepDive: [
         "Pin layout: switch down on D3, switch up on D5, signal out to the JVC on D7",
-        "Testing the head unit turned up other working commands too: track skip forward and back on 0x12 and 0x13 (works over USB CarPlay), mute on 0x0E, and the voice assistant on 0x1A",
-        "Mute needed a single-repeat send, otherwise it undid itself instantly",
-        "The Arduino is powered from the cigarette lighter wire through a 12V to 5V buck converter with a USB output",
+        "The timing and basic volume codes came from an AVForums thread. I found the rest by scanning all 128 codes (0x00 to 0x7F) on the head unit with a scanner tool, sending one code at a time and watching the screen. That found mute (0x0E), the voice assistant (0x1A), and CarPlay track skip forward and back (0x12 and 0x13), which the thread didn't cover for this model",
+        "Mute needed a single-repeat send, otherwise it undid itself instantly. No scanned code pauses playback, so mute is the closest option",
       ],
-      learned: learnedPlaceholder,
+      learned: [
+        "Reading signals from a rocker switch through an Arduino",
+        "Improving my soldering skills",
+        "Testing circuits with a multimeter",
+      ],
     },
   },
   {
@@ -144,7 +166,7 @@ export const projects: Project[] = [
     filter: "tech",
     kind: "Software project",
     title: "Automatic Radio Recording System",
-    summary: "A cloud service that records every hour of the station and emails it to the DJ, with no one touching it.",
+    summary: "A cloud service that records every show on the station and emails it to the DJ, with no one touching it.",
     tags: ["Python", "AWS"],
     image: {
       src: "/images/projects/radio.jpg",
@@ -152,10 +174,10 @@ export const projects: Project[] = [
       focus: "60% 50%",
     },
     detail: {
-      lede: "A cloud service that records each hour of the radio station and emails the recording to the DJ who was on air.",
+      lede: "A cloud service that records each show on the radio station and emails the recording to the DJ who was on air.",
       facts: [
         { label: "My role", value: "Built the service and its cloud storage pipeline" },
-        { label: "Built with", value: "Python, AWS EC2, AWS S3" },
+        { label: "Built with", value: "Python, AWS EC2, AWS S3, ffmpeg, Spinitron API, yagmail" },
         {
           label: "Code",
           value: "github.com/colinfriedel/KSCU-Show-Recorder",
@@ -163,11 +185,82 @@ export const projects: Project[] = [
         },
       ],
       highlights: [
-        "A Python service on AWS EC2 that runs continuously and records the station's output every hour",
-        "Emails each recording straight to the DJ who was on air, in a downloadable format",
-        "Recordings go through a cloud storage pipeline on AWS S3, and the whole thing runs unattended 24/7 with no manual steps",
+        "Built for KSCU 103.3 FM, Santa Clara University's student-run radio station, after a previous recording system had gone down and DJs were no longer receiving recordings of their shows",
+        "A Python service on AWS EC2 that runs continuously and records each show from the station's live stream",
+        "Pulls the show schedule, with each DJ's name and email, from the Spinitron API to know who is on air",
+        "Stores each recording in AWS S3 and emails the DJ a link to download it",
+        "Runs unattended 24/7; the one manual step is creating the new schedule each quarter",
+        "Distributed recordings to 130+ active DJs and volunteers over several months, and the recording and distribution logic has since been adopted and extended as part of a broader station management platform",
       ],
-      learned: learnedPlaceholder,
+      flowTitle: "How it works",
+      flow: [
+        { title: "Live station stream", text: "KSCU's on-air broadcast" },
+        { title: "Python service on AWS EC2", text: "Records each show with ffmpeg, using the schedule to know who is on air" },
+        { title: "AWS S3", text: "Stores the recording" },
+        { via: "Email (yagmail)", title: "The DJ's inbox", text: "A link to download their show" },
+      ],
+      learned: [
+        "Using AWS: EC2 to host an always-on service and S3 for cloud storage",
+        "Building and testing an automated system that runs unattended",
+        "Working with Python libraries like yagmail and boto3",
+      ],
+    },
+  },
+  {
+    slug: "floor-mats",
+    filter: "hands",
+    kind: "Hands-on",
+    title: "Custom Persian-Rug Floor Mats",
+    summary:
+      "Custom floor mats for my car, cut from a Persian rug and bound on my sewing machine.",
+    tags: ["Car", "Sewing", "DIY"],
+    image: {
+      src: "/images/projects/floor-mats-front.jpg",
+      alt: "Finished Persian-rug floor mats with red binding in the driver's footwell, seen through the open door of the red Acura RSX",
+    },
+    gallery: [
+      { src: "/images/projects/floor-mats-before.jpg", alt: "The RSX's original worn grey carpet floor mats" },
+      {
+        src: "/images/projects/floor-mats-rear.jpg",
+        alt: "The rear floor mat in the same rug pattern, bound in red, seen past the folded-forward front seat",
+      },
+      {
+        src: "/images/projects/floor-mats.jpg",
+        alt: "Close-up of the driver's mat showing the sewn red webbing binding, with the rug's border running diagonally",
+      },
+      { src: "/images/projects/floor-mats-rug.jpg", alt: "The vintage Persian-style rug before cutting: cream field, red and green florals, red border" },
+    ],
+    detail: {
+      lede: "My RSX still had its original worn grey mats. I wanted something custom, so I made my own from a decorative Persian rug instead of buying traditional mats.",
+      facts: [
+        { label: "My role", value: "Design, tracing, cutting, and sewing" },
+        {
+          label: "Built with",
+          value: "Vintage Persian-style area rug, red polypropylene webbing, upholstery thread, metal grommets, Brother XR-7700 sewing machine",
+        },
+        { label: "Mats made", value: "3: driver, passenger, and rear" },
+      ],
+      highlights: [
+        "Got the rug for free on Facebook Marketplace and chose it because its reds match the car's paint",
+        "Traced the original mats onto the back of the rug to get the exact shapes",
+        "Cut from the back with a utility knife so the pile didn't get shaved at the edges",
+        "Bound every edge in red webbing on my Brother XR-7700 with a walking foot and a heavy-duty needle, rounding the corners as I went",
+        "Accidentally ordered 1\" webbing instead of the 1.5\" I planned on, which left almost no room to catch both sides, so I trimmed the pile closer and stitched near the inner edge to keep the binding even",
+        "Added grommets to the driver's mat for the factory retention hooks and made sure the pedals still had full travel",
+      ],
+      flowTitle: "How I made them",
+      flow: [
+        { title: "Trace", text: "Original mats traced onto the back of the rug" },
+        { title: "Cut", text: "From the back, with a utility knife" },
+        { title: "Bind", text: "Red webbing sewn around every edge" },
+        { title: "Install grommets", text: "For the factory retention hooks" },
+        { title: "Fit in car", text: "Checked pedal travel" },
+      ],
+      learned: [
+        "Sewing thick, multi-layer stacks on a home sewing machine",
+        "Balancing heavy upholstery thread on top against all-purpose thread in the bobbin",
+        "Installing metal grommets in carpet",
+      ],
     },
   },
   {
@@ -196,25 +289,6 @@ export const projects: Project[] = [
     image: { src: "/images/projects/jean-pockets.jpg", alt: "Jeans turned inside out, showing the lengthened pocket linings" },
     detail: {
       lede: "Extending the pockets on a pair of jeans.",
-      facts: [],
-      highlights: [],
-      learned: learnedPlaceholder,
-    },
-  },
-  {
-    slug: "floor-mats",
-    filter: "hands",
-    kind: "Hands-on",
-    title: "New Floor Mats for My Car",
-    summary: "Making new floor mats for my car.",
-    tags: ["Car", "DIY"],
-    image: { src: "/images/projects/floor-mats.jpg", alt: "A patterned rug floor mat in the driver's footwell of the Acura" },
-    gallery: [
-      { src: "/images/projects/floor-mats-front.jpg", alt: "The driver's side floor mat with the door open, showing the Acura's red paint" },
-      { src: "/images/projects/floor-mats-rear.jpg", alt: "The rear floor mat behind the front passenger seat" },
-    ],
-    detail: {
-      lede: "Making new floor mats for my car.",
       facts: [],
       highlights: [],
       learned: learnedPlaceholder,

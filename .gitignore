@@ -43,3 +43,6 @@ next-env.d.ts
 # raw data exports (only derived numbers are committed)
 activities.csv
 export_*/
+
+# Personal files kept on your computer only (never committed)
+/private/

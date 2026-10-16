@@ -78,6 +78,16 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           <p className="ph">Placeholder: what you did and what went into it.</p>
         )}
       </section>
+      {d.features && d.features.length > 0 && (
+        <section>
+          <h3>Features</h3>
+          <ul className="hl">
+            {d.features.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+        </section>
+      )}
       {d.flow && (
         <section>
           <h3>{d.flowTitle}</h3>
@@ -86,7 +96,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               <li key={i}>
                 {step.via && <span className="via">{step.via}</span>}
                 <strong>{step.title}</strong>
-                <span className="d">{step.text}</span>
+                {step.text && <span className="d">{step.text}</span>}
               </li>
             ))}
           </ol>
@@ -116,7 +126,15 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       )}
       <section>
         <h3>What I learned</h3>
-        <p className="ph">{d.learned}</p>
+        {Array.isArray(d.learned) ? (
+          <ul className="hl">
+            {d.learned.map((l) => (
+              <li key={l}>{l}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="ph">{d.learned}</p>
+        )}
       </section>
     </Panel>
   );
