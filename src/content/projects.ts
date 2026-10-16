@@ -42,7 +42,7 @@ export const projectFilters: { key: "all" | ProjectFilter; label: string }[] = [
 ];
 
 export const projectsIntro =
-  "Things I've built and figured out, both technical and creative. Click on a project to see more details.";
+  "Things I've built and figured out, both technical and creative. Select a project to see more details.";
 
 const learnedPlaceholder = "Placeholder: what was hardest, how I figured it out, and what I'd do differently.";
 
@@ -75,7 +75,7 @@ export const projects: Project[] = [
       ],
       highlights: [
         "Led the software and data pipeline, covering the whole path from underwater sensor to the cloud",
-        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic through water, and 4G LTE cellular",
+        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic signals through water, and 4G LTE cellular",
         "Built for the Palos Verdes artificial reef, with the data feeding a public Google Site for live monitoring",
       ],
       flowTitle: "How the data travels",
@@ -83,7 +83,7 @@ export const projects: Project[] = [
         { title: "Underwater sensor network", text: "Collects the reef data" },
         { via: "RS-485", title: "Feather Adalogger M0", text: "Pulls the data in and buffers it locally" },
         { via: "RS-232", title: "Acoustic modem", text: "Succorfish Delphis, driven by the converted signal" },
-        { via: "Sound through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
+        { via: "Acoustic signals through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
         { via: "RS-232 and RS-485", title: "Feather Adalogger M0", text: "An identical chain on the receiving side" },
         { title: "Particle Boron 4G LTE", text: "Programmed to publish the data to the cloud" },
         { via: "4G LTE cellular", title: "Cloud and Google Sheet", text: "The published data feeds a Google Sheet" },
@@ -95,10 +95,10 @@ export const projects: Project[] = [
         "Programmed a Particle Boron 4G LTE module (404X) to publish the received data to the cloud, feeding a Google Sheet embedded in a public Google Site for live monitoring",
       ],
       learned: [
-        "How to design, implement, and debug different data transmission protocols (serial, acoustic, and cellular)",
+        "Designing, implementing, and debugging different data transmission protocols (serial, acoustic, and cellular)",
         "Working with an interdisciplinary team on a common goal with differing deadlines and progress checkpoints",
-        "Waterproofing microcontrollers, electrical connections, and data communication protocols",
-        "Materials budgeting with money from multiple benefactors",
+        "Waterproofing microcontrollers, electrical connections, and data cables",
+        "Managing a materials budget across multiple funding sources",
       ],
     },
   },
