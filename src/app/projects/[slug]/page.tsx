@@ -96,7 +96,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
               <li key={i}>
                 {step.via && <span className="via">{step.via}</span>}
                 <strong>{step.title}</strong>
-                <span className="d">{step.text}</span>
+                {step.text && <span className="d">{step.text}</span>}
               </li>
             ))}
           </ol>
