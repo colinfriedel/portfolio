@@ -233,7 +233,7 @@ export const projects: Project[] = [
     detail: {
       lede: "My RSX still had its original worn grey mats. I wanted something custom, so I made my own from a decorative Persian rug instead of buying traditional mats.",
       facts: [
-        { label: "My role", value: "Design, templates, cutting, and sewing" },
+        { label: "My role", value: "Design, tracing, cutting, and sewing" },
         {
           label: "Built with",
           value: "Vintage Persian-style area rug, red polypropylene webbing, upholstery thread, metal grommets, Brother XR-7700 sewing machine",
@@ -242,17 +242,17 @@ export const projects: Project[] = [
       ],
       highlights: [
         "Got the rug for free on Facebook Marketplace and chose it because its reds match the car's paint",
-        "Traced the original mats onto paper to get the exact shape, including the pedal notch, then laid the templates on the rug to place the pattern where I wanted it",
-        "Cut from the back with a utility knife so the pile didn't get shaved at the edges, then sealed the edges so they wouldn't unravel",
+        "Traced the original mats onto the back of the rug to get the exact shapes",
+        "Cut from the back with a utility knife so the pile didn't get shaved at the edges",
         "Bound every edge in red webbing on my Brother XR-7700 with a walking foot and a heavy-duty needle, rounding the corners as I went",
         "Accidentally ordered 1\" webbing instead of the 1.5\" I planned on, which left almost no room to catch both sides, so I trimmed the pile closer and stitched near the inner edge to keep the binding even",
         "Added grommets to the driver's mat for the factory retention hooks and made sure the pedals still had full travel",
       ],
       flowTitle: "How I made them",
       flow: [
-        { title: "Trace templates", text: "Original mats traced onto paper" },
+        { title: "Trace", text: "Original mats traced onto the back of the rug" },
         { title: "Cut", text: "From the back, with a utility knife" },
-        { title: "Seal and bind", text: "Red webbing sewn around every edge" },
+        { title: "Bind", text: "Red webbing sewn around every edge" },
         { title: "Install grommets", text: "For the factory retention hooks" },
         { title: "Fit in car", text: "Checked pedal travel" },
       ],
