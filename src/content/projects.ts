@@ -30,7 +30,8 @@ export type Project = {
     flowFacts?: { label: string; value: string }[];
     flow?: FlowStep[];
     deepDive?: string[];
-    learned: string;
+    /** A placeholder string, or a list of bullet points once written. */
+    learned: string | string[];
   };
 };
 
@@ -41,7 +42,7 @@ export const projectFilters: { key: "all" | ProjectFilter; label: string }[] = [
 ];
 
 export const projectsIntro =
-  "Things I've built and figured out, from embedded systems to sewing. Open any project for the full story.";
+  "Things I've built and figured out, both technical and creative. Click on a project to see more details.";
 
 const learnedPlaceholder = "Placeholder: what was hardest, how I figured it out, and what I'd do differently.";
 
@@ -59,12 +60,12 @@ export const projects: Project[] = [
       alt: "The reef monitoring hardware on a dock: a clear sensor housing, a tether reel and cabling on an aluminum frame",
     },
     detail: {
-      lede: "Getting data off an underwater reef sensor network and onto a live web page, by chaining serial, acoustic, and cellular links together.",
+      lede: "Getting data from an underwater reef sensor network onto a live web page by chaining serial, acoustic, and cellular links together.",
       facts: [
         { label: "My role", value: "Led the software and data pipeline" },
         {
           label: "Built with",
-          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modem, Particle Boron 4G LTE",
+          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modems, Particle Boron 4G LTE",
         },
         {
           label: "Code",
@@ -74,8 +75,8 @@ export const projects: Project[] = [
       ],
       highlights: [
         "Led the software and data pipeline, covering the whole path from underwater sensor to the cloud",
-        "Connected three different kinds of links: wired serial (RS-485 and RS-232), sound through water, and 4G LTE cellular",
-        "Built for a reef off Palos Verdes, with the data feeding a public Google Site for live monitoring",
+        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic through water, and 4G LTE cellular",
+        "Built for the Palos Verdes artificial reef, with the data feeding a public Google Site for live monitoring",
       ],
       flowTitle: "How the data travels",
       flow: [
@@ -93,7 +94,12 @@ export const projects: Project[] = [
         "Converted the signal to RS-232 to drive a Succorfish Delphis acoustic modem, transmitting it through the water column to a second acoustic modem and back through an identical RS-232/RS-485/Feather Adalogger M0 chain",
         "Programmed a Particle Boron 4G LTE module (404X) to publish the received data to the cloud, feeding a Google Sheet embedded in a public Google Site for live monitoring",
       ],
-      learned: learnedPlaceholder,
+      learned: [
+        "How to design, implement, and debug different data transmission protocols (serial, acoustic, and cellular)",
+        "Working with an interdisciplinary team on a common goal with differing deadlines and progress checkpoints",
+        "Waterproofing microcontrollers, electrical connections, and data communication protocols",
+        "Materials budgeting with money from multiple benefactors",
+      ],
     },
   },
   {
