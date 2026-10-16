@@ -151,8 +151,8 @@ export const projects: Project[] = [
       ],
       deepDive: [
         "Pin layout: switch down on D3, switch up on D5, signal out to the JVC on D7",
-        "Testing the head unit turned up other working commands too: track skip forward and back on 0x12 and 0x13 (works over USB CarPlay), mute on 0x0E, and the voice assistant on 0x1A",
-        "Mute needed a single-repeat send, otherwise it undid itself instantly",
+        "The timing and basic volume codes came from an AVForums thread. I found the rest by scanning all 128 codes (0x00 to 0x7F) on the head unit with a scanner tool, sending one code at a time and watching the screen. That found mute (0x0E), the voice assistant (0x1A), and CarPlay track skip forward and back (0x12 and 0x13), which the thread didn't cover for this model",
+        "Mute needed a single-repeat send, otherwise it undid itself instantly. No scanned code pauses playback, so mute is the closest option",
       ],
       learned: [
         "Reading signals from a rocker switch through an Arduino",
