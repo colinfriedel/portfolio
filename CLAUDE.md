@@ -31,3 +31,16 @@ Built as React client components in `src/components/hobbies/` (cards, map, globe
 
 ## Checking a change
 `npm run lint`, `npm run build`, then load `/hobbies` and check: Playing/Listening tabs and range chips, the photo viewer (open from a card and from an expanded view, arrows, Esc), parks toggle + tooltips, World switch + globe + country chips + zoom (wheel, +/-), the three expanded views (and `/hobbies#music|outdoors|photo`), Photography DSLR/Digicam columns (each scrolls on its own), no console errors.
+
+# Working on this repo
+
+- Work on the `nextjs-rebuild` branch and open or update a PR; never push to `main` (it is the live site, deployed by Vercel) and never touch DNS or domain config. Merge only when Colin says "merge", after the Vercel check passes on the PR's head; then fast-forward `nextjs-rebuild` to `main`.
+- `main` gets a daily bot commit to `music-stats.json`; pull before merging.
+- `private/` is git-ignored and stays on Colin's computer. Read from it, never commit it or copy its contents wholesale into the repo.
+
+# Projects pages (`/projects`)
+
+- All project text lives in `src/content/projects.ts` (order in the array = order on the page). `next.config.ts` redirects old slugs.
+- Same rule as hobbies: never write Colin's copy. Use his wording verbatim, flag likely typos, and offer suggestions separately for him to approve.
+- "What I learned" bullets are short noun phrases with no "Learned"/"Gained" opener (e.g. "Testing circuits with a multimeter"), since the heading already says it.
+- Project photos go in `public/images/projects/`, with the same resize/EXIF rules as hobbies photos.
