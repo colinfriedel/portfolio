@@ -212,7 +212,7 @@ export const projects: Project[] = [
     kind: "Hands-on",
     title: "Custom Persian-Rug Floor Mats",
     summary:
-      "I made custom floor mats for my car by cutting a persian rug to size and binding the edges with my sewing machine.",
+      "Custom floor mats for my car, cut from a Persian rug and bound on my sewing machine.",
     tags: ["Car", "Sewing", "DIY"],
     image: {
       src: "/images/projects/floor-mats-front.jpg",
@@ -231,7 +231,7 @@ export const projects: Project[] = [
       { src: "/images/projects/floor-mats-rug.jpg", alt: "The vintage Persian-style rug before cutting: cream field, red and green florals, red border" },
     ],
     detail: {
-      lede: "I made this because I wanted something custom, and liked the idea of having a decorative carpet in my car instead of traditional mats.",
+      lede: "My RSX still had its original worn grey mats. I wanted something custom, so I made my own from a decorative Persian rug instead of buying traditional mats.",
       facts: [
         { label: "My role", value: "Design, templates, cutting, and sewing" },
         {
@@ -241,16 +241,20 @@ export const projects: Project[] = [
         { label: "Mats made", value: "3: driver, passenger, and rear" },
       ],
       highlights: [
-        "I'm proudest of how seamless the fit into the car, especially with the color scheme and the binding.",
-        "Hardest part was correctly and evenly sewing the binding on especially when I accidentally ordered 1\" width webbing instead of 1.5\" which I originally planned on.",
+        "Got the rug for free on Facebook Marketplace and chose it because its reds match the car's paint",
+        "Traced the original mats onto paper to get the exact shape, including the pedal notch, then laid the templates on the rug to place the pattern where I wanted it",
+        "Cut from the back with a utility knife so the pile didn't get shaved at the edges, then sealed the edges so they wouldn't unravel",
+        "Bound every edge in red webbing on my Brother XR-7700 with a walking foot and a heavy-duty needle, rounding the corners as I went",
+        "Accidentally ordered 1\" webbing instead of the 1.5\" I planned on, which left almost no room to catch both sides, so I trimmed the pile closer and stitched near the inner edge to keep the binding even",
+        "Added grommets to the driver's mat for the factory retention hooks and made sure the pedals still had full travel",
       ],
       flowTitle: "How I made them",
       flow: [
-        { title: "Trace templates" },
-        { title: "Cut" },
-        { title: "Seal and bind" },
-        { title: "Install grommets" },
-        { title: "Fit in car" },
+        { title: "Trace templates", text: "Original mats traced onto paper" },
+        { title: "Cut", text: "From the back, with a utility knife" },
+        { title: "Seal and bind", text: "Red webbing sewn around every edge" },
+        { title: "Install grommets", text: "For the factory retention hooks" },
+        { title: "Fit in car", text: "Checked pedal travel" },
       ],
       learned: [
         "Sewing thick, multi-layer stacks on a home sewing machine",
