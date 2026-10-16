@@ -25,6 +25,8 @@ export type Project = {
     facts: { label: string; value: string; href?: string }[];
     /** Empty list: a "Highlights" placeholder until there's real text. */
     highlights: string[];
+    /** Optional "Features" list shown after Highlights. */
+    features?: string[];
     flowTitle?: string;
     /** Small facts shown under the flow diagram (e.g. compatibility). */
     flowFacts?: { label: string; value: string }[];
@@ -114,10 +116,13 @@ export const projects: Project[] = [
       alt: "The sunroof switch installed as a volume control in the Acura's dashboard switch panel",
     },
     detail: {
-      lede: "My Acura RSX has no steering wheel controls, so I built a physical volume control out of a sunroof switch and an Arduino.",
+      lede: "My 2003 Acura RSX has no steering wheel controls, so I built a physical volume control out of a junkyard sunroof switch and an Arduino.",
       facts: [
         { label: "My role", value: "Everything: design, wiring, and code" },
-        { label: "Built with", value: "Arduino Nano clone (ATmega328P), 2003 Acura RSX sunroof switch, 12V to 5V buck converter" },
+        {
+          label: "Built with",
+          value: "Arduino Nano clone (ATmega328P), factory sunroof switch, 12V to 5V buck converter, 1A inline fuse",
+        },
         {
           label: "Code",
           value: "github.com/colinfriedel/jvc-carplay-remote",
@@ -125,9 +130,17 @@ export const projects: Project[] = [
         },
       ],
       highlights: [
-        "Repurposed a 2003 Acura RSX sunroof switch (part M20778) and mounted it in the blank fog light switch cutout, since the car has no fog lights",
-        "An Arduino Nano clone (ATmega328P) reads the switch and sends volume up and down commands to the head unit's steering wheel control input",
-        "Powered from the car's 12V wiring through a buck converter that steps it down to 5V",
+        "Repurposed a 2003 Acura RSX sunroof switch (part M20778) and mounted it in the blank fog light switch cutout, since my car has no fog lights",
+        "An Arduino Nano clone (ATmega328P) reads the switch inputs and sends volume up and down commands to the head unit's steering wheel control input",
+        "Powered from the car's 12V cigarette lighter wiring through a buck converter that steps it down to 5V",
+      ],
+      // Placeholder wording until Colin says how each feature is triggered on the switch.
+      features: [
+        "Volume up and down, one step per press",
+        "Continuous volume change while held",
+        "Skip to the next or previous track",
+        "Siri",
+        "Mute",
       ],
       flowTitle: "How it works",
       flowFacts: [{ label: "Works with", value: "JVC KW-M560BT head unit" }],
@@ -142,7 +155,11 @@ export const projects: Project[] = [
         "Mute needed a single-repeat send, otherwise it undid itself instantly",
         "The Arduino is powered from the cigarette lighter wire through a 12V to 5V buck converter with a USB output",
       ],
-      learned: learnedPlaceholder,
+      learned: [
+        "Reading signals from a rocker switch through an Arduino",
+        "Improved my soldering skills",
+        "More experience testing with a multimeter",
+      ],
     },
   },
   {
