@@ -207,6 +207,25 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "floor-mats",
+    filter: "hands",
+    kind: "Hands-on",
+    title: "New Floor Mats for My Car",
+    summary: "Making new floor mats for my car.",
+    tags: ["Car", "DIY"],
+    image: { src: "/images/projects/floor-mats.jpg", alt: "A patterned rug floor mat in the driver's footwell of the Acura" },
+    gallery: [
+      { src: "/images/projects/floor-mats-front.jpg", alt: "The driver's side floor mat with the door open, showing the Acura's red paint" },
+      { src: "/images/projects/floor-mats-rear.jpg", alt: "The rear floor mat behind the front passenger seat" },
+    ],
+    detail: {
+      lede: "Making new floor mats for my car.",
+      facts: [],
+      highlights: [],
+      learned: learnedPlaceholder,
+    },
+  },
+  {
     slug: "jean-hem",
     filter: "hands",
     kind: "Hands-on",
@@ -232,25 +251,6 @@ export const projects: Project[] = [
     image: { src: "/images/projects/jean-pockets.jpg", alt: "Jeans turned inside out, showing the lengthened pocket linings" },
     detail: {
       lede: "Extending the pockets on a pair of jeans.",
-      facts: [],
-      highlights: [],
-      learned: learnedPlaceholder,
-    },
-  },
-  {
-    slug: "floor-mats",
-    filter: "hands",
-    kind: "Hands-on",
-    title: "New Floor Mats for My Car",
-    summary: "Making new floor mats for my car.",
-    tags: ["Car", "DIY"],
-    image: { src: "/images/projects/floor-mats.jpg", alt: "A patterned rug floor mat in the driver's footwell of the Acura" },
-    gallery: [
-      { src: "/images/projects/floor-mats-front.jpg", alt: "The driver's side floor mat with the door open, showing the Acura's red paint" },
-      { src: "/images/projects/floor-mats-rear.jpg", alt: "The rear floor mat behind the front passenger seat" },
-    ],
-    detail: {
-      lede: "Making new floor mats for my car.",
       facts: [],
       highlights: [],
       learned: learnedPlaceholder,
