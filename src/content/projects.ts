@@ -32,8 +32,8 @@ export type Project = {
     flowFacts?: { label: string; value: string }[];
     flow?: FlowStep[];
     deepDive?: string[];
-    /** A placeholder string, or a list of bullet points once written. */
-    learned: string | string[];
+    /** A placeholder string, or a list of bullet points once written. Leave out to hide the section. */
+    learned?: string | string[];
   };
 };
 
@@ -50,57 +50,53 @@ const learnedPlaceholder = "Placeholder: what was hardest, how I figured it out,
 
 export const projects: Project[] = [
   {
-    slug: "reef",
+    slug: "dipstick",
     filter: "tech",
-    kind: "Senior design project",
-    title: "Reef Monitoring Communication System",
-    summary:
-      "Underwater sensor data sent through the water by acoustic modem, then to the cloud over cellular for live monitoring.",
-    tags: ["Embedded", "Serial protocols", "Cellular IoT"],
+    kind: "iPhone app, in development",
+    title: "Dipstick: Car Maintenance and MPG Tracker",
+    summary: "An iPhone app for tracking fill-ups and maintenance on my cars, with automatic MPG and city/highway detection.",
+    tags: ["Swift", "SwiftUI", "iOS"],
     image: {
-      src: "/images/projects/reef.jpg",
-      alt: "The reef monitoring hardware on a dock: a clear sensor housing, a tether reel and cabling on an aluminum frame",
+      src: "/images/projects/dipstick.jpg",
+      alt: "Four Dipstick screens: the home screen with three cars and service lamps, the fuel log, the maintenance log, and MPG stats",
     },
     detail: {
-      lede: "Getting data from an underwater reef sensor network onto a live web page by chaining serial, acoustic, and cellular links together.",
+      lede: "My maintenance records were spread across paper notebooks and iPhone Notes, and I was working out MPG by hand after every fill-up, so I'm building an app that puts it all in one place and does the math for me.",
       facts: [
-        { label: "My role", value: "Led the software and data pipeline" },
+        { label: "My role", value: "Everything: design and code" },
         {
           label: "Built with",
-          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modems, Particle Boron 4G LTE",
+          value: "Swift, SwiftUI, SwiftData, Swift Charts, Core Location, App Intents, VisionKit",
         },
         {
           label: "Code",
-          value: "github.com/colinfriedel/IRIS-Senior-Design",
-          href: "https://github.com/colinfriedel/IRIS-Senior-Design",
+          value: "github.com/colinfriedel/Dipstick",
+          href: "https://github.com/colinfriedel/Dipstick",
         },
       ],
       highlights: [
-        "Led the software and data pipeline, covering the whole path from underwater sensor to the cloud",
-        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic signals through water, and 4G LTE cellular",
-        "Built for the Palos Verdes artificial reef, with the data feeding a public Google Site for live monitoring",
+        "I use it day to day on my own cars while I keep adding features",
+        "Calculates MPG automatically between full tanks, with partial fills rolling into the next full tank",
+        "Tells me when service is due by miles or time, with due-soon and overdue items for every car on the home screen",
+        "No backend: all data stays on the phone, stored so iCloud sync can be added later",
+        "Unit tests cover the core logic: MPG, due dates, stats, CSV, trip classification, and pump-screen parsing",
       ],
-      flowTitle: "How the data travels",
+      features: [
+        "Fuel log with MPG per tank, average MPG, and cost per mile",
+        "Maintenance log with parts, part numbers, costs, search, and filters by service type",
+        "Service reminders by miles and/or time",
+        "Stats: MPG trend chart and monthly fuel spend",
+        "CSV import and export for existing records and backups",
+        "In testing: trips start and stop on their own when the phone connects to the car",
+        "In testing: pump scanning, which reads gallons and total off the pump's screen with the camera",
+        "Planned: iCloud sync and importing maintenance schedules from owner's manuals",
+      ],
+      flowTitle: "How city/highway MPG works (in testing)",
       flow: [
-        { title: "Underwater sensor network", text: "Collects the reef data" },
-        { via: "RS-485", title: "Feather Adalogger M0", text: "Pulls the data in and buffers it locally" },
-        { via: "RS-232", title: "Acoustic modem", text: "Succorfish Delphis, driven by the converted signal" },
-        { via: "Acoustic signals through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
-        { via: "RS-232 and RS-485", title: "Feather Adalogger M0", text: "An identical chain on the receiving side" },
-        { title: "Particle Boron 4G LTE", text: "Programmed to publish the data to the cloud" },
-        { via: "4G LTE cellular", title: "Cloud and Google Sheet", text: "The published data feeds a Google Sheet" },
-        { title: "Public Google Site", text: "Embeds the sheet for live monitoring" },
-      ],
-      deepDive: [
-        "Wired and programmed an RS-485 interface to pull data from the underwater sensor network into a Feather Adalogger M0 for local buffering",
-        "Converted the signal to RS-232 to drive a Succorfish Delphis acoustic modem, transmitting it through the water column to a second acoustic modem and back through an identical RS-232/RS-485/Feather Adalogger M0 chain",
-        "Programmed a Particle Boron 4G LTE module (404X) to publish the received data to the cloud, feeding a Google Sheet embedded in a public Google Site for live monitoring",
-      ],
-      learned: [
-        "Designing, implementing, and debugging different data transmission protocols (serial, acoustic, and cellular)",
-        "Working with an interdisciplinary team on a common goal with differing deadlines and progress checkpoints",
-        "Waterproofing microcontrollers, electrical connections, and data cables",
-        "Managing a materials budget across multiple funding sources",
+        { via: "CarPlay or Bluetooth", title: "Phone connects to the car", text: "A Shortcuts automation starts the trip and recognizes which car it is" },
+        { via: "GPS speed", title: "Each half-mile is classified", text: "City or highway. Only mile totals are saved, never the route" },
+        { title: "Fill-up", text: "Gallons logged by hand or scanned from the pump" },
+        { title: "City, highway, and combined MPG", text: "Solved across all tracked tanks from each tank's mix and gallons" },
       ],
     },
   },
@@ -158,6 +154,61 @@ export const projects: Project[] = [
         "Reading signals from a rocker switch through an Arduino",
         "Improving my soldering skills",
         "Testing circuits with a multimeter",
+      ],
+    },
+  },
+  {
+    slug: "reef",
+    filter: "tech",
+    kind: "Senior design project",
+    title: "Reef Monitoring Communication System",
+    summary:
+      "Underwater sensor data sent through the water by acoustic modem, then to the cloud over cellular for live monitoring.",
+    tags: ["Embedded", "Serial protocols", "Cellular IoT"],
+    image: {
+      src: "/images/projects/reef.jpg",
+      alt: "The reef monitoring hardware on a dock: a clear sensor housing, a tether reel and cabling on an aluminum frame",
+    },
+    detail: {
+      lede: "Getting data from an underwater reef sensor network onto a live web page by chaining serial, acoustic, and cellular links together.",
+      facts: [
+        { label: "My role", value: "Led the software and data pipeline" },
+        {
+          label: "Built with",
+          value: "RS-485 and RS-232 serial, Feather Adalogger M0, Succorfish Delphis acoustic modems, Particle Boron 4G LTE",
+        },
+        {
+          label: "Code",
+          value: "github.com/colinfriedel/IRIS-Senior-Design",
+          href: "https://github.com/colinfriedel/IRIS-Senior-Design",
+        },
+      ],
+      highlights: [
+        "Led the software and data pipeline, covering the whole path from underwater sensor to the cloud",
+        "Connected three different kinds of links: wired serial (RS-485 and RS-232), acoustic signals through water, and 4G LTE cellular",
+        "Built for the Palos Verdes artificial reef, with the data feeding a public Google Site for live monitoring",
+      ],
+      flowTitle: "How the data travels",
+      flow: [
+        { title: "Underwater sensor network", text: "Collects the reef data" },
+        { via: "RS-485", title: "Feather Adalogger M0", text: "Pulls the data in and buffers it locally" },
+        { via: "RS-232", title: "Acoustic modem", text: "Succorfish Delphis, driven by the converted signal" },
+        { via: "Acoustic signals through the water column", title: "Second acoustic modem", text: "Receives the transmission" },
+        { via: "RS-232 and RS-485", title: "Feather Adalogger M0", text: "An identical chain on the receiving side" },
+        { title: "Particle Boron 4G LTE", text: "Programmed to publish the data to the cloud" },
+        { via: "4G LTE cellular", title: "Cloud and Google Sheet", text: "The published data feeds a Google Sheet" },
+        { title: "Public Google Site", text: "Embeds the sheet for live monitoring" },
+      ],
+      deepDive: [
+        "Wired and programmed an RS-485 interface to pull data from the underwater sensor network into a Feather Adalogger M0 for local buffering",
+        "Converted the signal to RS-232 to drive a Succorfish Delphis acoustic modem, transmitting it through the water column to a second acoustic modem and back through an identical RS-232/RS-485/Feather Adalogger M0 chain",
+        "Programmed a Particle Boron 4G LTE module (404X) to publish the received data to the cloud, feeding a Google Sheet embedded in a public Google Site for live monitoring",
+      ],
+      learned: [
+        "Designing, implementing, and debugging different data transmission protocols (serial, acoustic, and cellular)",
+        "Working with an interdisciplinary team on a common goal with differing deadlines and progress checkpoints",
+        "Waterproofing microcontrollers, electrical connections, and data cables",
+        "Managing a materials budget across multiple funding sources",
       ],
     },
   },
