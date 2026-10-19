@@ -124,18 +124,20 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
           </div>
         </details>
       )}
-      <section>
-        <h3>What I learned</h3>
-        {Array.isArray(d.learned) ? (
-          <ul className="hl">
-            {d.learned.map((l) => (
-              <li key={l}>{l}</li>
-            ))}
-          </ul>
-        ) : (
-          <p className="ph">{d.learned}</p>
-        )}
-      </section>
+      {d.learned && (
+        <section>
+          <h3>What I learned</h3>
+          {Array.isArray(d.learned) ? (
+            <ul className="hl">
+              {d.learned.map((l) => (
+                <li key={l}>{l}</li>
+              ))}
+            </ul>
+          ) : (
+            <p className="ph">{d.learned}</p>
+          )}
+        </section>
+      )}
     </Panel>
   );
 }

@@ -32,8 +32,8 @@ export type Project = {
     flowFacts?: { label: string; value: string }[];
     flow?: FlowStep[];
     deepDive?: string[];
-    /** A placeholder string, or a list of bullet points once written. */
-    learned: string | string[];
+    /** A placeholder string, or a list of bullet points once written. Leave out to hide the section. */
+    learned?: string | string[];
   };
 };
 
@@ -98,7 +98,6 @@ export const projects: Project[] = [
         { title: "Fill-up", text: "Gallons logged by hand or scanned from the pump" },
         { title: "City, highway, and combined MPG", text: "Solved across all tracked tanks from each tank's mix and gallons" },
       ],
-      learned: learnedPlaceholder,
     },
   },
   {
