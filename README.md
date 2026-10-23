@@ -1,6 +1,8 @@
-# colin.friedelsweb.com
+# colinfriedel.com
 
 Personal portfolio built with Next.js (App Router), TypeScript, and Tailwind CSS. Deployed on Vercel.
+
+Live at [colinfriedel.com](https://colinfriedel.com). `www.colinfriedel.com` and the old `colin.friedelsweb.com` still work too (domains are set in Vercel). The canonical URL the site uses for metadata is `site.url` in `src/content/site.ts`.
 
 ## Develop
 

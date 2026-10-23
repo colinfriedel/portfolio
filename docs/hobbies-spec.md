@@ -1,6 +1,6 @@
 # Hobbies and Interests page: spec (implemented at /hobbies)
 
-Owner: Colin Friedel. Site: colin.friedelsweb.com (repo github.com/colinfriedel/portfolio, deployed on Vercel). Audience: recruiters and hiring managers first, friends second. Goal: show personality beyond code while feeling like the same site as Home, Projects and Resume.
+Owner: Colin Friedel. Site: colinfriedel.com (repo github.com/colinfriedel/portfolio, deployed on Vercel). Audience: recruiters and hiring managers first, friends second. Goal: show personality beyond code while feeling like the same site as Home, Projects and Resume.
 
 Implemented in `src/components/hobbies/` and `src/app/hobbies/`. Do not redesign; see CLAUDE.md for the editing rules.
 

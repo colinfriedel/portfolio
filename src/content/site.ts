@@ -5,7 +5,7 @@
 
 export const site = {
   name: "Colin Friedel",
-  url: "https://colin.friedelsweb.com",
+  url: "https://colinfriedel.com",
 
   // Flip to true once you want search engines to index the site.
   indexable: false,
