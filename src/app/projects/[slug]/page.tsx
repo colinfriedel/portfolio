@@ -66,18 +66,16 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       ) : (
         <div className="media">Photo or demo video goes here</div>
       )}
-      <section>
-        <h3>Highlights</h3>
-        {d.highlights.length > 0 ? (
+      {d.highlights.length > 0 && (
+        <section>
+          <h3>Highlights</h3>
           <ul className="hl">
             {d.highlights.map((h) => (
               <li key={h}>{h}</li>
             ))}
           </ul>
-        ) : (
-          <p className="ph">Placeholder: what you did and what went into it.</p>
-        )}
-      </section>
+        </section>
+      )}
       {d.features && d.features.length > 0 && (
         <section>
           <h3>Features</h3>
