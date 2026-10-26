@@ -23,7 +23,7 @@ export type Project = {
     lede: string;
     /** Empty list: no facts row. */
     facts: { label: string; value: string; href?: string }[];
-    /** Empty list: a "Highlights" placeholder until there's real text. */
+    /** Empty list: no Highlights section. */
     highlights: string[];
     /** Optional "Features" list shown after Highlights. */
     features?: string[];
@@ -45,8 +45,6 @@ export const projectFilters: { key: "all" | ProjectFilter; label: string }[] = [
 
 export const projectsIntro =
   "Things I've built and figured out, both technical and creative. Select a project to see more details.";
-
-const learnedPlaceholder = "Placeholder: what was hardest, how I figured it out, and what I'd do differently.";
 
 export const projects: Project[] = [
   {
@@ -326,7 +324,6 @@ export const projects: Project[] = [
       lede: "Teaching myself to hem a pair of jeans.",
       facts: [],
       highlights: [],
-      learned: learnedPlaceholder,
     },
   },
   {
@@ -342,15 +339,6 @@ export const projects: Project[] = [
       lede: "Extending the pockets on a pair of jeans.",
       facts: [],
       highlights: [],
-      learned: learnedPlaceholder,
     },
-  },
-  {
-    slug: "music",
-    filter: "hands",
-    kind: "Creative",
-    title: "Music Production",
-    summary: "Recording and producing my own tracks.",
-    tags: ["Music", "Recording"],
   },
 ];
