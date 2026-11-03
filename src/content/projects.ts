@@ -332,6 +332,7 @@ export const projects: Project[] = [
       { src: "/images/projects/vw-bus-headliner.jpg", alt: "Our wooden headliner panels being shaped on sawhorses in the garage" },
       { src: "/images/projects/vw-bus-brakes.jpg", alt: "A brake shoe and hardware laid out during the brake job" },
       { src: "/images/projects/vw-bus-engine-out.jpg", alt: "The back of the bus in the garage with the engine removed and tools on the floor" },
+      { src: "/images/projects/vw-bus-engine.jpg", alt: "The replacement engine installed, seen from the back of the bus, with its new stainless exhaust" },
       { src: "/images/projects/vw-bus-interior.jpg", alt: "The finished rear seat, cabinets, and wood-look floor inside the bus" },
       {
         src: "/images/projects/vw-bus-interior-door.jpg",
@@ -339,14 +340,14 @@ export const projects: Project[] = [
       },
     ],
     detail: {
-      lede: "My dad used to see Grateful Dead shows in his friend's '70s VW bus, and I was getting really into the Dead myself, so in 2021 we bought a 1970 bus as a COVID project to work on together. We've done almost all of it ourselves, and it's now drivable around town.",
+      lede: "My dad used to see Grateful Dead shows in his friend's '70s VW bus, and I was getting really into the Dead myself, so in 2021 we bought a 1970 bus as a COVID project to work on together. We've done almost all of it ourselves, and it's now in good running condition.",
       facts: [
         { label: "My role", value: "Restoring it with my dad, almost entirely ourselves" },
         { label: "Started", value: "2021, still ongoing" },
-        { label: "Status", value: "Drivable: around town, and trips to Santa Cruz and San Francisco" },
+        { label: "Status", value: "In good running condition" },
       ],
       highlights: [
-        "Started with zero knowledge and learned almost everything from the internet; only specialized jobs like diagnosing and reconfiguring the door locks went to a shop",
+        "Started with zero knowledge and learned almost everything from the internet; only specialized jobs like reconfiguring the door locks went to a shop",
         "Swapped in the engine and transmission from another bus, since the original engine had very bad compression and leakdown and needed a full rebuild, and the transmission had major leaks. The new engine is a lot more powerful than the original",
         "Added oil pressure and cylinder head temperature gauges, powered off the accessory fuse and wired to the engine for readings",
         "Taken it on longer trips too, including Santa Cruz a couple of times and San Francisco",
@@ -361,7 +362,7 @@ export const projects: Project[] = [
         "Gauges: oil pressure and cylinder head temperature",
         "Suspension and tires: new shocks and new tires",
         "Electrical: redid the dash wiring",
-        "Clutch cable and door locks replaced",
+        "Clutch cable and door locks replaced, with the locks matched to one key",
       ],
       learned: [
         "Troubleshooting issues on an old car",
