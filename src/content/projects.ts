@@ -25,8 +25,9 @@ export type Project = {
     facts: { label: string; value: string; href?: string }[];
     /** Empty list: no Highlights section. */
     highlights: string[];
-    /** Optional "Features" list shown after Highlights. */
+    /** Optional list shown after Highlights, headed "Features" unless `featuresTitle` says otherwise. */
     features?: string[];
+    featuresTitle?: string;
     flowTitle?: string;
     /** Small facts shown under the flow diagram (e.g. compatibility). */
     flowFacts?: { label: string; value: string }[];
@@ -309,6 +310,62 @@ export const projects: Project[] = [
         "Sewing thick, multi-layer stacks on a home sewing machine",
         "Balancing heavy upholstery thread on top against all-purpose thread in the bobbin",
         "Installing metal grommets in carpet",
+      ],
+    },
+  },
+  {
+    slug: "vw-bus",
+    filter: "hands",
+    kind: "Restoration, ongoing",
+    title: "Restoring a 1970 VW Bus",
+    summary: "Restoring a 1970 Volkswagen bus with my dad since 2021, from the interior to the engine and transmission.",
+    tags: ["Car", "Restoration", "Mechanical"],
+    image: {
+      src: "/images/projects/vw-bus.jpg",
+      alt: "The pale yellow 1970 VW bus with its pop top up and side door open, surfboards leaning against it",
+      focus: "50% 40%",
+    },
+    gallery: [
+      { src: "/images/projects/vw-bus-first-day.jpg", alt: "The bus parked on our street the day we bought it in 2021" },
+      { src: "/images/projects/vw-bus-floor.jpg", alt: "The cargo floor stripped to bare metal, with rust preventer painted over the worst spots" },
+      { src: "/images/projects/vw-bus-insulation.jpg", alt: "Insulation in the wall panels and a new plywood floor going in" },
+      { src: "/images/projects/vw-bus-headliner.jpg", alt: "Our wooden headliner panels being shaped on sawhorses in the garage" },
+      { src: "/images/projects/vw-bus-brakes.jpg", alt: "A brake shoe and hardware laid out during the brake job" },
+      { src: "/images/projects/vw-bus-engine-out.jpg", alt: "The back of the bus in the garage with the engine removed and tools on the floor" },
+      { src: "/images/projects/vw-bus-interior.jpg", alt: "The finished rear seat, cabinets, and wood-look floor inside the bus" },
+      {
+        src: "/images/projects/vw-bus-interior-door.jpg",
+        alt: "The finished interior through the open sliding door, with the extra seat made from an original front seat",
+      },
+    ],
+    detail: {
+      lede: "My dad used to see Grateful Dead shows in his friend's '70s VW bus, and I was getting really into the Dead myself, so in 2021 we bought a 1970 bus as a COVID project to work on together. We've done almost all of it ourselves, and it's now drivable around town.",
+      facts: [
+        { label: "My role", value: "Restoring it with my dad, almost entirely ourselves" },
+        { label: "Started", value: "2021, still ongoing" },
+        { label: "Status", value: "Drivable: around town, and trips to Santa Cruz and San Francisco" },
+      ],
+      highlights: [
+        "Started with zero knowledge and learned almost everything from the internet; only specialized jobs like diagnosing and reconfiguring the door locks went to a shop",
+        "Swapped in the engine and transmission from another bus, since the original engine had very bad compression and leakdown and needed a full rebuild, and the transmission had major leaks. The new engine is a lot more powerful than the original",
+        "Added oil pressure and cylinder head temperature gauges, powered off the accessory fuse and wired to the engine for readings",
+        "Taken it on longer trips too, including Santa Cruz a couple of times and San Francisco",
+        "I'm proudest of sticking with it and following through, and doing it with my dad has been the highlight",
+      ],
+      featuresTitle: "Work so far",
+      features: [
+        "Interior: seats, cabinets, shelves, curtains, and the canvas camper top from another bus, plus our own wooden headliner panels, rust preventer, and sound deadening",
+        "Turned one of the original front seats into a fifth seat in the back",
+        "Brakes: new drums, shoes, wheel cylinders, and master cylinder, then bled the system",
+        "Engine and transmission: swapped both for ones from another bus",
+        "Gauges: oil pressure and cylinder head temperature",
+        "Suspension and tires: new shocks and new tires",
+        "Electrical: redid the dash wiring",
+        "Clutch cable and door locks replaced",
+      ],
+      learned: [
+        "Troubleshooting issues on an old car",
+        "How a car actually works, and how to keep one properly maintained",
       ],
     },
   },
