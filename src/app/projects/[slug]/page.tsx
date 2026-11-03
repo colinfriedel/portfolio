@@ -78,7 +78,7 @@ export default async function ProjectPage(props: PageProps<"/projects/[slug]">) 
       )}
       {d.features && d.features.length > 0 && (
         <section>
-          <h3>Features</h3>
+          <h3>{d.featuresTitle ?? "Features"}</h3>
           <ul className="hl">
             {d.features.map((f) => (
               <li key={f}>{f}</li>
