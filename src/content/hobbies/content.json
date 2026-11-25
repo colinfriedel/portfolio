@@ -69,7 +69,9 @@
       "Colorado",
       "Texas",
       "North Dakota",
+      "Nebraska",
       "Minnesota",
+      "Wisconsin",
       "Iowa",
       "Illinois",
       "Tennessee",
@@ -188,6 +190,11 @@
         "name": "Yellowstone",
         "lat": 44.6,
         "lon": -110.5
+      },
+      {
+        "name": "Great Smoky Mountains",
+        "lat": 35.61,
+        "lon": -83.49
       }
     ],
     "countries": [
